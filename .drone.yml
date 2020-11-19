@@ -1,0 +1,53 @@
+# This is an example based in Java. You can change it to the language/runtime you are using
+# If you want more info on how to setup this Dronefile, please check https://guidelines.quintoandar.com.br/#/drone/?id=dronefile
+
+clone:
+  clone:
+    image: plugins/git
+    depth: 20
+
+pipeline:
+    assemble:
+      image: openjdk:11
+      commands:
+        - ./gradlew clean assemble
+      when:
+        event: push
+
+    check:
+      image: openjdk:11
+      commands:
+        - ./gradlew check -x test
+      when:
+        event: push
+
+    allTests:
+      image: openjdk:11
+      commands:
+        - ./gradlew test jacocoTestCoverageVerification
+      when:
+        event: push
+
+    publish:
+      image: quintoandar/drone-gcr
+      pull: true
+      repo: quintohub/empty-template
+      dockerfile: empty-template.forno.Dockerfile
+      tag: [ '${DRONE_BRANCH}-${DRONE_COMMIT:0:7}', '${DRONE_BRANCH}-latest' ]
+      when:
+        event: push
+        branch: [ forno ]
+
+    deploy-helm-forno-webserver:
+        group: deploy
+        image: quintoandar/drone-helm
+        pull: true
+        chart: quintoandar/app-deploy
+        server: https://api.k8s.quintoandar.com.br
+        namespace: forno
+        files: ["kube/forno/empty-template.yaml"]
+        values:
+          app.tag: ${DRONE_BRANCH}-${DRONE_COMMIT:0:7}
+        when:
+          event: push
+          branch: forno

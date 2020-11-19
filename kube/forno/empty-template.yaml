@@ -1,0 +1,52 @@
+# see https://github.com/quintoandar/helm-charts/tree/master/charts/app-deploy for more options
+# reach out to #devops-team for questions
+app:
+
+  # IMPORTANT! Must rename! If this is a web app, the subdomain will be the same as this name.
+  name: empty-template
+
+  # set if access to AWS resouces (besides databases/RDS) is required (contact #devops-team first)
+  iamRoleName: empty-template 
+
+  # set to false if this should not ever be accessible by the public (if not a web app, delete this)
+  public: true
+
+  ingress: kong
+
+  # update to match application or delete if not a web app.
+  port: 8080
+
+  # IMPORTANT! Must rename! Usually the same as name. 
+  repository: gcr.io/quintohub/empty-template
+
+  annotations:
+    quin.to/squad: any # update
+    quin.to/tribe: quintoandar # update
+
+  livenessProbe:
+    httpGet:
+      path: /actuator/health
+      port: http
+    initialDelaySeconds: 300
+    timeoutSeconds: 5
+
+  readinessProbe:
+    httpGet:
+      path: /actuator/health
+      port: http
+    initialDelaySeconds: 30
+    timeoutSeconds: 5
+
+  resources:
+    requests:
+      cpu: 300m
+      memory: 2048Mi
+    limits:
+      memory: 2048Mi
+
+# Comment/delete on forno/staging where we run with a single replica.
+# Uncomment on production to guarantee at least two replicas at any time.
+#  autoscaling:
+#    minReplicas: 2
+#    maxReplicas: 3
+#    targetCPUUtilizationPercentage: 70
