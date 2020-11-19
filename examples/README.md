@@ -1,0 +1,1 @@
+# Discovering Hive Mestastore Client
