@@ -15,7 +15,7 @@ jobs:
     - uses: actions/checkout@v2
 
     - name: Install lint dependencies
-      run: requirements-lint
+      run: make requirements-lint
 
     - name: Style check
       run: PYTHONPATH=./pip/deps make style-check
@@ -27,7 +27,7 @@ jobs:
       run: PYTHONPATH=./pip/deps make type-check
 
     - name: Install test dependencies
-      run: requirements-test
+      run: make requirements-test
 
     - name: Tests
       run: PYTHONPATH=./pip/deps make tests
