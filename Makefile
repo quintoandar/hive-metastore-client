@@ -33,7 +33,7 @@ requirements-all: requirements-test requirements-lint requirements-dev requireme
 .PHONY: tests
 ## run all unit and integration tests with coverage report
 tests:
-	@python -m pytest -W ignore::DeprecationWarning --cov-config=.coveragerc --cov=hive-metastore-client --cov-report term --cov-report html:htmlcov --cov-report xml:coverage.xml tests
+	@python -m pytest -W ignore::DeprecationWarning --cov-config=.coveragerc --cov=hive_metastore_client --cov-report term --cov-report html:htmlcov --cov-report xml:coverage.xml tests
 	@python -m coverage xml -i
 
 .PHONY: unit-tests
