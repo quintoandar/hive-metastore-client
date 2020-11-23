@@ -1,1 +1,2 @@
+"""Bar docstring."""
 #  example file
