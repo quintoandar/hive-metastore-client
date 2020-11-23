@@ -12,7 +12,7 @@ from thrift.TRecursive import fix_spec
 
 import sys
 import logging
-from .ttypes import *
+from hive_metastore_client.services.thrift_facebook_service.ttypes import *
 from thrift.Thrift import TProcessor
 from thrift.transport import TTransport
 all_structs = []
