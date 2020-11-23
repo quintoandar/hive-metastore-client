@@ -26,6 +26,11 @@ requirements-dev:
 requirements-minimum:
 	@PYTHONPATH=. python -m pip install -U -r requirements.txt
 
+.PHONY: requirements-docs
+## install docs requirements
+requirements-docs:
+	@PYTHONPATH=. python -m pip install -r docs/requirements.docs.txt
+
 .PHONY: requirements-all
 ## install all requirements
 requirements-all: requirements-test requirements-lint requirements-dev requirements-minimum
