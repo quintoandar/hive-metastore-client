@@ -1,6 +1,7 @@
-from hive_metastore_client.hive_metastore.ThriftHiveMetastore import Client as ThriftClient
-from thrift.transport import TSocket, TTransport
 from thrift.protocol import TBinaryProtocol
+from thrift.transport import TSocket, TTransport
+
+from hive_metastore_client.clients.thrift_hive_metastore_client import ThriftClient
 
 
 class HiveMetastoreClientConnector(ThriftClient):

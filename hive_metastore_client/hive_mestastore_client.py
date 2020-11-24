@@ -1,4 +1,6 @@
-from hive_metastore_client.hive_mestastore_client_connector import HiveMetastoreClientConnector
+from hive_metastore_client.hive_mestastore_client_connector import (
+    HiveMetastoreClientConnector,
+)
 
 
 class HiveMetastoreClient(HiveMetastoreClientConnector):
