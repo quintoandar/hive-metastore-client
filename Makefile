@@ -26,6 +26,11 @@ requirements-dev:
 requirements-minimum:
 	@PYTHONPATH=. python -m pip install -U -r requirements.txt
 
+.PHONY: requirements-docs
+## install docs requirements
+requirements-docs:
+	@PYTHONPATH=. python -m pip install -r docs/requirements.docs.txt
+
 .PHONY: requirements-all
 ## install all requirements
 requirements-all: requirements-test requirements-lint requirements-dev requirements-minimum
@@ -74,9 +79,18 @@ quality-check:
 	@python -m flake8 && echo "Success"
 	@echo ""
 
+.PHONY: type-check
+## run static type checks
+type-check:
+	@echo ""
+	@echo "mypy"
+	@echo "===="
+	@echo ""
+	@python -m mypy hive_metastore_client
+
 .PHONY: checks
 ## run all code checks
-checks: style-check quality-check
+checks: style-check quality-check type-check
 
 .PHONY: apply-style
 ## fix stylistic errors with black
