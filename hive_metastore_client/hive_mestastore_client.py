@@ -1,12 +1,11 @@
+"""Hive Metastore Client main class."""
 from hive_metastore_client.hive_mestastore_client_connector import (
     HiveMetastoreClientConnector,
 )
 
 
 class HiveMetastoreClient(HiveMetastoreClientConnector):
-    """
-    The Hive metastore client
-    """
+    """This class is the user main interface with the lib."""
 
     # Example
     # def get_tables(self, a, b):
