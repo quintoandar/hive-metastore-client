@@ -6,13 +6,20 @@
 #  options string: py
 #
 
-from thrift.Thrift import TType, TMessageType, TFrozenDict, TException, TApplicationException
+from thrift.Thrift import (
+    TType,
+    TMessageType,
+    TFrozenDict,
+    TException,
+    TApplicationException,
+)
 from thrift.protocol.TProtocol import TProtocolException
 from thrift.TRecursive import fix_spec
 
 import sys
 
 from thrift.transport import TTransport
+
 all_structs = []
 
 
@@ -21,6 +28,7 @@ class fb_status(object):
     Common status reporting mechanism across all services
 
     """
+
     DEAD = 0
     STARTING = 1
     ALIVE = 2
@@ -45,5 +53,7 @@ class fb_status(object):
         "STOPPED": 4,
         "WARNING": 5,
     }
+
+
 fix_spec(all_structs)
 del all_structs
