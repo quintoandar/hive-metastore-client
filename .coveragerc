@@ -1,0 +1,16 @@
+[report]
+# Regexes for lines to exclude from test run
+exclude_lines =
+    pragma: no cover
+    def __repr__
+    if self.debug:
+    if settings.DEBUG
+    raise AssertionError
+    raise NotImplementedError
+    super
+
+
+[run]
+omit =
+    hive_metastore_client/clients/thrift_hive_metastore_client/*
+    hive_metastore_client/services/thrift_facebook_service/*
