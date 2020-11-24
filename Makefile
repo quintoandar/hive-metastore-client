@@ -79,9 +79,18 @@ quality-check:
 	@python -m flake8 && echo "Success"
 	@echo ""
 
+.PHONY: type-check
+## run static type checks
+type-check:
+	@echo ""
+	@echo "mypy"
+	@echo "===="
+	@echo ""
+	@python -m mypy hive_metastore_client
+
 .PHONY: checks
 ## run all code checks
-checks: style-check quality-check
+checks: style-check quality-check type-check
 
 .PHONY: apply-style
 ## fix stylistic errors with black
