@@ -6,17 +6,18 @@
 #  options string: py
 #
 
-from thrift.Thrift import (
-    TType,
-    TMessageType,
-    TFrozenDict,
-    TException,
-    TApplicationException,
-)
+import sys
+
 from thrift.protocol.TProtocol import TProtocolException
+from thrift.Thrift import (
+    TApplicationException,
+    TException,
+    TFrozenDict,
+    TMessageType,
+    TType,
+)
 from thrift.TRecursive import fix_spec
 
-import sys
 from .ttypes import *
 
 DDL_TIME = "transient_lastDdlTime"
