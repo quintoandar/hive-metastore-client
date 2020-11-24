@@ -8,7 +8,7 @@ from hive_metastore_client.clients.thrift_hive_metastore_client import ThriftCli
 class HiveMetastoreClientConnector(ThriftClient):
     """Handles the connection with the Thrift server."""
 
-    def __init__(self, host, port=9083):
+    def __init__(self, host: str, port: int = 9083) -> None:
         """
         Instantiates the client object for given host and port.
 
@@ -19,7 +19,7 @@ class HiveMetastoreClientConnector(ThriftClient):
         super().__init__(protocol)
 
     @staticmethod
-    def _init_protocol(host, port):
+    def _init_protocol(host: str, port: int) -> TBinaryProtocol:
         """
         Instantiates the binary protocol object.
 
@@ -35,7 +35,7 @@ class HiveMetastoreClientConnector(ThriftClient):
 
         return TBinaryProtocol.TBinaryProtocol(transport)
 
-    def open(self):
+    def open(self) -> "HiveMetastoreClientConnector":
         """
         Opens the connection with the Thrift server.
 
@@ -44,15 +44,15 @@ class HiveMetastoreClientConnector(ThriftClient):
         self._oprot.trans.open()
         return self
 
-    def close(self):
+    def close(self) -> None:
         """Closes the connection with the Thrift server."""
         self._oprot.trans.close()
 
-    def __enter__(self):
+    def __enter__(self) -> "HiveMetastoreClientConnector":
         """Handles the conn opening whenever the with statement is used."""
         self.open()
         return self
 
-    def __exit__(self, exc_type, exc_val, exc_tb):
+    def __exit__(self, exc_type: str, exc_val: str, exc_tb: str) -> None:
         """Handles the conn's closing after the code in with stmt is ended."""
         self.close()

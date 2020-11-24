@@ -5,7 +5,7 @@ from hive_metastore_client.hive_mestastore_client_connector import (
 
 
 class HiveMetastoreClient(HiveMetastoreClientConnector):
-    """This class is the user main interface with the lib."""
+    """User main interface with the metastore server methods."""
 
     # Example
     # def get_tables(self, a, b):
