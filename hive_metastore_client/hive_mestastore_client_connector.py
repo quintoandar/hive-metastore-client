@@ -2,10 +2,12 @@
 from thrift.protocol import TBinaryProtocol
 from thrift.transport import TSocket, TTransport
 
-from hive_metastore_client.clients.thrift_hive_metastore_client.ThriftHiveMetastore import Client  # type: ignore
+from hive_metastore_client.clients.thrift_hive_metastore_client.ThriftHiveMetastore import (
+    Client as ThriftClient,
+)  # type: ignore
 
 
-class HiveMetastoreClientConnector(Client):
+class HiveMetastoreClientConnector(ThriftClient):
     """Handles the connection with the Thrift server."""
 
     def __init__(self, host: str, port: int = 9083) -> None:
