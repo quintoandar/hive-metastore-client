@@ -71,7 +71,7 @@ style-check:
 	@echo "Check Style"
 	@echo "================"
 	@echo ""
-	@python -m black --check --exclude="build/|buck-out/|dist/|_build/|pip/|env/|\.pip/|\.git/|\.hg/|\.mypy_cache/|\.tox/|\.venv/|cmake*|thrift_*" . && echo "\n\nSuccess\n" || (echo "\n\nFailure\n\nRun \"make apply-style\" to apply style formatting to your code\n" && exit 1)
+	@python -m black --check --exclude="build/|buck-out/|dist/|_build/|pip/|env/|\.pip/|\.git/|\.hg/|\.mypy_cache/|\.tox/|\.venv/|cmake*|thrift_files/" . && echo "\n\nSuccess\n" || (echo "\n\nFailure\n\nRun \"make apply-style\" to apply style formatting to your code\n" && exit 1)
 	@python -m flake8 --config=setup.cfg hive_metastore_client/
 
 .PHONY: type-check
@@ -90,7 +90,7 @@ checks: style-check type-check
 .PHONY: apply-style
 ## run black to fix code style
 apply-style:
-	@python -m black -t py36 --exclude="build/|buck-out/|dist/|_build/|pip/|env/|\.pip/|\.git/|\.hg/|\.mypy_cache/|\.tox/|\.venv/|thrift_*" .
+	@python -m black -t py36 --exclude="build/|buck-out/|dist/|_build/|pip/|env/|\.pip/|\.git/|\.hg/|\.mypy_cache/|\.tox/|\.venv/|thrift_files/" .
 
 # Packaging ===================================================================
 
