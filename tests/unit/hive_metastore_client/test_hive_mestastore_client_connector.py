@@ -1,16 +1,16 @@
 from unittest import mock
 from unittest.mock import Mock
 
-from hive_metastore_client.hive_mestastore_client_connector import (
+from hive_metastore_client.clients.hive_mestastore_client_connector import (
     HiveMetastoreClientConnector,
 )
 
 
 class TestHiveMetastoreClientConnector:
-    @mock.patch("hive_metastore_client.hive_mestastore_client_connector.TSocket")
-    @mock.patch("hive_metastore_client.hive_mestastore_client_connector.TTransport")
+    @mock.patch("hive_metastore_client.clients.hive_mestastore_client_connector.TSocket")
+    @mock.patch("hive_metastore_client.clients.hive_mestastore_client_connector.TTransport")
     @mock.patch(
-        "hive_metastore_client.hive_mestastore_client_connector.TBinaryProtocol"
+        "hive_metastore_client.clients.hive_mestastore_client_connector.TBinaryProtocol"
     )
     def test__init_protocol(
         self, mocked_tbinaryp, mocked_ttransport, mocked_tsocket, hive_metastore_client
