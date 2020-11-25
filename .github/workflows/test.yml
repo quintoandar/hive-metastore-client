@@ -20,11 +20,8 @@ jobs:
     - name: Style check
       run: PYTHONPATH=./pip/deps make style-check
 
-    - name: Quality check
-      run: PYTHONPATH=./pip/deps make quality-check
-
-#    - name: Static Type check #Todo Add
-#      run: PYTHONPATH=./pip/deps make type-check
+    - name: Static Type check
+      run: PYTHONPATH=./pip/deps make type-check
 
     - name: Install test dependencies
       run: make requirements-test

@@ -23,3 +23,5 @@ thrift --gen py fb303.thrift
 ```
 
 3 - Now you have the new python code generated inside `gen-py`. Extract the classes and place them in the right directories.
+
+4 - The generated files are huge, therefore be sure that the generated files directory names are ignored in the make commands _style-check_ and _apply-lint_. So these files are not evaluated during the checks.
