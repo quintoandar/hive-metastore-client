@@ -1,5 +1,3 @@
-__all__ = ["ttypes", "constants", "ThriftHiveMetastore", "ThriftClient"]
+# type: ignore
 
-from hive_metastore_client.clients.thrift_hive_metastore_client.ThriftHiveMetastore import (
-    Client as ThriftClient,
-)
+__all__ = ["ttypes", "constants", "ThriftHiveMetastore"]
