@@ -51,10 +51,10 @@ class HiveMetastoreClientConnector(ThriftClient):
         self._oprot.trans.close()
 
     def __enter__(self) -> "HiveMetastoreClientConnector":
-        """Handles the conn opening whenever the with statement is used."""
+        """Handles the conn opening whenever the 'with' block statement is used."""
         self.open()
         return self
 
     def __exit__(self, exc_type: str, exc_val: str, exc_tb: str) -> None:
-        """Handles the conn's closing after the code in with stmt is ended."""
+        """Handles the conn closing after the code inside 'with' block is ended."""
         self.close()
