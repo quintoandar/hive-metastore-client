@@ -90,12 +90,12 @@ type-check:
 
 .PHONY: checks
 ## run all code checks
-checks: style-check quality-check type-check
+checks: style-check type-check
 
 .PHONY: apply-style
 ## fix stylistic errors with black
 apply-style:
-	@python -m isort -rc hive_metastore_client/ tests/
+	@#python -m isort -rc hive_metastore_client/ tests/
 	@python -m black -t py36 --exclude="build/|buck-out/|dist/|_build/|pip/|\.pip/|\.git/|\.hg/|\.mypy_cache/|\.tox/|\.venv/" .
 
 .PHONY: clean
