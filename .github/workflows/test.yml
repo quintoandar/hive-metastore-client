@@ -27,7 +27,7 @@ jobs:
       run: make requirements-test
 
     - name: Install prod dependencies
-        run: make requirements-minimum
+      run: make requirements-minimum
 
     - name: Tests
       run: PYTHONPATH=./pip/deps make tests
