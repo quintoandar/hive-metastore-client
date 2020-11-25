@@ -7,8 +7,12 @@ from hive_metastore_client.clients.hive_mestastore_client_connector import (
 
 
 class TestHiveMetastoreClientConnector:
-    @mock.patch("hive_metastore_client.clients.hive_mestastore_client_connector.TSocket")
-    @mock.patch("hive_metastore_client.clients.hive_mestastore_client_connector.TTransport")
+    @mock.patch(
+        "hive_metastore_client.clients.hive_mestastore_client_connector.TSocket"
+    )
+    @mock.patch(
+        "hive_metastore_client.clients.hive_mestastore_client_connector.TTransport"
+    )
     @mock.patch(
         "hive_metastore_client.clients.hive_mestastore_client_connector.TBinaryProtocol"
     )
