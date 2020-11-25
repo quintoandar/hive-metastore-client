@@ -26,6 +26,17 @@ The requirements of the project were split in order to better organize and facil
 |-- docs/requirements.docs.txt  < for recreating the documentation's files >
 ```
 
+### Code Style and Type checking
+Running isolated checks:
+- To check style: run `make style-check`
+- To check type: run `make type-check`
+
+Running all the checks at once:
+- run: `make checks`
+
+To fix style (_with black_):
+- run `make apply-style`
+
 ## License
 [Apache License 2.0](https://github.com/quintoandar/hive-metastore-client/blob/staging/LICENSE)
 

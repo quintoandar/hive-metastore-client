@@ -1,3 +1,4 @@
+# Environment =================================================================
 .PHONY: environment
 ## create virtual environment for hive-metastore-client
 environment:
@@ -35,6 +36,8 @@ requirements-docs:
 ## install all requirements
 requirements-all: requirements-test requirements-lint requirements-dev requirements-minimum
 
+# Test ========================================================================
+
 .PHONY: tests
 ## run all unit and integration tests with coverage report
 tests:
@@ -50,7 +53,6 @@ unit-tests:
 	@echo ""
 	@python -m pytest -W ignore::DeprecationWarning --cov-config=.coveragerc --cov-report term --cov-report html:unit-tests-cov --cov=hive-metastore-client --cov-fail-under=90 tests/unit
 
-
 .PHONY: integration-tests
 ## run integration tests with coverage report
 integration-tests:
@@ -60,30 +62,23 @@ integration-tests:
 	@echo ""
 	@python -m pytest -W ignore::DeprecationWarning --cov-config=.coveragerc --cov-report term --cov-report xml:integration-tests-cov.xml --cov=hive-metastore-client --cov-fail-under=60 tests/integration
 
+# Style & Lint ================================================================
+
 .PHONY: style-check
 ## run code style checks with black
 style-check:
 	@echo ""
-	@echo "Code Style"
-	@echo "=========="
+	@echo "Check Style"
+	@echo "================"
 	@echo ""
-	@python -m black --check -t py36 --exclude="build/|buck-out/|dist/|_build/|pip/|\.pip/|\.git/|\.hg/|\.mypy_cache/|\.tox/|\.venv/" . && echo "\n\nSuccess" || (echo "\n\nFailure\n\nYou need to run \"make apply-style\" to apply style formatting to your code"; exit 1)
-
-.PHONY: quality-check
-## run code quality checks with flake8
-quality-check:
-	@echo ""
-	@echo "Flake 8"
-	@echo "======="
-	@echo ""
-	@python -m flake8 && echo "Success"
-	@echo ""
+	@python -m black --check --exclude="build/|buck-out/|dist/|_build/|pip/|env/|\.pip/|\.git/|\.hg/|\.mypy_cache/|\.tox/|\.venv/|cmake*|thrift_*" . && echo "\n\nSuccess\n" || (echo "\n\nFailure\n\nRun \"make apply-style\" to apply style formatting to your code\n" && exit 1)
+	@python -m flake8 --config=setup.cfg hive_metastore_client/
 
 .PHONY: type-check
 ## run static type checks
 type-check:
 	@echo ""
-	@echo "mypy"
+	@echo "Mypy"
 	@echo "===="
 	@echo ""
 	@python -m mypy hive_metastore_client
@@ -93,29 +88,11 @@ type-check:
 checks: style-check type-check
 
 .PHONY: apply-style
-## fix stylistic errors with black
+## run black to fix code style
 apply-style:
-	@#python -m isort -rc hive_metastore_client/ tests/
-	@python -m black -t py36 --exclude="build/|buck-out/|dist/|_build/|pip/|\.pip/|\.git/|\.hg/|\.mypy_cache/|\.tox/|\.venv/" .
+	@python -m black -t py36 --exclude="build/|buck-out/|dist/|_build/|pip/|env/|\.pip/|\.git/|\.hg/|\.mypy_cache/|\.tox/|\.venv/|thrift_*" .
 
-.PHONY: clean
-## clean unused artifacts
-clean:
-	@find ./ -type d -name 'dist' -exec rm -rf {} +;
-	@find ./ -type d -name 'build' -exec rm -rf {} +;
-	@find ./ -type d -name 'quintoandar_hive_metastore_client.egg-info' -exec rm -rf {} +;
-	@find ./ -type d -name 'htmlcov' -exec rm -rf {} +;
-	@find ./ -type d -name '.pytest_cache' -exec rm -rf {} +;
-	@find ./ -type d -name 'spark-warehouse' -exec rm -rf {} +;
-	@find ./ -type d -name 'metastore_db' -exec rm -rf {} +;
-	@find ./ -type d -name '.ipynb_checkpoints' -exec rm -rf {} +;
-	@find ./ -type f -name 'coverage-badge.svg' -exec rm -f {} \;
-	@find ./ -type f -name 'coverage.xml' -exec rm -f {} \;
-	@find ./ -type f -name '.coverage*' -exec rm -f {} \;
-	@find ./ -type f -name '*derby.log' -exec rm -f {} \;
-	@find ./ -name '*.pyc' -exec rm -f {} \;
-	@find ./ -name '*.pyo' -exec rm -f {} \;
-	@find ./ -name '*~' -exec rm -f {} \;
+# Packaging ===================================================================
 
 .PHONY: version
 ## dump package name into VERSION env variable and show
@@ -134,6 +111,8 @@ package-name:
 package:
 	@PYTHONPATH=. python -m setup sdist bdist_wheel
 
+# Documentation ===============================================================
+
 .PHONY: update-docs
 ## update hive-metastore-client API docs
 update-docs:
@@ -147,10 +126,26 @@ docs:
 	cd ./docs; make clean
 	cd ./docs; make html
 
-.PHONY: test-examples
-## run all the notebooks examples for testing
-test-examples:
-	@PYTHONPATH=. python examples/test_examples.py
+# Other ===================================================================
+
+.PHONY: clean
+## clean unused artifacts
+clean:
+	@find ./ -type d -name 'dist' -exec rm -rf {} +;
+	@find ./ -type d -name 'build' -exec rm -rf {} +;
+	@find ./ -type d -name 'quintoandar_hive_metastore_client.egg-info' -exec rm -rf {} +;
+	@find ./ -type d -name 'htmlcov' -exec rm -rf {} +;
+	@find ./ -type d -name '.pytest_cache' -exec rm -rf {} +;
+	@find ./ -type d -name 'spark-warehouse' -exec rm -rf {} +;
+	@find ./ -type d -name 'metastore_db' -exec rm -rf {} +;
+	@find ./ -type d -name '.ipynb_checkpoints' -exec rm -rf {} +;
+	@find ./ -type d -name 'coverage.xml' -exec rm -rf {} +;
+	@find ./ -type f -name 'coverage-badge.svg' -exec rm -f {} \;
+	@find ./ -type f -name '.coverage' -exec rm -f {} \;
+	@find ./ -type f -name '*derby.log' -exec rm -f {} \;
+	@find ./ -name '*.pyc' -exec rm -f {} \;
+	@find ./ -name '*.pyo' -exec rm -f {} \;
+	@find ./ -name '*~' -exec rm -f {} \;
 
 .DEFAULT_GOAL := help
 
