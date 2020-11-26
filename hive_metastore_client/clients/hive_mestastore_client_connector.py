@@ -2,7 +2,7 @@
 from thrift.protocol import TBinaryProtocol
 from thrift.transport import TSocket, TTransport
 
-from hive_metastore_client.clients.thrift_hive_metastore_client.ThriftHiveMetastore import (  # type: ignore # noqa: E501
+from thrift_files.libraries.thrift_hive_metastore_client.ThriftHiveMetastore import (  # type: ignore # noqa: E501
     Client as ThriftClient,
 )
 

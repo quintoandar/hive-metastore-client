@@ -11,19 +11,15 @@
 import logging
 import sys
 
-from thrift.protocol.TProtocol import TProtocolException
 from thrift.Thrift import (
     TApplicationException,
-    TException,
-    TFrozenDict,
     TMessageType,
     TProcessor,
     TType,
 )
 from thrift.transport import TTransport
 from thrift.TRecursive import fix_spec
-
-from hive_metastore_client.services.thrift_facebook_service.ttypes import *
+from thrift_files.libraries.thrift_facebook_service.ttypes import *
 
 all_structs = []
 

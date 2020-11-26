@@ -21,7 +21,7 @@ from thrift.Thrift import (
 from thrift.transport import TTransport
 from thrift.TRecursive import fix_spec
 
-from hive_metastore_client.services.thrift_facebook_service import ttypes
+from thrift_files.libraries.thrift_facebook_service import ttypes
 
 all_structs = []
 

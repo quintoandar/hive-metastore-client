@@ -3,7 +3,7 @@ from unittest import mock
 import pytest
 
 from hive_metastore_client.hive_mestastore_client import HiveMetastoreClient
-from hive_metastore_client.hive_mestastore_client_connector import (
+from hive_metastore_client.clients.hive_mestastore_client_connector import (
     HiveMetastoreClientConnector,
 )
 
