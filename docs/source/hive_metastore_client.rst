@@ -1,6 +1,14 @@
 hive\_metastore\_client package
 ===============================
 
+Subpackages
+-----------
+
+.. toctree::
+   :maxdepth: 4
+
+   hive_metastore_client.builders
+
 Submodules
 ----------
 
