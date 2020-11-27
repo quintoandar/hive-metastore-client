@@ -11,12 +11,6 @@ Submodules
    :show-inheritance:
 
 
-.. automodule:: hive_metastore_client.hive_mestastore_client_connector
-   :members:
-   :undoc-members:
-   :show-inheritance:
-
-
 Module contents
 ---------------
 
