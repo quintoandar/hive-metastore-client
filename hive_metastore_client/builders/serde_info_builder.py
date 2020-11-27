@@ -1,13 +1,14 @@
 """SerDeInfoBuilder."""
 from typing import Dict
 
+from hive_metastore_client.builders.abstract_builder import AbstractBuilder
 from thrift_files.libraries.thrift_hive_metastore_client.ttypes import (  # type: ignore # noqa: E501
     SerDeInfo,
     SerdeType,
 )
 
 
-class SerDeInfoBuilder:
+class SerDeInfoBuilder(AbstractBuilder):
     """Builds thrift table's Serialization-Deserialization info object."""
 
     DEFAULT_SER_LIB = "org.apache.hadoop.hive.ql.io.parquet.serde.ParquetHiveSerDe"

@@ -1,6 +1,7 @@
 """StorageDescriptorBuilder."""
 from typing import List, Dict
 
+from hive_metastore_client.builders.abstract_builder import AbstractBuilder
 from hive_metastore_client.builders.serde_info_builder import SerDeInfoBuilder
 from thrift_files.libraries.thrift_hive_metastore_client.ttypes import (  # type: ignore # noqa: E501
     StorageDescriptor,
@@ -11,7 +12,7 @@ from thrift_files.libraries.thrift_hive_metastore_client.ttypes import (  # type
 )
 
 
-class StorageDescriptorBuilder:
+class StorageDescriptorBuilder(AbstractBuilder):
     """Builds thrift StorageDescriptor object."""
 
     def __init__(

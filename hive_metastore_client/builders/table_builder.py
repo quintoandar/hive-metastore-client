@@ -1,6 +1,7 @@
 """TableBuilder."""
 from typing import List, Dict
 
+from hive_metastore_client.builders.abstract_builder import AbstractBuilder
 from thrift_files.libraries.thrift_hive_metastore_client.ttypes import (  # type: ignore # noqa: E501
     Table,
     FieldSchema,
@@ -11,7 +12,7 @@ from thrift_files.libraries.thrift_hive_metastore_client.ttypes import (  # type
 )
 
 
-class TableBuilder:
+class TableBuilder(AbstractBuilder):
     """Builds thrift Table object."""
 
     def __init__(
