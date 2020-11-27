@@ -1,19 +1,38 @@
-from thrift_files.libraries.thrift_hive_metastore_client.ttypes import SerDeInfo
+"""SerDeInfoBuilder."""
+from typing import Dict
+
+from thrift_files.libraries.thrift_hive_metastore_client.ttypes import (  # type: ignore # noqa: E501
+    SerDeInfo,
+    SerdeType,
+)
 
 
 class SerDeInfoBuilder:
+    """Builds thrift table's Serialization-Deserialization info object."""
+
     DEFAULT_SER_LIB = "org.apache.hadoop.hive.ql.io.parquet.serde.ParquetHiveSerDe"
 
     def __init__(
         self,
-        name=None,
-        serialization_lib=None,
-        parameters=None,
-        description=None,
-        serializer_class=None,
-        deserializer_class=None,
-        serde_type=None,
+        name: str = None,
+        serialization_lib: str = None,
+        parameters: Dict[str, str] = None,
+        description: str = None,
+        serializer_class: str = None,
+        deserializer_class: str = None,
+        serde_type: SerdeType = None,
     ) -> None:
+        """
+        Constructor.
+
+        :param name: name of the serde, table name by default
+        :param serialization_lib: the class that implements the extractor & loader
+        :param parameters: initialization parameters
+        :param description: (no information in thrift mapping)
+        :param serializer_class: (no information in thrift mapping)
+        :param deserializer_class: (no information in thrift mapping)
+        :param serde_type: (no information in thrift mapping)
+        """
         self.name = name
         self.serialization_lib = serialization_lib or self.DEFAULT_SER_LIB
         self.parameters = parameters
@@ -23,6 +42,7 @@ class SerDeInfoBuilder:
         self.serde_type = serde_type
 
     def build(self) -> SerDeInfo:
+        """Returns the thrift SerDeInfo object."""
         return SerDeInfo(
             name=self.name,
             serializationLib=self.serialization_lib,

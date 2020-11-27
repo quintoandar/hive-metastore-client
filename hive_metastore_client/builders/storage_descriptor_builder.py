@@ -1,26 +1,53 @@
+"""StorageDescriptorBuilder."""
+from typing import List, Dict
+
 from hive_metastore_client.builders.serde_info_builder import SerDeInfoBuilder
-from thrift_files.libraries.thrift_hive_metastore_client.ttypes import (
+from thrift_files.libraries.thrift_hive_metastore_client.ttypes import (  # type: ignore # noqa: E501
     StorageDescriptor,
     FieldSchema,
+    SerDeInfo,
+    Order,
+    SkewedInfo,
 )
 
 
 class StorageDescriptorBuilder:
+    """Builds thrift StorageDescriptor object."""
+
     def __init__(
         self,
-        columns,
-        location,
-        input_format,
-        output_format,
-        serde_info=None,
-        compressed=None,
-        num_buckets=None,
-        bucket_cols=None,
-        sort_cols=None,
-        parameters=None,
-        skewed_info=None,
-        stored_as_sub_directories=None,
+        columns: List[FieldSchema],
+        location: str,
+        input_format: str,
+        output_format: str,
+        serde_info: SerDeInfo = None,
+        compressed: bool = None,
+        num_buckets: int = None,
+        bucket_cols: List[str] = None,
+        sort_cols: List[Order] = None,
+        parameters: Dict[str, str] = None,
+        skewed_info: SkewedInfo = None,
+        stored_as_sub_directories: bool = None,
     ) -> None:
+        """
+        Constructor.
+
+        :param columns: list<FieldSchema>
+        :param location: the table location path
+        :param input_format: SequenceFileInputFormat (binary) or
+        TextInputFormat or custom format
+        :param output_format: SequenceFileOutputFormat (binary) or
+        IgnoreKeyTextOutputFormat or custom format
+        :param serde_info: serialization and deserialization information
+        :param compressed: whether it is compressed or not
+        :param num_buckets: must be specified if there are dimension columns
+        :param bucket_cols: reducer grouping columns and clustering columns
+        and bucketing columns
+        :param sort_cols: sort order of the data in each bucket
+        :param parameters: any user supplied key value hash
+        :param skewed_info: skewed information
+        :param stored_as_sub_directories: stored as subdirectories or not
+        """
         self.columns = columns
         self.location = location
         self.input_format = input_format
@@ -35,7 +62,7 @@ class StorageDescriptorBuilder:
         self.stored_as_sub_directories = stored_as_sub_directories
 
     def build(self) -> StorageDescriptor:
-
+        """Returns the thrift StorageDescriptor object."""
         return StorageDescriptor(
             cols=self.columns,
             location=self.location,
