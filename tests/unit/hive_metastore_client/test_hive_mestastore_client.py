@@ -4,7 +4,7 @@ from unittest.mock import Mock
 from hive_metastore_client.hive_mestastore_client import HiveMetastoreClient
 
 
-class TestHiveMetastoreClientConnector:
+class TestHiveMetastoreClient:
     @mock.patch("hive_metastore_client.hive_mestastore_client.TSocket")
     @mock.patch("hive_metastore_client.hive_mestastore_client.TTransport")
     @mock.patch("hive_metastore_client.hive_mestastore_client.TBinaryProtocol")
