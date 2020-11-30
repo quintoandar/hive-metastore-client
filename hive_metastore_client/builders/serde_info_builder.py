@@ -11,8 +11,6 @@ from thrift_files.libraries.thrift_hive_metastore_client.ttypes import (  # type
 class SerDeInfoBuilder(AbstractBuilder):
     """Builds thrift table's Serialization-Deserialization info object."""
 
-    DEFAULT_SER_LIB = "org.apache.hadoop.hive.ql.io.parquet.serde.ParquetHiveSerDe"
-
     def __init__(
         self,
         name: str = None,
@@ -35,7 +33,7 @@ class SerDeInfoBuilder(AbstractBuilder):
         :param serde_type: (no information in thrift mapping)
         """
         self.name = name
-        self.serialization_lib = serialization_lib or self.DEFAULT_SER_LIB
+        self.serialization_lib = serialization_lib
         self.parameters = parameters
         self.description = description
         self.serializer_class = serializer_class

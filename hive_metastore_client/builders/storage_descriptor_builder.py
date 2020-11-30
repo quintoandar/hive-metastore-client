@@ -21,7 +21,7 @@ class StorageDescriptorBuilder(AbstractBuilder):
         location: str,
         input_format: str,
         output_format: str,
-        serde_info: SerDeInfo = None,
+        serde_info: SerDeInfo,
         compressed: bool = None,
         num_buckets: int = None,
         bucket_cols: List[str] = None,
@@ -55,7 +55,7 @@ class StorageDescriptorBuilder(AbstractBuilder):
         self.output_format = output_format
         self.compressed = compressed
         self.num_buckets = num_buckets
-        self.serde_info = serde_info or SerDeInfoBuilder().build()  # DEFAULT IS Parquet
+        self.serde_info = serde_info
         self.bucket_cols = bucket_cols
         self.sort_cols = sort_cols
         self.parameters = parameters
