@@ -48,5 +48,5 @@ partition_list = [
 ]
 
 with HiveMetastoreClient(HIVE_HOST, HIVE_PORT) as hive_client:
-    # adding two set of partitions to specified table
+    # Adding two set of partitions to specified table
     hive_client.add_partitions(partition_list)
