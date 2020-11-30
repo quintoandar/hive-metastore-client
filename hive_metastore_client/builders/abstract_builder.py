@@ -3,13 +3,13 @@ from abc import ABCMeta, abstractmethod
 
 
 class AbstractBuilder(metaclass=ABCMeta):
-    """Abstract Builder class to define builder methods to be implemented."""
+    """Abstract Builder class with builder methods."""
 
     @abstractmethod
     def build(self) -> object:
         """
-        To be implemented by each subclass and build the respective object.
+        Builds the respective Thrift object.
 
-        :return: an instance of the object to be built
+        :return: an instance of the built object
         """
         pass

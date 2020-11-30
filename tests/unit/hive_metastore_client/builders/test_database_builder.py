@@ -1,18 +1,29 @@
+from unittest import mock
+from unittest.mock import Mock
 from hive_metastore_client.builders.database_builder import DatabaseBuilder
-from thrift_files.libraries.thrift_hive_metastore_client.ttypes import Database
 
 
 class TestDatabaseBuilder:
-    def test_build_with_name(self):
-        database_builder = DatabaseBuilder(name="database_name")
-        database = Database(name="database_name")
+    @mock.patch("hive_metastore_client.builders.database_builder.Database")
+    def test_build(self, mocked_database):
+        # arrange
+        mocked_database_name = "database_name"
 
-        assert database == database_builder.build()
+        mocked_obj = Mock()
+        mocked_database.return_value = mocked_obj
 
-    def test_build_with_description(self):
-        database_builder = DatabaseBuilder(
-            name="database_name", description="description"
+        # act
+        returned_value = DatabaseBuilder(name=mocked_database_name).build()
+
+        # assert
+        assert returned_value == mocked_obj
+        mocked_database.assert_called_once_with(
+            name=mocked_database_name,
+            description=None,
+            locationUri=None,
+            parameters=None,
+            privileges=None,
+            ownerName=None,
+            ownerType=None,
+            catalogName=None,
         )
-        database = Database(name="database_name", description="description")
-
-        assert database == database_builder.build()

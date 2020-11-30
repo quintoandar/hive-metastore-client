@@ -8,7 +8,6 @@ Subpackages
    :maxdepth: 4
 
    hive_metastore_client.builders
-   hive_metastore_client.clients
 
 Submodules
 ----------
