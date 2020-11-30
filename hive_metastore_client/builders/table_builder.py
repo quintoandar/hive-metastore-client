@@ -39,26 +39,26 @@ class TableBuilder(AbstractBuilder):
         """
         Constructor.
 
-        :param table_name: name of the table
-        :param db_name: database name ('default')
-        :param storage_descriptor:
+        :param table_name: the table name
+        :param db_name: the database name
+        :param storage_descriptor: StorageDescriptor object
         :param owner: owner of this table
-        :param create_time: creation time of the table
-        :param last_access_time: last access time (usually this will be filled
+        :param create_time: creation timestamp of the table
+        :param last_access_time: last access timestamp (usually this will be filled
         from HDFS and shouldn't be relied on)
-        :param retention: retention time
-        :param partition_keys: partition keys of the table. only primitive
+        :param retention: retention timestamp
+        :param partition_keys: partition keys of the table. Only primitive
         types are supported
         :param parameters: to store comments or any other user level parameters
         :param view_original_text: original view text, null for non-view
         :param view_expanded_text: expanded view text, null for non-view
-        :param table_type: table type enum, e.g. EXTERNAL_TABLE
-        :param privileges: (no information in thrift mapping)
-        :param temporary: (no information in thrift mapping)
+        :param table_type: table type enum. E.g. EXTERNAL_TABLE
+        :param privileges:  privilege grant info (PrincipalPrivilegeSet object)
+        :param temporary: whether it is temporary or not
         :param rewrite_enabled: rewrite enabled or not
         :param creation_metadata: only for MVs, it stores table names used and
         txn list at MV creation
-        :param cat_name: Name of the catalog the table is in
+        :param cat_name: name of the catalog the table is in
         :param owner_type: owner type of this table (default to USER for
         backward compatibility)
         """
