@@ -8,7 +8,7 @@ from thrift_files.libraries.thrift_hive_metastore_client.ThriftHiveMetastore imp
 
 
 class HiveMetastoreClient(ThriftClient):
-    """Handles the connection with the Thrift server."""
+    """User main interface with the metastore server methods."""
 
     def __init__(self, host: str, port: int = 9083) -> None:
         """
