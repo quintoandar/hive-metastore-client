@@ -1,17 +1,19 @@
 hive\_metastore\_client package
 ===============================
 
+Subpackages
+-----------
+
+.. toctree::
+   :maxdepth: 4
+
+   hive_metastore_client.builders
+
 Submodules
 ----------
 
 
 .. automodule:: hive_metastore_client.hive_mestastore_client
-   :members:
-   :undoc-members:
-   :show-inheritance:
-
-
-.. automodule:: hive_metastore_client.hive_mestastore_client_connector
    :members:
    :undoc-members:
    :show-inheritance:
