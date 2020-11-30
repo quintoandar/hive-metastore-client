@@ -1,4 +1,4 @@
-"""Base class for handling the connection with the Thrift server."""
+"""Hive Metastore Client main class."""
 from thrift.protocol import TBinaryProtocol
 from thrift.transport import TSocket, TTransport
 
