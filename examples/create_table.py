@@ -16,8 +16,8 @@ from hive_metastore_client.hive_mestastore_client import HiveMetastoreClient
 HIVE_HOST = "<ADD_HIVE_HOST_HERE>"
 HIVE_PORT = 9083
 
-hive_metastore_client = HiveMetastoreClient(HIVE_HOST, HIVE_PORT)
-with hive_metastore_client as conn:
+with HiveMetastoreClient(HIVE_HOST, HIVE_PORT) as hive_metastore_client:
+
     # You must create a list with the columns
     columns = [
         ColumnBuilder("id", "string", "col comment").build(),
@@ -62,4 +62,4 @@ with hive_metastore_client as conn:
     ).build()
 
     # Creating new table from thrift table object
-    conn.create_table(table)
+    hive_metastore_client.create_table(table)

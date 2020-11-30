@@ -7,11 +7,10 @@ It is necessary to use the client instance with the `with` statement, this
 guarantees that the connection will automatically open and closed for you.
 I.g.:
 ```python
-hive_metastore_client = HiveMetastoreClient(HIVE_HOST, HIVE_PORT)
-with hive_metastore_client as conn:
+with HiveMetastoreClient(HIVE_HOST, HIVE_PORT) as hive_metastore_client:
 
     database = DatabaseBuilder(name='new_db').build()
-    conn.create_database(database) 
+    hive_metastore_client.create_database(database) 
 ```
 
 This lib encapsulate some the Thrift code's dependency into Builders.
