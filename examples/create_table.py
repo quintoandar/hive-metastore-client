@@ -43,17 +43,14 @@ with hive_metastore_client as conn:
 
     storage_descriptor = StorageDescriptorBuilder(
         columns=columns,
-        location='path/to/file',
+        location="path/to/file",
         input_format="org.apache.hadoop.mapred.TextInputFormat",
         output_format="org.apache.hadoop.hive.ql.io.HiveIgnoreKeyTextOutputFormat",
         serde_info=serde_info,
     ).build()
 
     table_builder = TableBuilder(
-        "table_name",
-        "db_name",
-        storage_descriptor,
-        partition_keys=partition_keys
+        "table_name", "db_name", storage_descriptor, partition_keys=partition_keys
     ).build()
 
     table = TableBuilder(
