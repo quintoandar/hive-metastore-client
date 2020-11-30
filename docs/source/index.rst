@@ -8,6 +8,7 @@ Welcome to Hive Metastore Client's documentation!
    :caption: Contents:
 
    hive_metastore_client.rst
+   hive_metastore_client.builders.rst
 
 Indices and tables
 ==================

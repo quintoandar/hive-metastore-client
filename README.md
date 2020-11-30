@@ -37,6 +37,12 @@ Running all the checks at once:
 To fix style (_with black_):
 - run `make apply-style`
 
+### Documentation generation
+Updating generated documentation:
+- First install requirements running `make requirements-docs`.
+- To recreate .rst files run `make update-docs`. If a new module was added, edit docs/source/index.rst file to add the rst file for the module manually.
+- To test the documentation generated run `make docs`. It will generate html documentation files in docs/build/html folder.
+
 ## License
 [Apache License 2.0](https://github.com/quintoandar/hive-metastore-client/blob/staging/LICENSE)
 
