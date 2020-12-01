@@ -27,9 +27,9 @@ class SerDeInfoBuilder(AbstractBuilder):
         :param name: name of the serde. Table name by default
         :param serialization_lib: the class that implements the extractor & loader
         :param parameters: initialization parameters
-        :param description: (no information in thrift mapping)
-        :param serializer_class: (no information in thrift mapping)
-        :param deserializer_class: (no information in thrift mapping)
+        :param description: serde description
+        :param serializer_class: serializer class for serde
+        :param deserializer_class: deserializer class for serde
         :param serde_type: one of SerdeType values
         """
         self.name = name
