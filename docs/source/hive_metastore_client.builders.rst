@@ -47,24 +47,6 @@ Submodules
    :show-inheritance:
 
 
-.. automodule:: hive_metastore_client.builders.serde_info_builder
-   :members:
-   :undoc-members:
-   :show-inheritance:
-
-
-.. automodule:: hive_metastore_client.builders.storage_descriptor_builder
-   :members:
-   :undoc-members:
-   :show-inheritance:
-
-
-.. automodule:: hive_metastore_client.builders.table_builder
-   :members:
-   :undoc-members:
-   :show-inheritance:
-
-
 Module contents
 ---------------
 
