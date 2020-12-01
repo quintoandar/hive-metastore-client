@@ -1,10 +1,11 @@
 """Hive Metastore Client main class."""
 from thrift.protocol import TBinaryProtocol
 from thrift.transport import TSocket, TTransport
-
+from typing import List
 from thrift_files.libraries.thrift_hive_metastore_client.ThriftHiveMetastore import (  # type: ignore # noqa: E501
     Client as ThriftClient,
 )
+from thrift_files.libraries.thrift_hive_metastore_client.ttypes import FieldSchema  # type: ignore # noqa: E501
 
 
 class HiveMetastoreClient(ThriftClient):
@@ -58,3 +59,21 @@ class HiveMetastoreClient(ThriftClient):
     def __exit__(self, exc_type: str, exc_val: str, exc_tb: str) -> None:
         """Handles the conn closing after the code inside 'with' block is ended."""
         self.close()
+
+    def add_columns_to_table(
+        self, db_name: str, table_name: str, columns: List[FieldSchema]
+    ) -> None:
+        """
+        Adds columns to a table.
+
+        :param db_name: database name of the table
+        :param table_name: table name
+        :param columns: columns to be added to the table
+        """
+        table = self.get_table(dbname=db_name, tbl_name=table_name)
+
+        # add more columns to the list of columns
+        table.sd.cols.extend(columns)
+
+        # call alter table to add columns
+        self.alter_table(dbname=db_name, tbl_name=table_name, new_tbl=table)
