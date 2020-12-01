@@ -33,12 +33,12 @@ class StorageDescriptorBuilder(AbstractBuilder):
         Constructor.
 
         :param columns: list<FieldSchema>
-        :param location: the table location path
+        :param location: the table file location path
         :param input_format: SequenceFileInputFormat (binary) or
         TextInputFormat or custom format
         :param output_format: SequenceFileOutputFormat (binary) or
         IgnoreKeyTextOutputFormat or custom format
-        :param serde_info: serialization and deserialization information
+        :param serde_info: ser. and des. information (SerDeInfo object)
         :param compressed: whether it is compressed or not
         :param num_buckets: must be specified if there are dimension columns
         :param bucket_cols: reducer grouping columns and clustering columns
