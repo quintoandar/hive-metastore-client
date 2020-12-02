@@ -21,6 +21,7 @@ This document describes our guidelines for contributing to Hive Metastore Client
       - [Type Hint](#type-hint)
     + [Documentation Styleguide](#documentation-styleguide)
   * [Tests](#tests)
+  * [Documentation](#documentation)
   * [GitFlow](#gitflow)
   * [Pull Requests](#pull-requests)
     + [Creating a Pull Request](#creating-a-pull-request)
@@ -28,7 +29,6 @@ This document describes our guidelines for contributing to Hive Metastore Client
       - [Create small PRs](#create-small-PRs)
       - [Add good description](#add-good-description)
       - [Add labels](#add-labels)
-  * [Documentation](#documentation)
 
 ## Development Environment
 
@@ -48,8 +48,6 @@ then you will have never to bother again activating the correct venv.
 
 ### Getting started
 
-Run `make help` for more information on ready to use scripts.
-
 #### 1. Clone the project:
 
 ```bash
@@ -58,6 +56,8 @@ Run `make help` for more information on ready to use scripts.
 ```
 
 #### 2. Setup the python environment for the project:
+
+Run `make help` for more information on ready to use scripts.
 
 ```bash
 make environment
@@ -78,7 +78,7 @@ sudo apt install -y libssl1.0-dev
 #### 3. Install dependencies
 
 ```bash
-make requirements
+make requirements-all
 ```
 
 ##### Requirements
@@ -213,6 +213,14 @@ Style check is available through make too:
 make style-check
 ```
 
+## Documentation
+
+### Updating generated documentation:
+- First install requirements running `make requirements-docs`.
+- To recreate .rst files run `make update-docs`. If a new module was added, edit docs/source/index.rst file to add the rst file for the module manually.
+- To test the documentation generated run `make docs`. It will generate html documentation files in docs/build/html folder.
+
+
 ## GitFlow
 Please **follow the guidelines** described [here](WORKFLOW.md).
 
@@ -260,10 +268,3 @@ Basically, this can be achieved by simply following our PR template. :)
 #### Add labels
 
 In all project, we have different labels, like "WIP", "review", "bug", etc. Consider always adding the right label to make your reviewers' lives easier.
-
-## Documentation
-
-### Updating generated documentation:
-- First install requirements running `make requirements-docs`.
-- To recreate .rst files run `make update-docs`. If a new module was added, edit docs/source/index.rst file to add the rst file for the module manually.
-- To test the documentation generated run `make docs`. It will generate html documentation files in docs/build/html folder.

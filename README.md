@@ -17,12 +17,13 @@ _A client for connecting and running DMLs on hive metastore._
 
 ##
 
-For installation instructions refer to [CONTRIBUTING.md](https://github.com/quintoandar/hive-metastore-client/blob/main/CONTRIBUTING.md)
+All contributions are welcome! Feel free to open Pull Requests. Check the development and contributing **guidelines** 
+described in [CONTRIBUTING.md](https://github.com/quintoandar/hive-metastore-client/blob/main/CONTRIBUTING.md)
 
-If you need check out the [examples](https://github.com/quintoandar/hive-metastore-client/tree/main/examples).
+If you need, check out the [examples](https://github.com/quintoandar/hive-metastore-client/tree/main/examples).
  
 ## License
-[Apache License 2.0](https://github.com/quintoandar/hive-metastore-client/blob/staging/LICENSE)
+[Apache License 2.0](https://github.com/quintoandar/hive-metastore-client/blob/main/LICENSE)
 
 ## Contributing
 All contributions are welcome! Feel free to open Pull Requests. Check the development and contributing **guidelines** described [here](CONTRIBUTING.md).
