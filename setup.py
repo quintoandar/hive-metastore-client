@@ -1,7 +1,7 @@
 from setuptools import find_packages, setup
 
 __package_name__ = "hive_metastore_client"
-__version__ = "0.0.0"
+__version__ = "0.0.1"
 __repository_url__ = "https://github.com/quintoandar/hive-metastore-client"
 
 with open("requirements.txt") as f:
@@ -12,7 +12,7 @@ with open("README.md") as f:
 
 setup(
     name=__package_name__,
-    description="A client for connecting and running DMLs on hive metastore",
+    description="A client for connecting and running DMLs on Hive Metastore with Thrift protocol",
     long_description=long_description,
     long_description_content_type="text/markdown",
     keywords="hive hive-metastore hive-client hive-metastore-client metastore",
