@@ -1,4 +1,4 @@
-"""Partition Builder Class."""
+"""PartitionBuilder."""
 from thrift_files.libraries.thrift_hive_metastore_client.ttypes import Partition, StorageDescriptor, PrincipalPrivilegeSet  # type: ignore # noqa: E501
 from typing import List, Mapping
 
@@ -11,7 +11,7 @@ class PartitionBuilder:
         values: List[str],
         db_name: str,
         table_name: str,
-        sd: StorageDescriptor,
+        sd: StorageDescriptor = None,
         create_time: int = None,
         last_access_time: int = None,
         parameters: Mapping[str, str] = None,
@@ -24,8 +24,8 @@ class PartitionBuilder:
         :param values: list of string values of table partition keys
         :param db_name: database name
         :param table_name: table name
-        :param create_time: creation time of the partition
-        :param last_access_time: last access time of the partition
+        :param create_time: creation time in epoch of the partition
+        :param last_access_time: last access time in epoch of the partition
         :param sd: thrift storage descriptor struct object
         :param parameters: to store comments or any other user level parameters
         :param privileges: thrift principal_privilege_set struct object

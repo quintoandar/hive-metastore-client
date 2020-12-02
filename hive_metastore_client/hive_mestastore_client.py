@@ -1,9 +1,16 @@
 """Hive Metastore Client main class."""
 from thrift.protocol import TBinaryProtocol
 from thrift.transport import TSocket, TTransport
+from typing import List
+import copy
 
 from thrift_files.libraries.thrift_hive_metastore_client.ThriftHiveMetastore import (  # type: ignore # noqa: E501
     Client as ThriftClient,
+)
+from thrift_files.libraries.thrift_hive_metastore_client.ttypes import (  # type: ignore # noqa: E501
+    StorageDescriptor,
+    Partition,
+    FieldSchema,
 )
 
 
@@ -58,3 +65,59 @@ class HiveMetastoreClient(ThriftClient):
     def __exit__(self, exc_type: str, exc_val: str, exc_tb: str) -> None:
         """Handles the conn closing after the code inside 'with' block is ended."""
         self.close()
+
+    def add_partitions_to_table(
+        self, db_name: str, table_name: str, partition_list: List[Partition]
+    ) -> None:
+        """
+        Add partitions to a table.
+
+        :param db_name: database name, where the table is at
+        :param table_name: table name, which the partitions belong to
+        :param partition_list: list of partitions to be added to the table
+        """
+        table = self.get_table(dbname=db_name, tbl_name=table_name)
+
+        partition_list_with_correct_location = self._format_partitions_location(
+            partition_list=partition_list,
+            table_storage_descriptor=table.sd,
+            table_partition_keys=table.partitionKeys,
+        )
+
+        # call method to add the formatted partitions
+        self.add_partitions(partition_list_with_correct_location)
+
+    @staticmethod
+    def _format_partitions_location(
+        partition_list: List[Partition],
+        table_storage_descriptor: StorageDescriptor,
+        table_partition_keys: List[FieldSchema],
+    ) -> List[Partition]:
+        """
+        Format the location of partitions, adding a specific value to each
+            object. It is based on the location of the Table plus the provided
+            individual values per Partition.
+        :param partition_list: list of partitions
+        :param table_storage_descriptor: the object StorageDescriptor related
+            to the Table
+        :param table_partition_keys: list of columns that are defined as the
+            Table's partitions
+        :return: list of partitions with the correct location
+        """
+        # identify partitions key from table definition
+        partition_keys = []
+        [partition_keys.append(key.name) for key in table_partition_keys]
+
+        for partition in partition_list:
+            # organize keys and values in partition expected format
+            location_suffix = [
+                partition_name + "=" + value
+                for partition_name, value in zip(partition_keys, partition.values)
+            ]
+            current_storage_descriptor = copy.deepcopy(table_storage_descriptor)
+            current_storage_descriptor.location += "/" + "/".join(location_suffix)
+
+            # set the changed storage_descriptor to the current partition
+            partition.sd = current_storage_descriptor
+
+        return partition_list
