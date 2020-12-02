@@ -1,7 +1,7 @@
 """Hive Metastore Client main class."""
 from thrift.protocol import TBinaryProtocol
 from thrift.transport import TSocket, TTransport
-from typing import List
+from typing import List, Any
 import copy
 
 from thrift_files.libraries.thrift_hive_metastore_client.ThriftHiveMetastore import (  # type: ignore # noqa: E501
@@ -112,6 +112,8 @@ class HiveMetastoreClient(ThriftClient):
             partition_keys.append(key.name)
 
         for partition in partition_list:
+            HiveMetastoreClient._validate_lists_length(partition_keys, partition.values)
+
             # organize keys and values in partition expected format
             location_suffix = [
                 partition_name + "=" + value
@@ -124,3 +126,14 @@ class HiveMetastoreClient(ThriftClient):
             partition.sd = current_storage_descriptor
 
         return partition_list
+
+    @staticmethod
+    def _validate_lists_length(list_a: List[Any], list_b: List[Any]) -> None:
+        """
+        Validate if the two list have the same length.
+
+        :param list_a: first list to be compared
+        :param list_b: second list to be compared
+        """
+        if len(list_a) != len(list_b):
+            raise ValueError("The length of the two provided lists does not match")
