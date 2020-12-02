@@ -94,19 +94,22 @@ class HiveMetastoreClient(ThriftClient):
         table_partition_keys: List[FieldSchema],
     ) -> List[Partition]:
         """
-        Format the location of partitions, adding a specific value to each
-            object. It is based on the location of the Table plus the provided
-            individual values per Partition.
+        Format the location of partitions, adding a specific value to each object.
+
+        It is based on the location of the Table plus the provided
+        individual values per Partition.
+
         :param partition_list: list of partitions
         :param table_storage_descriptor: the object StorageDescriptor related
-            to the Table
+        to the Table
         :param table_partition_keys: list of columns that are defined as the
-            Table's partitions
+        Table partitions
         :return: list of partitions with the correct location
         """
         # identify partitions key from table definition
         partition_keys = []
-        [partition_keys.append(key.name) for key in table_partition_keys]
+        for key in table_partition_keys:
+            partition_keys.append(key.name)
 
         for partition in partition_list:
             # organize keys and values in partition expected format
