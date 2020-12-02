@@ -15,9 +15,9 @@ _A client for connecting and running DMLs on hive metastore._
 |-----------------------------------------------------------------------------|-----------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | ![Test](https://github.com/quintoandar/hive-metastore-client/workflows/Test/badge.svg) | ![Publish](https://github.com/quintoandar/hive-metastore-client/workflows/Publish/badge.svg) | [![Documentation Status](https://readthedocs.org/projects/hive-metastore-client/badge/?version=latest)](https://hive-metastore-client.readthedocs.io/en/latest/?badge=latest) | [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=quintoandar_hive_metastore_client&metric=alert_status)](https://sonarcloud.io/dashboard?id=quintoandar_hive_metastore_client) |
 
-  
+
 ### Requirements
-The requirements of the project were split in order to better organize and facilitate the installation of both full and individual sets of requirements, according to each one's needs.
+The requirements of the project were split in order to better organize and facilitate the installation of both full and individual sets of requirements, according to each one's needs
 ```
 |-- requirements.dev.txt        < for developing / changing the source code >
 |-- requirements.lint.txt       < for linting code >
