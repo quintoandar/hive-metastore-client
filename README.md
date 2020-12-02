@@ -15,15 +15,37 @@ _A client for connecting and running DMLs on [Hive](https://hive.apache.org/) Me
 |-----------------------------------------------------------------------------|-----------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | ![Test](https://github.com/quintoandar/hive-metastore-client/workflows/Test/badge.svg) | ![Publish](https://github.com/quintoandar/hive-metastore-client/workflows/Publish/badge.svg) | [![Documentation Status](https://readthedocs.org/projects/hive-metastore-client/badge/?version=latest)](https://hive-metastore-client.readthedocs.io/en/latest/?badge=latest) | [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=quintoandar_hive_metastore_client&metric=alert_status)](https://sonarcloud.io/dashboard?id=quintoandar_hive_metastore_client) |
 
-All contributions are welcome! Feel free to open Pull Requests. Check the development and contributing **guidelines** 
-described in [CONTRIBUTING.md](https://github.com/quintoandar/hive-metastore-client/blob/main/CONTRIBUTING.md)
+This library supports Python version 3.7+.
 
-If you need, check out the [examples](https://github.com/quintoandar/hive-metastore-client/tree/main/examples).
- 
+To check library main features you can check [Hive Metastore Client's Documentation](https://hive-metastore-client.readthedocs.io/en/latest/home.html), which is hosted by Read the Docs.
+
+An example on how to use the library could be adding a new database in hive metastore:
+
+```
+from hive_metastore_client.builders.database_builder import DatabaseBuilder
+from hive_metastore_client.hive_mestastore_client import HiveMetastoreClient
+
+database = DatabaseBuilder(name='new_db').build()
+with HiveMetastoreClient(HIVE_HOST, HIVE_PORT) as hive_metastore_client:
+    hive_metastore_client.create_database(database) 
+```
+
+To learn more use cases in practice, see [Hive Metastore Client's examples](https://github.com/quintoandar/hive-metastore-client/tree/main/examples)  
+
+## Requirements and Installation
+Hive Metastore Client depends on **Python 3.7+**
+
+[Python Package Index](https://quintoandar.github.io/python-package-server/) hosts reference to a pip-installable module of this library, using it is as straightforward as including it on your project's requirements.
+
+```bash
+pip install hive-metastore-client
+```
+
 ## License
 [Apache License 2.0](https://github.com/quintoandar/hive-metastore-client/blob/main/LICENSE)
 
 ## Contributing
-All contributions are welcome! Feel free to open Pull Requests. Check the development and contributing **guidelines** described [here](CONTRIBUTING.md).
+All contributions are welcome! Feel free to open Pull Requests. Check the development and contributing **guidelines** 
+described in [CONTRIBUTING.md](https://github.com/quintoandar/hive-metastore-client/blob/main/CONTRIBUTING.md)
 
 Made with :heart: by the **Data Engineering** team from [QuintoAndar](https://github.com/quintoandar/)
