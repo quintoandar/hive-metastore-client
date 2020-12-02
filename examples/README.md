@@ -4,7 +4,7 @@ Refer to the examples in this directory for discovering how to use this lib
 and to communicate with you Hive metastore server.
 
 It is necessary to use the client instance with the `with` statement, this 
-guarantees that the connection will automatically open and closed for you.
+guarantees that the connection will be automatically opened and closed for you.
 I.g.:
 ```python
 with HiveMetastoreClient(HIVE_HOST, HIVE_PORT) as hive_metastore_client:
