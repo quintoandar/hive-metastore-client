@@ -15,7 +15,7 @@ An example of how to use the library for running DML commands in hive metastore:
     with HiveMetastoreClient(HIVE_HOST, HIVE_PORT) as hive_metastore_client:
         hive_metastore_client.create_database(database)
 
-To learn more use cases in practice, see Hive Metastore Client's examples
+To learn more use cases in practice, see [Hive Metastore Client's examples](https://github.com/quintoandar/hive-metastore-client/blob/main/examples)
 
 
 Navigation
