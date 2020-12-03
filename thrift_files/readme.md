@@ -17,7 +17,7 @@ We are using the Hive Metastore version 3.0 ([branch-3.0](https://github.com/apa
 You can refer to these tutorial for installing it: https://thrift-tutorial.readthedocs.io/en/latest/installation.html. We used the Thrift latest version (0.14.0)
 
 2 - After installing thrift cli, you should open the directory where the _hive_metastore.thrift_ (and others) is placed and run:
-```shell script
+```shell
 thrift --gen py hive_metastore.thrift
 thrift --gen py fb303.thrift
 ```
