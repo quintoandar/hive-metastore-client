@@ -12,5 +12,5 @@ First modules and entities of Hive Metastore Client package.
 * Create clients main class ([#16](https://github.com/quintoandar/hive-metastore-client/pull/16) and [#10](https://github.com/quintoandar/hive-metastore-client/pull/10))
 * Adding DatabaseBuilder ([#13](https://github.com/quintoandar/hive-metastore-client/pull/13))
 * Adding TableBuilder, ColumnBuilder, SerDeInfoBuilder and StorageDescriptorBuilder ([#15](https://github.com/quintoandar/hive-metastore-client/pull/15))
-* Adding PartitionBuilder ([#17](https://github.com/quintoandar/hive-metastore-client/pull/17))
+* Adding PartitionBuilder and method `add_partitions_to_table` ([#17](https://github.com/quintoandar/hive-metastore-client/pull/17))
 * Adding method `add_columns_to_table` ([#18](https://github.com/quintoandar/hive-metastore-client/pull/18))
