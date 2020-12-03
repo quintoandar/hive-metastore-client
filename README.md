@@ -28,6 +28,7 @@ from hive_metastore_client.hive_mestastore_client import HiveMetastoreClient
 database = DatabaseBuilder(name='new_db').build()
 with HiveMetastoreClient(HIVE_HOST, HIVE_PORT) as hive_metastore_client:
     hive_metastore_client.create_database(database) 
+```
 
 To learn more use cases in practice, see [Hive Metastore Client's examples](https://github.com/quintoandar/hive-metastore-client/tree/main/examples)  
 
