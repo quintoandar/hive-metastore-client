@@ -30,12 +30,12 @@ with HiveMetastoreClient(HIVE_HOST, HIVE_PORT) as hive_metastore_client:
     hive_metastore_client.create_database(database) 
 ```
 
-To learn more use cases in practice, see [Hive Metastore Client's examples](https://github.com/quintoandar/hive-metastore-client/tree/main/examples)  
+To learn more use cases in practice, see [Hive Metastore Client examples](https://github.com/quintoandar/hive-metastore-client/tree/main/examples)  
 
 ## Requirements and Installation
 Hive Metastore Client depends on **Python 3.7+**
 
-[Python Package Index](https://quintoandar.github.io/python-package-server/) hosts reference to a pip-installable module of this library, using it is as straightforward as including it on your project's requirements.
+[Python Package Index](https://pypi.org/project/hive-metastore-client/) hosts reference to a pip-installable module of this library, using it is as straightforward as including it on your project's requirements.
 
 ```bash
 pip install hive-metastore-client

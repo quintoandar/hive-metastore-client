@@ -2,7 +2,7 @@
 
 Hive Metastore Client depends on **Python 3.7+**.
 
-Python Package Index hosts reference to a pip-installable module of this library, using it is as straightforward as including it on your project's requirements.
+[Python Package Index](https://pypi.org/project/hive-metastore-client/) hosts reference to a pip-installable module of this library, using it is as straightforward as including it on your project's requirements.
 
 ```bash
 pip install hive-metastore-client
@@ -26,11 +26,9 @@ Click on the following links to open the [examples](https://github.com/quintoand
 
 **[#4 Add partitions to a table](https://github.com/quintoandar/hive-metastore-client/blob/main/examples/add_partitions.py)**
 
-// TODO: Give examples and explain better how to use each Builder
-
 ## Available methods
 
-You can see all the Hive Metastore server available methods by looking the 
+You can see all the Hive Metastore server available methods by looking at the 
 interface:
 [`thrift_files.libraries.thrift_hive_metastore_client.ThriftHiveMetastore.Iface`](https://github.com/quintoandar/hive-metastore-client/blob/main/thrift_files/libraries/thrift_hive_metastore_client/ThriftHiveMetastore.py).
 
