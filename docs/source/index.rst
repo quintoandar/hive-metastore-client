@@ -1,18 +1,19 @@
-.. Hive Metastore Client documentation master file.
+Hive Metastore Client
+=====================
+Made with |:heart:| by the **Data Engineering** team from `QuintoAndar <https://github.com/quintoandar/>`_.
 
-Welcome to Hive Metastore Client's documentation!
-=============================================================================================
+A client for connecting and running DMLs on Hive Metastore using Thrift protocol.
+
+An example of how to use the library for running DML commands in hive metastore:
+
+To learn more use cases in practice, see `Hive Metastore Client's examples <https://github.com/quintoandar/hive-metastore-client/tree/main/examples/>`_
+
+
+Navigation
+^^^^^^^^^^
 
 .. toctree::
    :maxdepth: 2
-   :caption: Contents:
 
-   hive_metastore_client.rst
-   hive_metastore_client.builders.rst
-
-Indices and tables
-==================
-
-* :ref:`genindex`
-* :ref:`modindex`
-* :ref:`search`
+   getstarted
+   modules
