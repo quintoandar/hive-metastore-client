@@ -23,6 +23,12 @@ Submodules
    :show-inheritance:
 
 
+.. automodule:: hive_metastore_client.builders.partition_builder
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+
 .. automodule:: hive_metastore_client.builders.serde_info_builder
    :members:
    :undoc-members:
@@ -36,12 +42,6 @@ Submodules
 
 
 .. automodule:: hive_metastore_client.builders.table_builder
-   :members:
-   :undoc-members:
-   :show-inheritance:
-
-
-.. automodule:: hive_metastore_client.builders.partition_builder
    :members:
    :undoc-members:
    :show-inheritance:
