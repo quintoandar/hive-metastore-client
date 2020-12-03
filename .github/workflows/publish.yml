@@ -18,7 +18,7 @@ jobs:
     - name: Build package
       run: make package
 
-    - name: Get version
+    - name: Get new version
       run: echo "version=$(grep __version__ setup.py | head -1 | cut -d \" -f2 | cut -d \' -f2)" >> $GITHUB_ENV
 
     - name: Create release
@@ -29,7 +29,7 @@ jobs:
         tag_name: ${{ env.version }}
         release_name: Release ${{ env.version }}
 
-    - name: Release already exist
+    - name: Check if release already exists
       if: ${{ failure() }}
       run: echo Release already exist
 
