@@ -17,7 +17,7 @@ _A client for connecting and running DMLs on [Hive](https://hive.apache.org/) Me
 
 This library supports Python version 3.7+.
 
-To check library main features you can check [Hive Metastore Client's Documentation](https://hive-metastore-client.readthedocs.io/en/latest/home.html), which is hosted by Read the Docs.
+To check library main features you can check [Hive Metastore Client's Documentation](https://hive-metastore-client.readthedocs.io/en/latest/), which is hosted by Read the Docs.
 
 An example of how to use the library for running DML commands in hive metastore:
 
