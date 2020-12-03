@@ -21,7 +21,7 @@ class PartitionBuilder:
         """
         Constructor.
 
-        :param values: list of string values of table partition keys
+        :param values: list of partition key names
         :param db_name: database name
         :param table_name: table name
         :param create_time: creation time in epoch of the partition

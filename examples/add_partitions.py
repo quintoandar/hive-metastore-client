@@ -8,6 +8,7 @@ DATABASE_NAME = "database_name"
 TABLE_NAME = "table_name"
 
 # partitions should be provided as list
+# values should be passed in the same hierarchical order of the partitions
 partition_list = [
     PartitionBuilder(
         values=["2020", "12", "13"], db_name=DATABASE_NAME, table_name=TABLE_NAME,

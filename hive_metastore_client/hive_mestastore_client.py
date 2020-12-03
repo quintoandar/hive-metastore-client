@@ -90,8 +90,8 @@ class HiveMetastoreClient(ThriftClient):
         """
         Add partitions to a table.
 
-        :param db_name: database name, where the table is at
-        :param table_name: table name, which the partitions belong to
+        :param db_name: database name where the table is at
+        :param table_name: table name which the partitions belong to
         :param partition_list: list of partitions to be added to the table
         """
         table = self.get_table(dbname=db_name, tbl_name=table_name)
@@ -102,7 +102,6 @@ class HiveMetastoreClient(ThriftClient):
             table_partition_keys=table.partitionKeys,
         )
 
-        # call method to add the formatted partitions
         self.add_partitions(partition_list_with_correct_location)
 
     @staticmethod
