@@ -4,7 +4,7 @@
     Check Builder constructor for more information.
 """
 
-from hive_metastore_client.builders.column_builder import ColumnBuilder
+from hive_metastore_client.builders import ColumnBuilder
 from hive_metastore_client import HiveMetastoreClient
 
 HIVE_HOST = "<ADD_HIVE_HOST_HERE>"

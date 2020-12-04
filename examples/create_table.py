@@ -10,7 +10,7 @@ from hive_metastore_client.builders.serde_info_builder import SerDeInfoBuilder
 from hive_metastore_client.builders.storage_descriptor_builder import (
     StorageDescriptorBuilder,
 )
-from hive_metastore_client.builders.table_builder import TableBuilder
+from hive_metastore_client.builders import TableBuilder
 from hive_metastore_client import HiveMetastoreClient
 
 HIVE_HOST = "<ADD_HIVE_HOST_HERE>"
