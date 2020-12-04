@@ -7,7 +7,7 @@ It is necessary to use the client instance with the `with` statement, this
 guarantees that the connection will be automatically opened and closed for you.
 I.g.:
 ```python
-from hive_metastore_client.hive_mestastore_client import HiveMetastoreClient
+from hive_metastore_client import HiveMetastoreClient
 from hive_metastore_client.builders import DatabaseBuilder
 
 database = DatabaseBuilder(name='new_db').build()

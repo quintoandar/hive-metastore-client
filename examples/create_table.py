@@ -11,7 +11,7 @@ from hive_metastore_client.builders.storage_descriptor_builder import (
     StorageDescriptorBuilder,
 )
 from hive_metastore_client.builders.table_builder import TableBuilder
-from hive_metastore_client.hive_mestastore_client import HiveMetastoreClient
+from hive_metastore_client import HiveMetastoreClient
 
 HIVE_HOST = "<ADD_HIVE_HOST_HERE>"
 HIVE_PORT = 9083

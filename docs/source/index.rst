@@ -9,7 +9,7 @@ An example of how to use the library for running DML commands in hive metastore:
 .. code-block:: python
 
     from hive_metastore_client.builders import DatabaseBuilder
-    from hive_metastore_client.hive_mestastore_client import HiveMetastoreClient
+    from hive_metastore_client import HiveMetastoreClient
 
     database = DatabaseBuilder(name='new_db').build()
     with HiveMetastoreClient(HIVE_HOST, HIVE_PORT) as hive_metastore_client:
