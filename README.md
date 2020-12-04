@@ -1,5 +1,5 @@
 ## Hive Metastore Client
-_A client for connecting and running DMLs on [Hive](https://hive.apache.org/) Metastore using [Thrift](https://thrift.apache.org/) protocol._
+_A client for connecting and running DDLs on [Hive](https://hive.apache.org/) Metastore using [Thrift](https://thrift.apache.org/) protocol._
 
 [![Release](https://img.shields.io/github/v/release/quintoandar/hive-metastore-client)]((https://pypi.org/project/hive-metastore-client/))
 ![Python Version](https://img.shields.io/badge/python-3.7%20%7C%203.8-brightgreen.svg)
@@ -19,7 +19,7 @@ This library supports Python version 3.7+.
 
 To check library main features you can check [Hive Metastore Client's Documentation](https://hive-metastore-client.readthedocs.io/en/latest/), which is hosted by Read the Docs.
 
-An example of how to use the library for running DML commands in hive metastore:
+An example of how to use the library for running DDL commands in hive metastore:
 
 ```python
 from hive_metastore_client.builders import DatabaseBuilder
