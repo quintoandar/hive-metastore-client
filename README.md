@@ -22,7 +22,7 @@ To check library main features you can check [Hive Metastore Client's Documentat
 An example of how to use the library for running DML commands in hive metastore:
 
 ```python
-from hive_metastore_client.builders.database_builder import DatabaseBuilder
+from hive_metastore_client.builders import DatabaseBuilder
 from hive_metastore_client.hive_mestastore_client import HiveMetastoreClient
 
 database = DatabaseBuilder(name='new_db').build()
