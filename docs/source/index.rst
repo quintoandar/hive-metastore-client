@@ -2,14 +2,14 @@ Hive Metastore Client
 =====================
 Made with |:heart:| by the **Data Engineering** team from `QuintoAndar <https://github.com/quintoandar/>`_.
 
-A client for connecting and running DMLs on Hive Metastore using Thrift protocol.
+A client for connecting and running DDLs on Hive Metastore using Thrift protocol.
 
-An example of how to use the library for running DML commands in hive metastore:
+An example of how to use the library for running commands in hive metastore:
 
 .. code-block:: python
 
-    from hive_metastore_client.builders.database_builder import DatabaseBuilder
-    from hive_metastore_client.hive_mestastore_client import HiveMetastoreClient
+    from hive_metastore_client.builders import DatabaseBuilder
+    from hive_metastore_client import HiveMetastoreClient
 
     database = DatabaseBuilder(name='new_db').build()
     with HiveMetastoreClient(HIVE_HOST, HIVE_PORT) as hive_metastore_client:

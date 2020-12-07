@@ -2,7 +2,7 @@ from unittest import mock
 from unittest.mock import Mock
 
 import pytest
-from hive_metastore_client.hive_mestastore_client import HiveMetastoreClient
+from hive_metastore_client import HiveMetastoreClient
 
 
 class TestHiveMetastoreClient:
