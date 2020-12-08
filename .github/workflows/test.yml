@@ -2,6 +2,7 @@ name: "Test"
 on:
   push:
     branches:
+      - update-docker-path
       - main
       - hotfix/**
   pull_request:
