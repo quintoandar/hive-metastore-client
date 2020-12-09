@@ -5,13 +5,13 @@
     Check each Builder constructor for more information.
 """
 
-from hive_metastore_client.builders.column_builder import ColumnBuilder
-from hive_metastore_client.builders.serde_info_builder import SerDeInfoBuilder
-from hive_metastore_client.builders.storage_descriptor_builder import (
-    StorageDescriptorBuilder,
-)
-from hive_metastore_client.builders import TableBuilder
 from hive_metastore_client import HiveMetastoreClient
+from hive_metastore_client.builders import (
+    ColumnBuilder,
+    SerDeInfoBuilder,
+    StorageDescriptorBuilder,
+    TableBuilder,
+)
 
 HIVE_HOST = "<ADD_HIVE_HOST_HERE>"
 HIVE_PORT = 9083
@@ -45,10 +45,6 @@ storage_descriptor = StorageDescriptorBuilder(
     input_format="org.apache.hadoop.mapred.TextInputFormat",
     output_format="org.apache.hadoop.hive.ql.io.HiveIgnoreKeyTextOutputFormat",
     serde_info=serde_info,
-).build()
-
-table_builder = TableBuilder(
-    "table_name", "db_name", storage_descriptor, partition_keys=partition_keys
 ).build()
 
 table = TableBuilder(
