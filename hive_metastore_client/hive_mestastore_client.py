@@ -90,21 +90,25 @@ class HiveMetastoreClient(ThriftClient):
         """
         Drops columns from a table.
 
+        It encapsulates the logic of calling alter table with removed columns from
+        the list of columns, since hive does not have a drop command.
+
         :param db_name: database name of the table
         :param table_name: table name
         :param columns: names of the columns to be dropped from the table
         """
-        table = self.get_table(dbname=db_name, tbl_name=table_name)
+        if columns:
+            table = self.get_table(dbname=db_name, tbl_name=table_name)
 
-        # remove columns from the list of columns in table object
-        cols = []
-        for col in table.sd.cols:
-            if col.name not in columns:
-                cols.append(col)
-        table.sd.cols = cols
+            # remove columns from the list of columns in table object
+            cols = []
+            for col in table.sd.cols:
+                if col.name not in columns:
+                    cols.append(col)
+            table.sd.cols = cols
 
-        # call alter table to drop columns removed from list of table columns
-        self.alter_table(dbname=db_name, tbl_name=table_name, new_tbl=table)
+            # call alter table to drop columns removed from list of table columns
+            self.alter_table(dbname=db_name, tbl_name=table_name, new_tbl=table)
 
     def add_partitions_to_table(
         self, db_name: str, table_name: str, partition_list: List[Partition]

@@ -3,6 +3,7 @@ from unittest.mock import Mock
 
 import pytest
 from hive_metastore_client import HiveMetastoreClient
+from thrift_files.libraries.thrift_hive_metastore_client.ttypes import FieldSchema
 
 
 class TestHiveMetastoreClient:
@@ -104,7 +105,11 @@ class TestHiveMetastoreClient:
         cols = ["col1", "col2"]
 
         mocked_return_get_table = Mock()
-        mocked_return_get_table.sd.cols = []
+        mocked_return_get_table.sd.cols = [
+            FieldSchema(name="col1"),
+            FieldSchema(name="col2"),
+            FieldSchema(name="col3"),
+        ]
         mocked_get_table.return_value = mocked_return_get_table
 
         # act
@@ -117,6 +122,7 @@ class TestHiveMetastoreClient:
         mocked_alter_table.assert_called_once_with(
             dbname=db_name, tbl_name=table_name, new_tbl=mocked_return_get_table
         )
+        assert mocked_return_get_table.sd.cols == [FieldSchema(name="col3")]
 
     def test__validate_lists_length_with_diff_lens(self, hive_metastore_client):
         # arrange
