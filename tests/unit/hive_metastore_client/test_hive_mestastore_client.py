@@ -93,6 +93,31 @@ class TestHiveMetastoreClient:
             dbname=db_name, tbl_name=table_name, new_tbl=mocked_return_get_table
         )
 
+    @mock.patch.object(HiveMetastoreClient, "get_table")
+    @mock.patch.object(HiveMetastoreClient, "alter_table")
+    def test_drop_columns_from_table(
+        self, mocked_alter_table, mocked_get_table, hive_metastore_client
+    ):
+        # arrange
+        db_name = "db_name"
+        table_name = "table_name"
+        cols = ["col1", "col2"]
+
+        mocked_return_get_table = Mock()
+        mocked_return_get_table.sd.cols = []
+        mocked_get_table.return_value = mocked_return_get_table
+
+        # act
+        hive_metastore_client.drop_columns_from_table(
+            db_name=db_name, table_name=table_name, columns=cols
+        )
+
+        # assert
+        mocked_get_table.assert_called_once_with(dbname=db_name, tbl_name=table_name)
+        mocked_alter_table.assert_called_once_with(
+            dbname=db_name, tbl_name=table_name, new_tbl=mocked_return_get_table
+        )
+
     def test__validate_lists_length_with_diff_lens(self, hive_metastore_client):
         # arrange
         list_a = [1, 2, 3]
