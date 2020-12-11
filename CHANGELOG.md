@@ -3,6 +3,15 @@ All notable changes to this project will be documented in this file.
 
 Preferably use **Added**, **Changed**, **Removed** and **Fixed** topics in each release or unreleased log for a better organization.
 
+## [1.0.1](https://github.com/quintoandar/hive-metastore-client/releases/tag/1.0.1)
+### Added
+* Added drop_columns_from_table method ([#30](https://github.com/quintoandar/hive-metastore-client/pull/30))
+### Changed
+* Updated imports in project ([#27](https://github.com/quintoandar/hive-metastore-client/pull/27))
+* Shifted to quintoandar's docker image ([#28](https://github.com/quintoandar/hive-metastore-client/pull/28))
+### Fixed
+* Fixed typo in the client's filename ([#33](https://github.com/quintoandar/hive-metastore-client/pull/33))
+
 ## [1.0.0](https://github.com/quintoandar/hive-metastore-client/releases/tag/1.0.0)
 First modules and entities of Hive Metastore Client package.
 
