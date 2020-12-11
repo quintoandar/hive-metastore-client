@@ -125,7 +125,6 @@ class TestHiveMetastoreClient:
         mocked_alter_table.assert_called_once_with(
             dbname=db_name, tbl_name=table_name, new_tbl=expected_mocked_table
         )
-        assert mocked_return_get_table.sd.cols == expected_table_column
 
     def test__validate_lists_length_with_diff_lens(self, hive_metastore_client):
         # arrange
