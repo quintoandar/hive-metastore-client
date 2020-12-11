@@ -7,9 +7,9 @@ from thrift_files.libraries.thrift_hive_metastore_client.ttypes import FieldSche
 
 
 class TestHiveMetastoreClient:
-    @mock.patch("hive_metastore_client.hive_mestastore_client.TSocket")
-    @mock.patch("hive_metastore_client.hive_mestastore_client.TTransport")
-    @mock.patch("hive_metastore_client.hive_mestastore_client.TBinaryProtocol")
+    @mock.patch("hive_metastore_client.hive_metastore_client.TSocket")
+    @mock.patch("hive_metastore_client.hive_metastore_client.TTransport")
+    @mock.patch("hive_metastore_client.hive_metastore_client.TBinaryProtocol")
     def test__init_protocol(
         self, mocked_tbinaryp, mocked_ttransport, mocked_tsocket, hive_metastore_client
     ):

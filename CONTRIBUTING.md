@@ -108,7 +108,7 @@ python -m pip install --upgrade pip setuptools wheel
 
 #### Project
 
-Library's content live under the [_hive_metastore_client_](https://github.com/quintoandar/hive-metastore-client/tree/main/hive_metastore_client) module, where you'll find the client [main class](https://github.com/quintoandar/hive-metastore-client/blob/main/hive_metastore_client/hive_mestastore_client.py).
+Library's content live under the [_hive_metastore_client_](https://github.com/quintoandar/hive-metastore-client/tree/main/hive_metastore_client) module, where you'll find the client [main class](https://github.com/quintoandar/hive-metastore-client/blob/main/hive_metastore_client/hive_metastore_client.py).
 
 ## Styleguides
 
