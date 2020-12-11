@@ -3,6 +3,7 @@ from unittest.mock import Mock
 
 import pytest
 from hive_metastore_client import HiveMetastoreClient
+from thrift_files.libraries.thrift_hive_metastore_client.ttypes import FieldSchema
 
 
 class TestHiveMetastoreClient:
@@ -91,6 +92,38 @@ class TestHiveMetastoreClient:
         mocked_get_table.assert_called_once_with(dbname=db_name, tbl_name=table_name)
         mocked_alter_table.assert_called_once_with(
             dbname=db_name, tbl_name=table_name, new_tbl=mocked_return_get_table
+        )
+
+    @mock.patch.object(HiveMetastoreClient, "get_table")
+    @mock.patch.object(HiveMetastoreClient, "alter_table")
+    def test_drop_columns_from_table(
+        self, mocked_alter_table, mocked_get_table, hive_metastore_client
+    ):
+        # arrange
+        db_name = "db_name"
+        table_name = "table_name"
+        cols = ["col1", "col2"]
+
+        mocked_return_get_table = Mock()
+        mocked_return_get_table.sd.cols = [
+            FieldSchema(name="col1"),
+            FieldSchema(name="col2"),
+            FieldSchema(name="col3"),
+        ]
+        mocked_get_table.return_value = mocked_return_get_table
+        expected_table_column = [FieldSchema(name="col3")]
+        expected_mocked_table = mocked_return_get_table
+        expected_mocked_table.sd.cols = expected_table_column
+
+        # act
+        hive_metastore_client.drop_columns_from_table(
+            db_name=db_name, table_name=table_name, columns=cols
+        )
+
+        # assert
+        mocked_get_table.assert_called_once_with(dbname=db_name, tbl_name=table_name)
+        mocked_alter_table.assert_called_once_with(
+            dbname=db_name, tbl_name=table_name, new_tbl=expected_mocked_table
         )
 
     def test__validate_lists_length_with_diff_lens(self, hive_metastore_client):
