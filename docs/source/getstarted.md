@@ -33,7 +33,7 @@ interface:
 [`thrift_files.libraries.thrift_hive_metastore_client.ThriftHiveMetastore.Iface`](https://github.com/quintoandar/hive-metastore-client/blob/main/thrift_files/libraries/thrift_hive_metastore_client/ThriftHiveMetastore.py).
 
 Beyond the default methods, this library also implements the methods below in
-the [`HiveMetastoreClient`](https://github.com/quintoandar/hive-metastore-client/blob/main/hive_metastore_client/hive_mestastore_client.py) class:
+the [`HiveMetastoreClient`](https://github.com/quintoandar/hive-metastore-client/blob/main/hive_metastore_client/hive_metastore_client.py) class:
 
-- [`add_columns_to_table`](https://hive-metastore-client.readthedocs.io/en/latest/hive_metastore_client.html#hive_metastore_client.hive_mestastore_client.HiveMetastoreClient.add_columns_to_table)
-- [`add_partitions_to_table`](https://hive-metastore-client.readthedocs.io/en/latest/hive_metastore_client.html#hive_metastore_client.hive_mestastore_client.HiveMetastoreClient.add_columns_to_table)
+- [`add_columns_to_table`](https://hive-metastore-client.readthedocs.io/en/latest/hive_metastore_client.html#hive_metastore_client.hive_metastore_client.HiveMetastoreClient.add_columns_to_table)
+- [`add_partitions_to_table`](https://hive-metastore-client.readthedocs.io/en/latest/hive_metastore_client.html#hive_metastore_client.hive_metastore_client.HiveMetastoreClient.add_columns_to_table)

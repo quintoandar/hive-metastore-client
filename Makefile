@@ -51,7 +51,7 @@ unit-tests:
 	@echo "Unit Tests"
 	@echo "=========="
 	@echo ""
-	@python -m pytest -W ignore::DeprecationWarning --cov-config=.coveragerc --cov-report term --cov-report html:unit-tests-cov --cov=hive-metastore-client --cov-fail-under=90 tests/unit
+	@python -m pytest -W ignore::DeprecationWarning --cov-config=.coveragerc --cov-report term --cov-report html:unit-tests-cov --cov=hive_metastore_client --cov-fail-under=90 tests/unit
 
 .PHONY: integration-tests
 ## run integration tests with coverage report
@@ -60,7 +60,7 @@ integration-tests:
 	@echo "Integration Tests"
 	@echo "================="
 	@echo ""
-	@python -m pytest -W ignore::DeprecationWarning --cov-config=.coveragerc --cov-report term --cov-report xml:integration-tests-cov.xml --cov=hive-metastore-client --cov-fail-under=60 tests/integration
+	@python -m pytest -W ignore::DeprecationWarning --cov-config=.coveragerc --cov-report term --cov-report xml:integration-tests-cov.xml --cov=hive_metastore_client --cov-fail-under=60 tests/integration
 
 # Style & Lint ================================================================
 

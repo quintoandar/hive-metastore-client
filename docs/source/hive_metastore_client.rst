@@ -13,7 +13,7 @@ Submodules
 ----------
 
 
-.. automodule:: hive_metastore_client.hive_mestastore_client
+.. automodule:: hive_metastore_client.hive_metastore_client
    :members:
    :undoc-members:
    :show-inheritance:
