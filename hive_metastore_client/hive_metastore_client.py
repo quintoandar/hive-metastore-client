@@ -1,8 +1,10 @@
 """Hive Metastore Client main class."""
+import copy
+import logging
+from typing import List, Any
+
 from thrift.protocol import TBinaryProtocol
 from thrift.transport import TSocket, TTransport
-from typing import List, Any
-import copy
 
 from thrift_files.libraries.thrift_hive_metastore_client.ThriftHiveMetastore import (  # type: ignore # noqa: E501
     Client as ThriftClient,
@@ -11,7 +13,11 @@ from thrift_files.libraries.thrift_hive_metastore_client.ttypes import (  # type
     StorageDescriptor,
     Partition,
     FieldSchema,
+    Database,
+    AlreadyExistsException,
 )
+
+logging.basicConfig(format="%(levelname)s:%(message)s", level=logging.INFO)
 
 
 class HiveMetastoreClient(ThriftClient):
@@ -129,6 +135,21 @@ class HiveMetastoreClient(ThriftClient):
         )
 
         self.add_partitions(partition_list_with_correct_location)
+
+    def create_database_if_not_exists(self, database: Database) -> None:
+        """
+        Creates the table in Hive Metastore if it does not exist.
+
+        Since hive metastore server and thrift mapping do not have the option
+         of checking if the database does not exist, this method simulates this
+         this behavior.
+
+        :param database: the database object
+        """
+        try:
+            self.create_database(database)
+        except AlreadyExistsException as e:
+            logging.info(f"m=create_database_if_not_exists, msg={e.message}")
 
     @staticmethod
     def _format_partitions_location(

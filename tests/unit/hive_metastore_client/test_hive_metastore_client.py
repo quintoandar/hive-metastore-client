@@ -2,8 +2,16 @@ from unittest import mock
 from unittest.mock import Mock
 
 import pytest
+
 from hive_metastore_client import HiveMetastoreClient
-from thrift_files.libraries.thrift_hive_metastore_client.ttypes import FieldSchema
+from thrift_files.libraries.thrift_hive_metastore_client.ThriftHiveMetastore import (
+    Client as ThriftClient,
+)
+from thrift_files.libraries.thrift_hive_metastore_client.ttypes import (
+    FieldSchema,
+    NoSuchObjectException,
+    AlreadyExistsException,
+)
 
 
 class TestHiveMetastoreClient:
@@ -202,3 +210,34 @@ class TestHiveMetastoreClient:
         # assert
         assert mocked_validate_lists_length.call_count == 1
         assert returned_value[0].sd.location == expected_location
+
+    @mock.patch.object(HiveMetastoreClient, "create_database")
+    @mock.patch("hive_metastore_client.hive_metastore_client.logging")
+    def test_create_database_if_not_exists_with_nonexistent_database(
+        self, mocked_logging, mocked_create_database, hive_metastore_client,
+    ):
+        # arrange
+        mocked_database_obj = Mock()
+
+        # act
+        hive_metastore_client.create_database_if_not_exists(mocked_database_obj)
+
+        # assert
+        mocked_create_database.assert_called_once_with(mocked_database_obj)
+        mocked_logging.info.assert_not_called()
+
+    @mock.patch.object(HiveMetastoreClient, "create_database")
+    @mock.patch("hive_metastore_client.hive_metastore_client.logging")
+    def test_create_database_if_not_exists_with_existent_database(
+        self, mocked_logging, mocked_create_database, hive_metastore_client,
+    ):
+        # arrange
+        mocked_database_obj = Mock()
+        mocked_create_database.side_effect = AlreadyExistsException()
+
+        # act
+        hive_metastore_client.create_database_if_not_exists(mocked_database_obj)
+
+        # assert
+        mocked_create_database.assert_called_once_with(mocked_database_obj)
+        mocked_logging.info.assert_called_once()
