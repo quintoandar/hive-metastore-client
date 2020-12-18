@@ -212,32 +212,34 @@ class TestHiveMetastoreClient:
         assert returned_value[0].sd.location == expected_location
 
     @mock.patch.object(HiveMetastoreClient, "create_database")
-    @mock.patch("hive_metastore_client.hive_metastore_client.logging")
     def test_create_database_if_not_exists_with_nonexistent_database(
-        self, mocked_logging, mocked_create_database, hive_metastore_client,
+        self, mocked_create_database, hive_metastore_client,
     ):
         # arrange
         mocked_database_obj = Mock()
 
         # act
-        hive_metastore_client.create_database_if_not_exists(mocked_database_obj)
+        return_value = hive_metastore_client.create_database_if_not_exists(
+            mocked_database_obj
+        )
 
         # assert
+        assert return_value
         mocked_create_database.assert_called_once_with(mocked_database_obj)
-        mocked_logging.info.assert_not_called()
 
     @mock.patch.object(HiveMetastoreClient, "create_database")
-    @mock.patch("hive_metastore_client.hive_metastore_client.logging")
     def test_create_database_if_not_exists_with_existent_database(
-        self, mocked_logging, mocked_create_database, hive_metastore_client,
+        self, mocked_create_database, hive_metastore_client,
     ):
         # arrange
         mocked_database_obj = Mock()
         mocked_create_database.side_effect = AlreadyExistsException()
 
         # act
-        hive_metastore_client.create_database_if_not_exists(mocked_database_obj)
+        return_value = hive_metastore_client.create_database_if_not_exists(
+            mocked_database_obj
+        )
 
         # assert
+        assert not return_value
         mocked_create_database.assert_called_once_with(mocked_database_obj)
-        mocked_logging.info.assert_called_once()
