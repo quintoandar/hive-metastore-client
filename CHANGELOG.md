@@ -3,6 +3,10 @@ All notable changes to this project will be documented in this file.
 
 Preferably use **Added**, **Changed**, **Removed** and **Fixed** topics in each release or unreleased log for a better organization.
 
+## [1.0.3](https://github.com/quintoandar/hive-metastore-client/releases/tag/1.0.3)
+### Changed
+* Handling exception when adding duplicate partitions ([#37](https://github.com/quintoandar/hive-metastore-client/pull/37))
+
 ## [1.0.2](https://github.com/quintoandar/hive-metastore-client/releases/tag/1.0.2)
 ### Added
 * Added create_database_if_not_exists method ([#35](https://github.com/quintoandar/hive-metastore-client/pull/35))
