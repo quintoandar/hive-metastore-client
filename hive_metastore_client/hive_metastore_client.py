@@ -115,7 +115,7 @@ class HiveMetastoreClient(ThriftClient):
 
     def add_partitions_to_table(
         self, db_name: str, table_name: str, partition_list: List[Partition]
-    ) -> None:
+    ) -> bool:
         """
         Add partitions to a table.
 
@@ -131,7 +131,11 @@ class HiveMetastoreClient(ThriftClient):
             table_partition_keys=table.partitionKeys,
         )
 
-        self.add_partitions(partition_list_with_correct_location)
+        try:
+            self.add_partitions(partition_list_with_correct_location)
+            return True
+        except AlreadyExistsException:
+            return False
 
     def create_database_if_not_exists(self, database: Database) -> bool:
         """

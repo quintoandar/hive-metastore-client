@@ -164,20 +164,59 @@ class TestHiveMetastoreClient:
         # arrange
         db_name = "database_name"
         table_name = "table_name"
-        formatted_partitions_location = ["abc"]
-        mocked_partition_list = [Mock()]
+
         mocked_table = Mock()
-        mocked_table.sd = ""
-        mocked_table.partitionKeys = ""
         mocked_get_table.return_value = mocked_table
+
+        mocked_partition_list = [Mock()]
+        formatted_partitions_location = ["abc"]
         mocked__format_partitions.return_value = formatted_partitions_location
 
         # act
-        hive_metastore_client.add_partitions_to_table(
+        returned_value = hive_metastore_client.add_partitions_to_table(
             db_name=db_name, table_name=table_name, partition_list=mocked_partition_list
         )
 
         # assert
+        assert returned_value
+        mocked_get_table.assert_called_once_with(dbname=db_name, tbl_name=table_name)
+        mocked__format_partitions.assert_called_once_with(
+            partition_list=mocked_partition_list,
+            table_storage_descriptor=mocked_table.sd,
+            table_partition_keys=mocked_table.partitionKeys,
+        )
+        mocked_add_partitions.assert_called_once_with(formatted_partitions_location)
+
+    @mock.patch.object(HiveMetastoreClient, "get_table")
+    @mock.patch.object(HiveMetastoreClient, "_format_partitions_location")
+    @mock.patch.object(HiveMetastoreClient, "add_partitions")
+    def test_add_partitions_to_table_with_duplicated_partitions(
+            self,
+            mocked_add_partitions,
+            mocked__format_partitions,
+            mocked_get_table,
+            hive_metastore_client,
+    ):
+        # arrange
+        db_name = "database_name"
+        table_name = "table_name"
+
+        mocked_table = Mock()
+        mocked_get_table.return_value = mocked_table
+
+        mocked_partition_list = [Mock()]
+        formatted_partitions_location = ["abc"]
+        mocked__format_partitions.return_value = formatted_partitions_location
+
+        mocked_add_partitions.side_effect = AlreadyExistsException()
+
+        # act
+        returned_value = hive_metastore_client.add_partitions_to_table(
+            db_name=db_name, table_name=table_name, partition_list=mocked_partition_list
+        )
+
+        # assert
+        assert not returned_value
         mocked_get_table.assert_called_once_with(dbname=db_name, tbl_name=table_name)
         mocked__format_partitions.assert_called_once_with(
             partition_list=mocked_partition_list,
