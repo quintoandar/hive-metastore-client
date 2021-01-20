@@ -191,11 +191,11 @@ class TestHiveMetastoreClient:
     @mock.patch.object(HiveMetastoreClient, "_format_partitions_location")
     @mock.patch.object(HiveMetastoreClient, "add_partitions")
     def test_add_partitions_to_table_with_duplicated_partitions(
-            self,
-            mocked_add_partitions,
-            mocked__format_partitions,
-            mocked_get_table,
-            hive_metastore_client,
+        self,
+        mocked_add_partitions,
+        mocked__format_partitions,
+        mocked_get_table,
+        hive_metastore_client,
     ):
         # arrange
         db_name = "database_name"
