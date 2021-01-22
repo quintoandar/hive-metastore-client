@@ -119,10 +119,20 @@ class HiveMetastoreClient(ThriftClient):
         """
         Add partitions to a table.
 
+        If the user tries to add a partition twice, the method handles the
+         AlreadyExistsException returning false and indicating the operation
+         result: True for new partition values added or False when nothing
+         was done.
+
         :param db_name: database name where the table is at
         :param table_name: table name which the partitions belong to
         :param partition_list: list of partitions to be added to the table
         """
+        if not partition_list:
+            raise ValueError(
+                "m=add_partitions_to_table, msg=The partition list is empty."
+            )
+
         table = self.get_table(dbname=db_name, tbl_name=table_name)
 
         partition_list_with_correct_location = self._format_partitions_location(
@@ -202,4 +212,6 @@ class HiveMetastoreClient(ThriftClient):
         :param list_b: second list to be compared
         """
         if len(list_a) != len(list_b):
-            raise ValueError("The length of the two provided lists does not match")
+            raise ValueError(
+                "m=_validate_lists_length, msg=The length of the two provided lists does not match"
+            )

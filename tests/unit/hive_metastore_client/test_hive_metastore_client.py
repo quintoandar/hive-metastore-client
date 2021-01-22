@@ -1,7 +1,8 @@
 from unittest import mock
-from unittest.mock import Mock
+from unittest.mock import Mock, ANY
 
 import pytest
+from pytest import raises
 
 from hive_metastore_client import HiveMetastoreClient
 from thrift_files.libraries.thrift_hive_metastore_client.ThriftHiveMetastore import (
@@ -224,6 +225,26 @@ class TestHiveMetastoreClient:
             table_partition_keys=mocked_table.partitionKeys,
         )
         mocked_add_partitions.assert_called_once_with(formatted_partitions_location)
+
+    @mock.patch.object(HiveMetastoreClient, "get_table")
+    @mock.patch.object(HiveMetastoreClient, "_format_partitions_location")
+    @mock.patch.object(HiveMetastoreClient, "add_partitions")
+    def test_add_partitions_to_table_with_invalid_partitions(
+        self,
+        mocked_add_partitions,
+        mocked__format_partitions,
+        mocked_get_table,
+        hive_metastore_client,
+    ):
+        # assert
+        with raises(ValueError):
+            # act
+            hive_metastore_client.add_partitions_to_table(
+                db_name=ANY, table_name=ANY, partition_list=[]
+            )
+        mocked_get_table.assert_not_called()
+        mocked__format_partitions.assert_not_called()
+        mocked_add_partitions.assert_not_called()
 
     @mock.patch.object(HiveMetastoreClient, "_validate_lists_length")
     def test_format_partitions_location(
