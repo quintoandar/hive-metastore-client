@@ -1,6 +1,5 @@
 """Hive Metastore Client main class."""
 import copy
-import logging
 from typing import List, Any
 
 from thrift.protocol import TBinaryProtocol
@@ -16,8 +15,6 @@ from thrift_files.libraries.thrift_hive_metastore_client.ttypes import (  # type
     Database,
     AlreadyExistsException,
 )
-
-logging.basicConfig(format="%(levelname)s:%(message)s", level=logging.INFO)
 
 
 class HiveMetastoreClient(ThriftClient):
@@ -116,11 +113,11 @@ class HiveMetastoreClient(ThriftClient):
             # call alter table to drop columns removed from list of table columns
             self.alter_table(dbname=db_name, tbl_name=table_name, new_tbl=table)
 
-    def add_partitions_to_table(
+    def add_partitions_if_not_exists(
         self, db_name: str, table_name: str, partition_list: List[Partition]
-    ) -> bool:
+    ) -> None:
         """
-        Add partitions to a table.
+        Add partitions to a table if it does not exist.
 
         If the user tries to add a partition twice, the method handles the
          AlreadyExistsException returning false and indicating the operation
@@ -133,7 +130,7 @@ class HiveMetastoreClient(ThriftClient):
         """
         if not partition_list:
             raise ValueError(
-                "m=add_partitions_to_table, msg=The partition list is empty."
+                "m=add_partitions_if_not_exists, msg=The partition list is empty."
             )
 
         table = self.get_table(dbname=db_name, tbl_name=table_name)
@@ -146,10 +143,8 @@ class HiveMetastoreClient(ThriftClient):
 
         try:
             self.add_partitions(partition_list_with_correct_location)
-            return True
-        except AlreadyExistsException as e:
-            logging.info(f"m=add_partitions_to_table, msg={e.message}")
-            return False
+        except AlreadyExistsException:
+            pass
 
     def create_database_if_not_exists(self, database: Database) -> bool:
         """
@@ -164,8 +159,7 @@ class HiveMetastoreClient(ThriftClient):
         try:
             self.create_database(database)
             return True
-        except AlreadyExistsException as e:
-            logging.info(f"m=create_database_if_not_exists, msg={e.message}")
+        except AlreadyExistsException:
             return False
 
     @staticmethod
@@ -218,5 +212,6 @@ class HiveMetastoreClient(ThriftClient):
         """
         if len(list_a) != len(list_b):
             raise ValueError(
-                "m=_validate_lists_length, msg=The length of the two provided lists does not match"
+                "m=_validate_lists_length, msg=The length of the two provided "
+                "lists does not match"
             )

@@ -174,12 +174,11 @@ class TestHiveMetastoreClient:
         mocked__format_partitions.return_value = formatted_partitions_location
 
         # act
-        returned_value = hive_metastore_client.add_partitions_to_table(
+        hive_metastore_client.add_partitions_if_not_exists(
             db_name=db_name, table_name=table_name, partition_list=mocked_partition_list
         )
 
         # assert
-        assert returned_value
         mocked_get_table.assert_called_once_with(dbname=db_name, tbl_name=table_name)
         mocked__format_partitions.assert_called_once_with(
             partition_list=mocked_partition_list,
@@ -212,12 +211,11 @@ class TestHiveMetastoreClient:
         mocked_add_partitions.side_effect = AlreadyExistsException()
 
         # act
-        returned_value = hive_metastore_client.add_partitions_to_table(
+        hive_metastore_client.add_partitions_if_not_exists(
             db_name=db_name, table_name=table_name, partition_list=mocked_partition_list
         )
 
         # assert
-        assert not returned_value
         mocked_get_table.assert_called_once_with(dbname=db_name, tbl_name=table_name)
         mocked__format_partitions.assert_called_once_with(
             partition_list=mocked_partition_list,
@@ -239,7 +237,7 @@ class TestHiveMetastoreClient:
         # assert
         with raises(ValueError):
             # act
-            hive_metastore_client.add_partitions_to_table(
+            hive_metastore_client.add_partitions_if_not_exists(
                 db_name=ANY, table_name=ANY, partition_list=[]
             )
         mocked_get_table.assert_not_called()
