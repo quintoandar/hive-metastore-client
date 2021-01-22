@@ -1,5 +1,6 @@
 """Hive Metastore Client main class."""
 import copy
+import logging
 from typing import List, Any
 
 from thrift.protocol import TBinaryProtocol
@@ -15,6 +16,8 @@ from thrift_files.libraries.thrift_hive_metastore_client.ttypes import (  # type
     Database,
     AlreadyExistsException,
 )
+
+logging.basicConfig(format="%(levelname)s:%(message)s", level=logging.INFO)
 
 
 class HiveMetastoreClient(ThriftClient):
@@ -144,7 +147,8 @@ class HiveMetastoreClient(ThriftClient):
         try:
             self.add_partitions(partition_list_with_correct_location)
             return True
-        except AlreadyExistsException:
+        except AlreadyExistsException as e:
+            logging.info(f"m=add_partitions_to_table, msg={e.message}")
             return False
 
     def create_database_if_not_exists(self, database: Database) -> bool:
@@ -160,7 +164,8 @@ class HiveMetastoreClient(ThriftClient):
         try:
             self.create_database(database)
             return True
-        except AlreadyExistsException:
+        except AlreadyExistsException as e:
+            logging.info(f"m=create_database_if_not_exists, msg={e.message}")
             return False
 
     @staticmethod
