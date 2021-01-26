@@ -120,9 +120,7 @@ class HiveMetastoreClient(ThriftClient):
         Add partitions to a table if it does not exist.
 
         If the user tries to add a partition twice, the method handles the
-         AlreadyExistsException returning false and indicating the operation
-         result: True for new partition values added or False when nothing
-         was done.
+         AlreadyExistsException, not raising an error.
 
         :param db_name: database name where the table is at
         :param table_name: table name which the partitions belong to
