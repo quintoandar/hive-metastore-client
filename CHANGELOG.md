@@ -6,6 +6,7 @@ Preferably use **Added**, **Changed**, **Removed** and **Fixed** topics in each 
 ## [1.0.3](https://github.com/quintoandar/hive-metastore-client/releases/tag/1.0.3)
 ### Changed
 * Handling exception when adding duplicate partitions ([#37](https://github.com/quintoandar/hive-metastore-client/pull/37))
+* Remove method returning for create_database_if_not_exists ([#39](https://github.com/quintoandar/hive-metastore-client/pull/39))
 
 ## [1.0.2](https://github.com/quintoandar/hive-metastore-client/releases/tag/1.0.2)
 ### Added
