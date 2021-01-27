@@ -144,7 +144,7 @@ class HiveMetastoreClient(ThriftClient):
         except AlreadyExistsException:
             pass
 
-    def create_database_if_not_exists(self, database: Database) -> bool:
+    def create_database_if_not_exists(self, database: Database) -> None:
         """
         Creates the table in Hive Metastore if it does not exist.
 
@@ -156,9 +156,8 @@ class HiveMetastoreClient(ThriftClient):
         """
         try:
             self.create_database(database)
-            return True
         except AlreadyExistsException:
-            return False
+            pass
 
     @staticmethod
     def _format_partitions_location(

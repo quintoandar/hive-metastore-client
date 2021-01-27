@@ -277,12 +277,9 @@ class TestHiveMetastoreClient:
         mocked_database_obj = Mock()
 
         # act
-        return_value = hive_metastore_client.create_database_if_not_exists(
-            mocked_database_obj
-        )
+        hive_metastore_client.create_database_if_not_exists(mocked_database_obj)
 
         # assert
-        assert return_value
         mocked_create_database.assert_called_once_with(mocked_database_obj)
 
     @mock.patch.object(HiveMetastoreClient, "create_database")
@@ -294,10 +291,7 @@ class TestHiveMetastoreClient:
         mocked_create_database.side_effect = AlreadyExistsException()
 
         # act
-        return_value = hive_metastore_client.create_database_if_not_exists(
-            mocked_database_obj
-        )
+        hive_metastore_client.create_database_if_not_exists(mocked_database_obj)
 
         # assert
-        assert not return_value
         mocked_create_database.assert_called_once_with(mocked_database_obj)
