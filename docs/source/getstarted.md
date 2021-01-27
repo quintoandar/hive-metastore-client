@@ -36,4 +36,5 @@ Beyond the default methods, this library also implements the methods below in
 the [`HiveMetastoreClient`](https://github.com/quintoandar/hive-metastore-client/blob/main/hive_metastore_client/hive_metastore_client.py) class:
 
 - [`add_columns_to_table`](https://hive-metastore-client.readthedocs.io/en/latest/hive_metastore_client.html#hive_metastore_client.hive_metastore_client.HiveMetastoreClient.add_columns_to_table)
-- [`add_partitions_to_table`](https://hive-metastore-client.readthedocs.io/en/latest/hive_metastore_client.html#hive_metastore_client.hive_metastore_client.HiveMetastoreClient.add_columns_to_table)
+- [`add_partitions_to_table`](https://hive-metastore-client.readthedocs.io/en/latest/hive_metastore_client.html#hive_metastore_client.hive_metastore_client.HiveMetastoreClient.add_partitions_to_table)
+- [`create_database_if_not_exists`](https://hive-metastore-client.readthedocs.io/en/latest/hive_metastore_client.html#hive_metastore_client.hive_metastore_client.HiveMetastoreClient.create_database_if_not_exists)
