@@ -113,16 +113,24 @@ class HiveMetastoreClient(ThriftClient):
             # call alter table to drop columns removed from list of table columns
             self.alter_table(dbname=db_name, tbl_name=table_name, new_tbl=table)
 
-    def add_partitions_to_table(
+    def add_partitions_if_not_exists(
         self, db_name: str, table_name: str, partition_list: List[Partition]
-    ) -> bool:
+    ) -> None:
         """
-        Add partitions to a table.
+        Add partitions to a table if it does not exist.
+
+        If the user tries to add a partition twice, the method handles the
+         AlreadyExistsException, not raising an error.
 
         :param db_name: database name where the table is at
         :param table_name: table name which the partitions belong to
         :param partition_list: list of partitions to be added to the table
         """
+        if not partition_list:
+            raise ValueError(
+                "m=add_partitions_if_not_exists, msg=The partition list is empty."
+            )
+
         table = self.get_table(dbname=db_name, tbl_name=table_name)
 
         partition_list_with_correct_location = self._format_partitions_location(
@@ -133,11 +141,10 @@ class HiveMetastoreClient(ThriftClient):
 
         try:
             self.add_partitions(partition_list_with_correct_location)
-            return True
         except AlreadyExistsException:
-            return False
+            pass
 
-    def create_database_if_not_exists(self, database: Database) -> bool:
+    def create_database_if_not_exists(self, database: Database) -> None:
         """
         Creates the table in Hive Metastore if it does not exist.
 
@@ -149,9 +156,8 @@ class HiveMetastoreClient(ThriftClient):
         """
         try:
             self.create_database(database)
-            return True
         except AlreadyExistsException:
-            return False
+            pass
 
     @staticmethod
     def _format_partitions_location(
@@ -202,4 +208,7 @@ class HiveMetastoreClient(ThriftClient):
         :param list_b: second list to be compared
         """
         if len(list_a) != len(list_b):
-            raise ValueError("The length of the two provided lists does not match")
+            raise ValueError(
+                "m=_validate_lists_length, msg=The length of the two provided "
+                "lists does not match"
+            )
