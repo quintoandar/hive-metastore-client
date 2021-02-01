@@ -14,6 +14,7 @@ from thrift_files.libraries.thrift_hive_metastore_client.ttypes import (  # type
     FieldSchema,
     Database,
     AlreadyExistsException,
+    Table,
 )
 
 
@@ -158,6 +159,22 @@ class HiveMetastoreClient(ThriftClient):
             self.create_database(database)
         except AlreadyExistsException:
             pass
+
+    def create_external_table(self, table: Table) -> None:
+        """
+        Creates an external table in Hive Metastore.
+
+        When it is created a table with default tableType (None) or equal to
+         EXTERNAL_TABLE there is an error in the server that creates the table
+         as a MANAGED_TABLE.
+        This method enforces the parameter EXTERNAL=TRUE so the table is
+         created correctly.
+
+        :param table: the table object
+        """
+        table.parameters = {"EXTERNAL": "TRUE"}
+        table.tableType = "EXTERNAL_TABLE"
+        self.create_table(table)
 
     @staticmethod
     def _format_partitions_location(
