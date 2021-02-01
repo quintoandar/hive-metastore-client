@@ -4,8 +4,10 @@
     Some arguments are optional when creating a thrift object.
     Check each Builder constructor for more information.
 
-    Note: if you want to create an external table refer to the
-     example create_external_table.py.
+    Due to a bug in Hive Metastore server we need to enforce the parameter
+     EXTERNAL=TRUE when creating an external table. You can either use the
+     method `create_external_table` with the table object or declare the two
+     table parameters before calling the method create_table.
 """
 
 from hive_metastore_client import HiveMetastoreClient
@@ -60,4 +62,4 @@ table = TableBuilder(
 
 with HiveMetastoreClient(HIVE_HOST, HIVE_PORT) as hive_metastore_client:
     # Creating new table from thrift table object
-    hive_metastore_client.create_table(table)
+    hive_metastore_client.create_external_table(table)
