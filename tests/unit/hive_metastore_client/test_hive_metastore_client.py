@@ -311,9 +311,9 @@ class TestHiveMetastoreClient:
         updated_table = copy(table)
         updated_table.parameters = {"EXTERNAL": "TRUE"}
         updated_table.tableType = "EXTERNAL_TABLE"
+
         # act
         hive_metastore_client.create_external_table(table)
 
         # assert
-        assert table.parameters == updated_table.parameters
         mocked_create_table.assert_called_once_with(updated_table)
