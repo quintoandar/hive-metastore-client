@@ -39,3 +39,4 @@ the [`HiveMetastoreClient`](https://github.com/quintoandar/hive-metastore-client
 - [`drop_columns_from_table`](https://hive-metastore-client.readthedocs.io/en/latest/hive_metastore_client.html#hive_metastore_client.hive_metastore_client.HiveMetastoreClient.drop_columns_from_table)
 - [`add_partitions_if_not_exists`](https://hive-metastore-client.readthedocs.io/en/latest/hive_metastore_client.html#hive_metastore_client.hive_metastore_client.HiveMetastoreClient.add_partitions_if_not_exists)
 - [`create_database_if_not_exists`](https://hive-metastore-client.readthedocs.io/en/latest/hive_metastore_client.html#hive_metastore_client.hive_metastore_client.HiveMetastoreClient.create_database_if_not_exists)
+- [`create_external_table`](https://hive-metastore-client.readthedocs.io/en/latest/hive_metastore_client.html#hive_metastore_client.hive_metastore_client.HiveMetastoreClient.create_external_table)
