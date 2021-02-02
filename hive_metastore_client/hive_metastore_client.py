@@ -164,7 +164,7 @@ class HiveMetastoreClient(ThriftClient):
         """
         Creates an external table in Hive Metastore.
 
-        When it is created a table with default tableType (None) or equal to
+        When a table is created with tableType default (None) or equal to
          EXTERNAL_TABLE there is an error in the server that creates the table
          as a MANAGED_TABLE.
         This method enforces the parameter EXTERNAL=TRUE so the table is
