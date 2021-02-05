@@ -26,7 +26,7 @@ Click on the following links to open the [examples](https://github.com/quintoand
 
 **[#4 Add partitions to a table](https://github.com/quintoandar/hive-metastore-client/blob/main/examples/add_partitions.py)**
 
-**[#5 Get partition keys from a table](https://github.com/quintoandar/hive-metastore-client/blob/main/examples/get_partition_keys.py)**
+**[#5 Get partition keys objects from a table](https://github.com/quintoandar/hive-metastore-client/blob/main/examples/get_partition_keys_objects.py)**
 
 **[#6 Get partition keys names from a table](https://github.com/quintoandar/hive-metastore-client/blob/main/examples/get_partition_keys_names.py)**
 
@@ -43,5 +43,5 @@ the [`HiveMetastoreClient`](https://github.com/quintoandar/hive-metastore-client
 - [`drop_columns_from_table`](https://hive-metastore-client.readthedocs.io/en/latest/hive_metastore_client.html#hive_metastore_client.hive_metastore_client.HiveMetastoreClient.drop_columns_from_table)
 - [`add_partitions_if_not_exists`](https://hive-metastore-client.readthedocs.io/en/latest/hive_metastore_client.html#hive_metastore_client.hive_metastore_client.HiveMetastoreClient.add_partitions_if_not_exists)
 - [`create_database_if_not_exists`](https://hive-metastore-client.readthedocs.io/en/latest/hive_metastore_client.html#hive_metastore_client.hive_metastore_client.HiveMetastoreClient.create_database_if_not_exists)
-- [`get_partition_keys`](https://hive-metastore-client.readthedocs.io/en/latest/hive_metastore_client.html#hive_metastore_client.hive_metastore_client.HiveMetastoreClient.get_partition_keys)
+- [`get_partition_keys_objects`](https://hive-metastore-client.readthedocs.io/en/latest/hive_metastore_client.html#hive_metastore_client.hive_metastore_client.HiveMetastoreClient.get_partition_keys_objects)
 - [`get_partition_keys_names`](https://hive-metastore-client.readthedocs.io/en/latest/hive_metastore_client.html#hive_metastore_client.hive_metastore_client.HiveMetastoreClient.get_partition_keys_names)

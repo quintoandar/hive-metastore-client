@@ -213,11 +213,13 @@ class HiveMetastoreClient(ThriftClient):
                 "lists does not match"
             )
 
-    def get_partition_keys(self, db_name: str, table_name: str) -> List[FieldSchema]:
+    def get_partition_keys_objects(
+        self, db_name: str, table_name: str
+    ) -> List[FieldSchema]:
         """
-        Gets the partition keys from a table.
+        Gets the partition keys objects, containing the metadata, from a table.
 
-        An empty list will return when no table is found or
+        An empty list will be returned when no table is found or
         when the table has no partitions
 
         :param db_name: database name where the table is at
@@ -230,11 +232,13 @@ class HiveMetastoreClient(ThriftClient):
         """
         Gets the partition keys names from a table.
 
-        An empty list will return when no table is found or
+        An empty list will be returned when no table is found or
         when the table has no partitions
 
         :param db_name: database name where the table is at
         :param table_name: table name which the partition keys belong to
         """
-        partition_keys = self.get_partition_keys(db_name=db_name, table_name=table_name)
+        partition_keys = self.get_partition_keys_objects(
+            db_name=db_name, table_name=table_name
+        )
         return [partition.name for partition in partition_keys]
