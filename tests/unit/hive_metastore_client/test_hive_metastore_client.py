@@ -386,7 +386,7 @@ class TestHiveMetastoreClient:
     @mock.patch.object(
         HiveMetastoreClient, "get_partition_keys_objects", return_value=[]
     )
-    def test_get_partition_keys_with_partitioned_table(
+    def test_get_partition_keys_names_with_partitioned_table(
         self, mocked_get_partition_keys_objects, hive_metastore_client,
     ):
         # arrange
