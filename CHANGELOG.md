@@ -3,6 +3,13 @@ All notable changes to this project will be documented in this file.
 
 Preferably use **Added**, **Changed**, **Removed** and **Fixed** topics in each release or unreleased log for a better organization.
 
+## [1.0.4](https://github.com/quintoandar/hive-metastore-client/releases/tag/1.0.4)
+### Added
+* Added create_external_table method ([#42](https://github.com/quintoandar/hive-metastore-client/pull/42))
+* Added get_partition_keys_objects and get_partition_keys_names methods ([#43](https://github.com/quintoandar/hive-metastore-client/pull/43))
+### Fixed
+* Enforcing type as EXTERNAL when creating external tables ([#41](https://github.com/quintoandar/hive-metastore-client/issues/41))
+
 ## [1.0.3](https://github.com/quintoandar/hive-metastore-client/releases/tag/1.0.3)
 ### Changed
 * Handled exception when adding duplicate partitions ([#37](https://github.com/quintoandar/hive-metastore-client/pull/37))
