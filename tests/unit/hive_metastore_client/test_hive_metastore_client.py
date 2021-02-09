@@ -5,6 +5,7 @@ import pytest
 from pytest import raises
 
 from hive_metastore_client import HiveMetastoreClient
+from hive_metastore_client.builders import TableBuilder
 from thrift_files.libraries.thrift_hive_metastore_client.ThriftHiveMetastore import (
     Client as ThriftClient,
 )
@@ -295,6 +296,26 @@ class TestHiveMetastoreClient:
 
         # assert
         mocked_create_database.assert_called_once_with(mocked_database_obj)
+
+    @mock.patch.object(HiveMetastoreClient, "create_table")
+    def test_create_external_table(self, mocked_create_table, hive_metastore_client):
+        # arrange
+        table = TableBuilder(
+            table_name="table_name",
+            db_name="database_name",
+            owner="owner",
+            storage_descriptor=Mock(),
+            partition_keys=[],
+        ).build()
+        updated_table = copy(table)
+        updated_table.parameters = {"EXTERNAL": "TRUE"}
+        updated_table.tableType = "EXTERNAL_TABLE"
+
+        # act
+        hive_metastore_client.create_external_table(table)
+
+        # assert
+        mocked_create_table.assert_called_once_with(updated_table)
 
     @mock.patch.object(HiveMetastoreClient, "get_table", return_value=None)
     def test_get_partition_keys_objects_with_invalid_table(

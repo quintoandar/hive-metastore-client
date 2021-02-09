@@ -22,13 +22,15 @@ Click on the following links to open the [examples](https://github.com/quintoand
 
 **[#2 Create a table](https://github.com/quintoandar/hive-metastore-client/blob/main/examples/create_table.py)**
 
-**[#3 Add columns to a table](https://github.com/quintoandar/hive-metastore-client/blob/main/examples/add_columns_to_table.py)**
+**[#3 Create an external table](https://github.com/quintoandar/hive-metastore-client/blob/main/examples/create_external_table.py)**
 
-**[#4 Add partitions to a table](https://github.com/quintoandar/hive-metastore-client/blob/main/examples/add_partitions.py)**
+**[#4 Add columns to a table](https://github.com/quintoandar/hive-metastore-client/blob/main/examples/add_columns_to_table.py)**
 
-**[#5 Get partition keys objects from a table](https://github.com/quintoandar/hive-metastore-client/blob/main/examples/get_partition_keys_objects.py)**
+**[#5 Add partitions to a table](https://github.com/quintoandar/hive-metastore-client/blob/main/examples/add_partitions.py)**
 
-**[#6 Get partition keys names from a table](https://github.com/quintoandar/hive-metastore-client/blob/main/examples/get_partition_keys_names.py)**
+**[#6 Get partition keys objects from a table](https://github.com/quintoandar/hive-metastore-client/blob/main/examples/get_partition_keys_objects.py)**
+
+**[#7 Get partition keys names from a table](https://github.com/quintoandar/hive-metastore-client/blob/main/examples/get_partition_keys_names.py)**
 
 ## Available methods
 
@@ -43,5 +45,6 @@ the [`HiveMetastoreClient`](https://github.com/quintoandar/hive-metastore-client
 - [`drop_columns_from_table`](https://hive-metastore-client.readthedocs.io/en/latest/hive_metastore_client.html#hive_metastore_client.hive_metastore_client.HiveMetastoreClient.drop_columns_from_table)
 - [`add_partitions_if_not_exists`](https://hive-metastore-client.readthedocs.io/en/latest/hive_metastore_client.html#hive_metastore_client.hive_metastore_client.HiveMetastoreClient.add_partitions_if_not_exists)
 - [`create_database_if_not_exists`](https://hive-metastore-client.readthedocs.io/en/latest/hive_metastore_client.html#hive_metastore_client.hive_metastore_client.HiveMetastoreClient.create_database_if_not_exists)
+- [`create_external_table`](https://hive-metastore-client.readthedocs.io/en/latest/hive_metastore_client.html#hive_metastore_client.hive_metastore_client.HiveMetastoreClient.create_external_table)
 - [`get_partition_keys_objects`](https://hive-metastore-client.readthedocs.io/en/latest/hive_metastore_client.html#hive_metastore_client.hive_metastore_client.HiveMetastoreClient.get_partition_keys_objects)
 - [`get_partition_keys_names`](https://hive-metastore-client.readthedocs.io/en/latest/hive_metastore_client.html#hive_metastore_client.hive_metastore_client.HiveMetastoreClient.get_partition_keys_names)
