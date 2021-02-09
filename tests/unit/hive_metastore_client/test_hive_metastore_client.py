@@ -317,3 +317,120 @@ class TestHiveMetastoreClient:
 
         # assert
         mocked_create_table.assert_called_once_with(updated_table)
+
+    @mock.patch.object(HiveMetastoreClient, "get_table", return_value=None)
+    def test_get_partition_keys_objects_with_invalid_table(
+        self, mocked_get_table, hive_metastore_client,
+    ):
+        # arrange
+        table_name = "table_name"
+        database_name = "database_name"
+
+        # act
+        returned_value = hive_metastore_client.get_partition_keys_objects(
+            database_name, table_name
+        )
+
+        # assert
+        assert returned_value == []
+        mocked_get_table.assert_called_once_with(
+            dbname=database_name, tbl_name=table_name
+        )
+
+    @mock.patch.object(HiveMetastoreClient, "get_table")
+    def test_get_partition_keys_objects_with_not_partitioned_table(
+        self, mocked_get_table, hive_metastore_client,
+    ):
+        # arrange
+        table_name = "table_name"
+        database_name = "database_name"
+        mocked_table = Mock()
+        # the default return from hive metastore for not partitioned tables is an empty list
+        mocked_table.partitionKeys = []
+        mocked_get_table.return_value = mocked_table
+
+        # act
+        returned_value = hive_metastore_client.get_partition_keys_objects(
+            database_name, table_name
+        )
+
+        # assert
+        assert returned_value == []
+        mocked_get_table.assert_called_once_with(
+            dbname=database_name, tbl_name=table_name
+        )
+
+    @mock.patch.object(HiveMetastoreClient, "get_table")
+    def test_get_partition_keys_objects_with_partitioned_table(
+        self, mocked_get_table, hive_metastore_client,
+    ):
+        # arrange
+        table_name = "table_name"
+        database_name = "database_name"
+        mocked_table = Mock()
+        mocked_partition_a = Mock()
+        mocked_partition_b = Mock()
+        mocked_table.partitionKeys = [mocked_partition_a, mocked_partition_b]
+        mocked_get_table.return_value = mocked_table
+
+        # act
+        returned_value = hive_metastore_client.get_partition_keys_objects(
+            database_name, table_name
+        )
+
+        # assert
+        assert returned_value == [mocked_partition_a, mocked_partition_b]
+        mocked_get_table.assert_called_once_with(
+            dbname=database_name, tbl_name=table_name
+        )
+
+    @mock.patch.object(
+        HiveMetastoreClient, "get_partition_keys_objects", return_value=[]
+    )
+    def test_get_partition_keys_names_with_invalid_or_not_partitioned_table(
+        self, mocked_get_partition_keys_objects, hive_metastore_client,
+    ):
+        # arrange
+        table_name = "table_name"
+        database_name = "database_name"
+
+        # act
+        returned_value = hive_metastore_client.get_partition_keys_names(
+            database_name, table_name
+        )
+
+        # assert
+        assert returned_value == []
+        mocked_get_partition_keys_objects.assert_called_once_with(
+            db_name=database_name, table_name=table_name
+        )
+
+    @mock.patch.object(
+        HiveMetastoreClient, "get_partition_keys_objects", return_value=[]
+    )
+    def test_get_partition_keys_names_with_partitioned_table(
+        self, mocked_get_partition_keys_objects, hive_metastore_client,
+    ):
+        # arrange
+        table_name = "table_name"
+        database_name = "database_name"
+        mocked_partition_a = Mock()
+        mocked_partition_a.name = "mocked_partition_a"
+        mocked_partition_b = Mock()
+        mocked_partition_b.name = "mocked_partition_b"
+        mocked_get_partition_keys_objects.return_value = [
+            mocked_partition_a,
+            mocked_partition_b,
+        ]
+        expected_return = ["mocked_partition_a", "mocked_partition_b"]
+
+        # act
+        returned_value = hive_metastore_client.get_partition_keys_names(
+            database_name, table_name
+        )
+
+        # assert
+        assert returned_value == expected_return
+        mocked_get_partition_keys_objects.assert_called_once_with(
+            db_name=database_name, table_name=table_name
+        )

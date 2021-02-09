@@ -28,6 +28,10 @@ Click on the following links to open the [examples](https://github.com/quintoand
 
 **[#5 Add partitions to a table](https://github.com/quintoandar/hive-metastore-client/blob/main/examples/add_partitions.py)**
 
+**[#6 Get partition keys objects from a table](https://github.com/quintoandar/hive-metastore-client/blob/main/examples/get_partition_keys_objects.py)**
+
+**[#7 Get partition keys names from a table](https://github.com/quintoandar/hive-metastore-client/blob/main/examples/get_partition_keys_names.py)**
+
 ## Available methods
 
 You can see all the Hive Metastore server available methods by looking at the 
@@ -42,3 +46,5 @@ the [`HiveMetastoreClient`](https://github.com/quintoandar/hive-metastore-client
 - [`add_partitions_if_not_exists`](https://hive-metastore-client.readthedocs.io/en/latest/hive_metastore_client.html#hive_metastore_client.hive_metastore_client.HiveMetastoreClient.add_partitions_if_not_exists)
 - [`create_database_if_not_exists`](https://hive-metastore-client.readthedocs.io/en/latest/hive_metastore_client.html#hive_metastore_client.hive_metastore_client.HiveMetastoreClient.create_database_if_not_exists)
 - [`create_external_table`](https://hive-metastore-client.readthedocs.io/en/latest/hive_metastore_client.html#hive_metastore_client.hive_metastore_client.HiveMetastoreClient.create_external_table)
+- [`get_partition_keys_objects`](https://hive-metastore-client.readthedocs.io/en/latest/hive_metastore_client.html#hive_metastore_client.hive_metastore_client.HiveMetastoreClient.get_partition_keys_objects)
+- [`get_partition_keys_names`](https://hive-metastore-client.readthedocs.io/en/latest/hive_metastore_client.html#hive_metastore_client.hive_metastore_client.HiveMetastoreClient.get_partition_keys_names)

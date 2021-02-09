@@ -229,3 +229,33 @@ class HiveMetastoreClient(ThriftClient):
                 "m=_validate_lists_length, msg=The length of the two provided "
                 "lists does not match"
             )
+
+    def get_partition_keys_objects(
+        self, db_name: str, table_name: str
+    ) -> List[FieldSchema]:
+        """
+        Gets the partition keys objects, containing the metadata, from a table.
+
+        An empty list will be returned when no table is found or
+        when the table has no partitions
+
+        :param db_name: database name where the table is at
+        :param table_name: table name which the partition keys belong to
+        """
+        table = self.get_table(dbname=db_name, tbl_name=table_name)
+        return list(table.partitionKeys) if table else []
+
+    def get_partition_keys_names(self, db_name: str, table_name: str) -> List[str]:
+        """
+        Gets the partition keys names from a table.
+
+        An empty list will be returned when no table is found or
+        when the table has no partitions
+
+        :param db_name: database name where the table is at
+        :param table_name: table name which the partition keys belong to
+        """
+        partition_keys = self.get_partition_keys_objects(
+            db_name=db_name, table_name=table_name
+        )
+        return [partition.name for partition in partition_keys]
