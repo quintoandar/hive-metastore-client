@@ -1,3 +1,4 @@
+from copy import copy
 from unittest import mock
 from unittest.mock import Mock, ANY
 
