@@ -30473,8 +30473,8 @@ class get_partitions_args(object):
                 else:
                     iprot.skip(ftype)
             elif fid == 3:
-                if ftype == TType.I16:
-                    self.max_parts = iprot.readI16()
+                if ftype == TType.I32:
+                    self.max_parts = iprot.readI32()
                 else:
                     iprot.skip(ftype)
             else:
@@ -30506,8 +30506,8 @@ class get_partitions_args(object):
             )
             oprot.writeFieldEnd()
         if self.max_parts is not None:
-            oprot.writeFieldBegin("max_parts", TType.I16, 3)
-            oprot.writeI16(self.max_parts)
+            oprot.writeFieldBegin("max_parts", TType.I32, 3)
+            oprot.writeI32(self.max_parts)
             oprot.writeFieldEnd()
         oprot.writeFieldStop()
         oprot.writeStructEnd()
@@ -30531,7 +30531,7 @@ get_partitions_args.thrift_spec = (
     None,  # 0
     (1, TType.STRING, "db_name", "UTF8", None,),  # 1
     (2, TType.STRING, "tbl_name", "UTF8", None,),  # 2
-    (3, TType.I16, "max_parts", None, -1,),  # 3
+    (3, TType.I32, "max_parts", None, -1,),  # 3
 )
 
 

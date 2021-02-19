@@ -1803,7 +1803,7 @@ service ThriftHiveMetastore extends fb303.FacebookService
 
   // returns all the partitions for this table in reverse chronological order.
   // If max parts is given then it will return only that many.
-  list<Partition> get_partitions(1:string db_name, 2:string tbl_name, 3:i16 max_parts=-1)
+  list<Partition> get_partitions(1:string db_name, 2:string tbl_name, 3:i32 max_parts=-1)
                        throws(1:NoSuchObjectException o1, 2:MetaException o2)
   list<Partition> get_partitions_with_auth(1:string db_name, 2:string tbl_name, 3:i16 max_parts=-1,
      4: string user_name, 5: list<string> group_names) throws(1:NoSuchObjectException o1, 2:MetaException o2)
