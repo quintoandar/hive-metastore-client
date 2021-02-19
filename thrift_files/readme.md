@@ -25,3 +25,10 @@ thrift --gen py fb303.thrift
 3 - Now you have the new python code generated inside `gen-py`. Extract the classes and place them in the right directories.
 
 4 - The generated files are huge, therefore be sure that the generated files directory names are ignored in the make commands _style-check_ and _apply-lint_. So these files are not evaluated during the checks.
+
+## Manual adjustments to Thrift source files
+
+Some auto-generated code from Thrift communication with Hive Metastore can be changed to provide more features, thus allowing a more customized integration.
+
+The following PRs change the Thrift base files and **need to be re-written** in case of re-generation by the previous steps:
+- So far no PR manually changing base files were deployed. 
