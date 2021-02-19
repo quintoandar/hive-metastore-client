@@ -32,6 +32,9 @@ Click on the following links to open the [examples](https://github.com/quintoand
 
 **[#7 Get partition keys names from a table](https://github.com/quintoandar/hive-metastore-client/blob/main/examples/get_partition_keys_names.py)**
 
+**[#8 Get partition values from a table](https://github.com/quintoandar/hive-metastore-client/blob/main/examples/get_partition_values_from_table.py)**
+
+
 ## Available methods
 
 You can see all the Hive Metastore server available methods by looking at the 
@@ -48,3 +51,4 @@ the [`HiveMetastoreClient`](https://github.com/quintoandar/hive-metastore-client
 - [`create_external_table`](https://hive-metastore-client.readthedocs.io/en/latest/hive_metastore_client.html#hive_metastore_client.hive_metastore_client.HiveMetastoreClient.create_external_table)
 - [`get_partition_keys_objects`](https://hive-metastore-client.readthedocs.io/en/latest/hive_metastore_client.html#hive_metastore_client.hive_metastore_client.HiveMetastoreClient.get_partition_keys_objects)
 - [`get_partition_keys_names`](https://hive-metastore-client.readthedocs.io/en/latest/hive_metastore_client.html#hive_metastore_client.hive_metastore_client.HiveMetastoreClient.get_partition_keys_names)
+- [`get_partition_values_from_table`](https://hive-metastore-client.readthedocs.io/en/latest/hive_metastore_client.html#hive_metastore_client.hive_metastore_client.HiveMetastoreClient.get_partition_values_from_table)
