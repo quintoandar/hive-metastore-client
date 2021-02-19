@@ -434,3 +434,19 @@ class TestHiveMetastoreClient:
         mocked_get_partition_keys_objects.assert_called_once_with(
             db_name=database_name, table_name=table_name
         )
+
+    @mock.patch.object(HiveMetastoreClient, "drop_partition", return_value=None)
+    def test_bulk_drop_partitions(self, mock_drop_partition, hive_metastore_client):
+        # arrange
+        db_name = "db_name"
+        table_name = "table_name"
+        partition_list = [["1995", "9", "22"], ["2013", "2", "14"], ["2021", "1", "1"]]
+        table_data = mock.ANY
+
+        # act
+        hive_metastore_client.bulk_drop_partitions(
+            db_name, table_name, partition_list, table_data
+        )
+
+        # assert
+        assert mock_drop_partition.call_count == len(partition_list)

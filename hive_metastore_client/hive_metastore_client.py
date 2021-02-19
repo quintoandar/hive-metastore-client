@@ -259,3 +259,26 @@ class HiveMetastoreClient(ThriftClient):
             db_name=db_name, table_name=table_name
         )
         return [partition.name for partition in partition_keys]
+
+    def bulk_drop_partitions(
+        self,
+        db_name: str,
+        table_name: str,
+        partition_list: List[List[str]],
+        delete_data: bool = False,
+    ) -> None:
+        """
+        Drops the partitions values from the partition list.
+
+        This methods simulates a bulk drop for the user, since the server only
+         supports an unitary drop
+
+        :param db_name: database name of the table
+        :param table_name: table name
+        :param partition_list: the partitions to be dropped
+        :param delete_data: indicates whether the data respective to the
+         partition should be dropped in the source.
+        :return:
+        """
+        for partition_values in partition_list:
+            self.drop_partition(db_name, table_name, partition_values, delete_data)
