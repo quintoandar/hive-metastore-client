@@ -36,7 +36,7 @@ If applicable, add screenshots to help explain your problem.
 
 A clear and concise description of what you expected to happen.
 
-**Environment**:
+**Environment**
 
 - **Python** version:
 - **Lib** version:
