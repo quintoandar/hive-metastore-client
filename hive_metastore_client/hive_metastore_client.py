@@ -271,7 +271,7 @@ class HiveMetastoreClient(ThriftClient):
         Drops the partitions values from the partition list.
 
         This methods simulates a bulk drop for the user, since the server only
-         supports an unitary drop
+         supports an unitary drop.
 
         :param db_name: database name of the table
         :param table_name: table name
