@@ -30,5 +30,5 @@ thrift --gen py fb303.thrift
 
 Some auto-generated code from Thrift communication with Hive Metastore can be changed to provide more features, thus allowing a more customized integration.
 
-The following PR's change the Thrift base files and **need to be re-written** in case of re-generation by the previous steps:
+The following PRs change the Thrift base files and **need to be re-written** in case of re-generation by the previous steps:
 - So far no PR manually changing base files were deployed. 
