@@ -7,9 +7,6 @@ from pytest import raises
 
 from hive_metastore_client import HiveMetastoreClient
 from hive_metastore_client.builders import TableBuilder
-from thrift_files.libraries.thrift_hive_metastore_client.ThriftHiveMetastore import (
-    Client as ThriftClient,
-)
 from thrift_files.libraries.thrift_hive_metastore_client.ttypes import (
     FieldSchema,
     NoSuchObjectException,
@@ -465,14 +462,13 @@ class TestHiveMetastoreClient:
         ]
 
         # assert
-        with raises(NoSuchObjectException) as e:
+        with raises(
+            NoSuchObjectException,
+            match=r"partitions_not_dropped=\[\['2021', '1', '1'\], \['2021', '1', '2'\]\]",
+        ):
             # act
             hive_metastore_client.bulk_drop_partitions(
                 db_name, table_name, partition_list, mock.ANY
             )
 
         assert mock_drop_partition.call_count == len(partition_list)
-        assert e.value == NoSuchObjectException(
-            "m=bulk_drop_partitions, partitions_not_dropped=[['2021', '1', '1'], ['2021', '1', '2']],"
-            " msg=Some partition values were not dropped because they do not exist."
-        )
