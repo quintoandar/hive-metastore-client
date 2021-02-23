@@ -16,6 +16,7 @@ from thrift_files.libraries.thrift_hive_metastore_client.ttypes import (  # type
     AlreadyExistsException,
     Table,
     PartitionValuesRequest,
+    NoSuchObjectException,
 )
 
 
@@ -260,6 +261,42 @@ class HiveMetastoreClient(ThriftClient):
             db_name=db_name, table_name=table_name
         )
         return [partition.name for partition in partition_keys]
+
+    def bulk_drop_partitions(
+        self,
+        db_name: str,
+        table_name: str,
+        partition_list: List[List[str]],
+        delete_data: bool = False,
+    ) -> None:
+        """
+        Drops the partitions values from the partition list.
+
+        This methods simulates a bulk drop for the user, since the server only
+         supports an unitary drop.
+        If some partition cannot be dropped an exception will be thrown in the
+         end of execution.
+
+        :param db_name: database name of the table
+        :param table_name: table name
+        :param partition_list: the partitions to be dropped
+        :param delete_data: indicates whether the data respective to the
+         partition should be dropped in the source.
+        :raises: NoSuchObjectException
+        """
+        partitions_not_dropped = []
+        for partition_values in partition_list:
+            try:
+                self.drop_partition(db_name, table_name, partition_values, delete_data)
+            except NoSuchObjectException:
+                partitions_not_dropped.append(partition_values)
+
+        if partitions_not_dropped:
+            raise NoSuchObjectException(
+                "m=bulk_drop_partitions, partitions_not_dropped="
+                f"{partitions_not_dropped}, msg=Some partition values were not "
+                "dropped because they do not exist."
+            )
 
     def get_partition_values_from_table(
         self, db_name: str, table_name: str
