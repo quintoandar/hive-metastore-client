@@ -273,7 +273,7 @@ class HiveMetastoreClient(ThriftClient):
         when the table has no partitions
 
         :param db_name: database name where the table is at
-        :param table_name: table name which the partition keys belong to
+        :param table_name: table name which the partitions belong to
         """
         partition_values_response = self.get_partition_values(
             PartitionValuesRequest(

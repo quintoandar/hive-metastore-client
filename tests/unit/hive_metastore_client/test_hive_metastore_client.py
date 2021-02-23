@@ -14,6 +14,7 @@ from thrift_files.libraries.thrift_hive_metastore_client.ttypes import (
     FieldSchema,
     NoSuchObjectException,
     AlreadyExistsException,
+    PartitionValuesRequest,
 )
 
 
@@ -433,4 +434,48 @@ class TestHiveMetastoreClient:
         assert returned_value == expected_return
         mocked_get_partition_keys_objects.assert_called_once_with(
             db_name=database_name, table_name=table_name
+        )
+
+    @mock.patch.object(HiveMetastoreClient, "get_partition_values", return_value=[])
+    @mock.patch.object(
+        HiveMetastoreClient, "get_partition_keys_objects", return_value=[]
+    )
+    def test_get_partition_values_from_table_with_partitioned_table(
+        self,
+        mocked_get_partition_keys_objects,
+        mocked_get_partition_values,
+        hive_metastore_client,
+    ):
+        # arrange
+        table_name = "table_name"
+        database_name = "database_name"
+        mocked_partition_values_response = Mock()
+        mocked_partition_values = []
+
+        mocked_partition_values_partition_a = Mock()
+        mocked_partition_values_partition_a.row = ["partition_a"]
+        mocked_partition_values.append(mocked_partition_values_partition_a)
+        mocked_partition_values_partition_b = Mock()
+        mocked_partition_values_partition_b.row = ["partition_b"]
+        mocked_partition_values.append(mocked_partition_values_partition_b)
+
+        mocked_partition_values_response.partitionValues = mocked_partition_values
+        mocked_get_partition_values.return_value = mocked_partition_values_response
+        expected_partition_values_request = PartitionValuesRequest(
+            dbName=database_name, tblName=table_name, partitionKeys=[],
+        )
+        expected_return = [["partition_a"], ["partition_b"]]
+
+        # act
+        returned_value = hive_metastore_client.get_partition_values_from_table(
+            database_name, table_name
+        )
+
+        # assert
+        assert returned_value == expected_return
+        mocked_get_partition_keys_objects.assert_called_once_with(
+            db_name=database_name, table_name=table_name
+        )
+        mocked_get_partition_values.assert_called_once_with(
+            expected_partition_values_request
         )
