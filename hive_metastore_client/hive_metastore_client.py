@@ -15,6 +15,7 @@ from thrift_files.libraries.thrift_hive_metastore_client.ttypes import (  # type
     Database,
     AlreadyExistsException,
     Table,
+    NoSuchObjectException,
 )
 
 
@@ -280,5 +281,15 @@ class HiveMetastoreClient(ThriftClient):
          partition should be dropped in the source.
         :return:
         """
+        partitions_not_dropped = []
         for partition_values in partition_list:
-            self.drop_partition(db_name, table_name, partition_values, delete_data)
+            try:
+                self.drop_partition(db_name, table_name, partition_values, delete_data)
+            except:
+                partitions_not_dropped.append(partition_values)
+
+        if partitions_not_dropped:
+            raise Exception(
+                f"m=bulk_drop_partitions, partitions_not_dropped={partitions_not_dropped}, "
+                "msg=Some partition values were not dropped."
+            )

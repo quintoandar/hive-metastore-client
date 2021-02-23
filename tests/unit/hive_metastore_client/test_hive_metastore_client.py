@@ -441,11 +441,10 @@ class TestHiveMetastoreClient:
         db_name = "db_name"
         table_name = "table_name"
         partition_list = [["1995", "9", "22"], ["2013", "2", "14"], ["2021", "1", "1"]]
-        table_data = mock.ANY
 
         # act
         hive_metastore_client.bulk_drop_partitions(
-            db_name, table_name, partition_list, table_data
+            db_name, table_name, partition_list, mock.ANY
         )
 
         # assert
