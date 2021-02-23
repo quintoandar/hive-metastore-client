@@ -9,7 +9,7 @@ TABLE_NAME = "table_name"
 
 # Partitions should be provided as list
 # Values should be passed in the same hierarchical order of the partitions
-partition_values = [["2020", "12", "13"]]
+partition_values = ["2020", "12", "13"]
 
 with HiveMetastoreClient(HIVE_HOST, HIVE_PORT) as hive_client:
     # Dropping respective partition from metastore but keeping its data
