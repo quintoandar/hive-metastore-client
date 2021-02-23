@@ -273,23 +273,26 @@ class HiveMetastoreClient(ThriftClient):
 
         This methods simulates a bulk drop for the user, since the server only
          supports an unitary drop.
+        If some partition cannot be dropped an exception will be thrown in the
+         end of execution.
 
         :param db_name: database name of the table
         :param table_name: table name
         :param partition_list: the partitions to be dropped
         :param delete_data: indicates whether the data respective to the
          partition should be dropped in the source.
-        :return:
+        :raises: NoSuchObjectException
         """
         partitions_not_dropped = []
         for partition_values in partition_list:
             try:
                 self.drop_partition(db_name, table_name, partition_values, delete_data)
-            except:
+            except NoSuchObjectException:
                 partitions_not_dropped.append(partition_values)
 
         if partitions_not_dropped:
-            raise Exception(
-                f"m=bulk_drop_partitions, partitions_not_dropped={partitions_not_dropped}, "
-                "msg=Some partition values were not dropped."
+            raise NoSuchObjectException(
+                "m=bulk_drop_partitions, partitions_not_dropped="
+                f"{partitions_not_dropped}, msg=Some partition values were not "
+                "dropped because they do not exist."
             )

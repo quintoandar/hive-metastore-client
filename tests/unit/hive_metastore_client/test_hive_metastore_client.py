@@ -449,3 +449,30 @@ class TestHiveMetastoreClient:
 
         # assert
         assert mock_drop_partition.call_count == len(partition_list)
+
+    @mock.patch.object(HiveMetastoreClient, "drop_partition", return_value=None)
+    def test_bulk_drop_partitions_with_errors(
+        self, mock_drop_partition, hive_metastore_client
+    ):
+        # arrange
+        db_name = "db_name"
+        table_name = "table_name"
+        partition_list = [["1995", "9", "22"], ["2021", "1", "1"], ["2021", "1", "2"]]
+        mock_drop_partition.side_effect = [
+            None,
+            NoSuchObjectException(),
+            NoSuchObjectException(),
+        ]
+
+        # assert
+        with raises(NoSuchObjectException) as e:
+            # act
+            hive_metastore_client.bulk_drop_partitions(
+                db_name, table_name, partition_list, mock.ANY
+            )
+
+        assert mock_drop_partition.call_count == len(partition_list)
+        assert e.value == NoSuchObjectException(
+            "m=bulk_drop_partitions, partitions_not_dropped=[['2021', '1', '1'], ['2021', '1', '2']],"
+            " msg=Some partition values were not dropped because they do not exist."
+        )
