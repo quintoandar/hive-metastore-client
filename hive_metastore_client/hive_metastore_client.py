@@ -15,6 +15,7 @@ from thrift_files.libraries.thrift_hive_metastore_client.ttypes import (  # type
     Database,
     AlreadyExistsException,
     Table,
+    PartitionValuesRequest,
     NoSuchObjectException,
 )
 
@@ -296,3 +297,31 @@ class HiveMetastoreClient(ThriftClient):
                 f"{partitions_not_dropped}, msg=Some partition values were not "
                 "dropped because they do not exist."
             )
+
+    def get_partition_values_from_table(
+        self, db_name: str, table_name: str
+    ) -> List[List[str]]:
+        """
+        Gets the partition names from a table.
+
+        It automatically fetches the table's partition keys.
+
+        An empty list will be returned when no table is found or
+        when the table has no partitions.
+
+        :param db_name: database name where the table is at
+        :param table_name: table name which the partitions belong to
+        """
+        partition_values_response = self.get_partition_values(
+            PartitionValuesRequest(
+                dbName=db_name,
+                tblName=table_name,
+                partitionKeys=self.get_partition_keys_objects(
+                    db_name=db_name, table_name=table_name
+                ),
+            )
+        )
+
+        return [
+            partition.row for partition in partition_values_response.partitionValues
+        ]
