@@ -493,6 +493,7 @@ class TestHiveMetastoreClient:
         mocked_partition_values_partition_a = Mock()
         mocked_partition_values_partition_a.row = ["partition_a"]
         mocked_partition_values.append(mocked_partition_values_partition_a)
+
         mocked_partition_values_partition_b = Mock()
         mocked_partition_values_partition_b.row = ["partition_b"]
         mocked_partition_values.append(mocked_partition_values_partition_b)

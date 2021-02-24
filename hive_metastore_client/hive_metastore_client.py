@@ -304,10 +304,10 @@ class HiveMetastoreClient(ThriftClient):
         """
         Gets the partition names from a table.
 
-        It dynamically fetches the table's partition keys.
+        It automatically fetches the table's partition keys.
 
         An empty list will be returned when no table is found or
-        when the table has no partitions
+        when the table has no partitions.
 
         :param db_name: database name where the table is at
         :param table_name: table name which the partitions belong to
