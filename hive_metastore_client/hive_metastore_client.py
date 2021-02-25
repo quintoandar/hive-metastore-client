@@ -269,7 +269,7 @@ class HiveMetastoreClient(ThriftClient):
         Gets the partition keys from a table as a tuple: (name, type).
 
         An empty list will be returned when no table is found or
-        when the table has no partitions
+        when the table has no partitions.
 
         :param db_name: database name where the table is at
         :param table_name: table name which the partition keys belong to
