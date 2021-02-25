@@ -518,3 +518,53 @@ class TestHiveMetastoreClient:
         mocked_get_partition_values.assert_called_once_with(
             expected_partition_values_request
         )
+
+    @mock.patch.object(
+        HiveMetastoreClient, "get_partition_keys_objects", return_value=[]
+    )
+    def test_get_partition_keys_with_partitioned_table(
+        self, mocked_get_partition_keys_objects, hive_metastore_client
+    ):
+        # arrange
+        db_name = "<db_name>"
+        table_name = "<table_name>"
+
+        partition_1 = Mock()
+        partition_1.name = "name_1"
+        partition_1.type = "type_1"
+
+        partition_2 = Mock()
+        partition_2.name = "name_2"
+        partition_2.type = "type_2"
+
+        mocked_get_partition_keys_objects.return_value = [partition_1, partition_2]
+        expected_value = [("name_1", "type_1"), ("name_2", "type_2")]
+        # act
+        returned_value = hive_metastore_client.get_partition_keys(db_name, table_name)
+
+        # assert
+        assert returned_value == expected_value
+        mocked_get_partition_keys_objects.assert_called_once_with(
+            db_name=db_name, table_name=table_name
+        )
+
+    @mock.patch.object(
+        HiveMetastoreClient, "get_partition_keys_objects", return_value=[]
+    )
+    def test_get_partition_keys_with_non_partitioned_table(
+        self, mocked_get_partition_keys_objects, hive_metastore_client
+    ):
+        # arrange
+        db_name = "<db_name>"
+        table_name = "<table_name>"
+
+        mocked_get_partition_keys_objects.return_value = []
+        expected_value = []
+        # act
+        returned_value = hive_metastore_client.get_partition_keys(db_name, table_name)
+
+        # assert
+        assert returned_value == expected_value
+        mocked_get_partition_keys_objects.assert_called_once_with(
+            db_name=db_name, table_name=table_name
+        )

@@ -7,5 +7,5 @@ DATABASE_NAME = "database_name"
 TABLE_NAME = "table_name"
 
 with HiveMetastoreClient(HIVE_HOST, HIVE_PORT) as hive_client:
-    # Retrieving the partition keys via table schema
-    returned_value = hive_client.get_partition_keys_objects(DATABASE_NAME, TABLE_NAME)
+    # Retrieving the partition keys and types via table schema
+    returned_value = hive_client.get_partition_keys(DATABASE_NAME, TABLE_NAME)
