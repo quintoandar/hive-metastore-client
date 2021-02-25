@@ -30,11 +30,13 @@ Click on the following links to open the [examples](https://github.com/quintoand
 
 **[#6 Get partition keys objects from a table](https://github.com/quintoandar/hive-metastore-client/blob/main/examples/get_partition_keys_objects.py)**
 
-**[#7 Get partition keys names from a table](https://github.com/quintoandar/hive-metastore-client/blob/main/examples/get_partition_keys_names.py)**
+**[#7 Get partition keys (names & types) from a table](https://github.com/quintoandar/hive-metastore-client/blob/main/examples/get_partition_keys.py)**
 
-**[#8 Bulk drop partitions values from a table](https://github.com/quintoandar/hive-metastore-client/blob/main/examples/bulk_drop_partitions.py)**
+**[#8 Get partition keys (names only) from a table](https://github.com/quintoandar/hive-metastore-client/blob/main/examples/get_partition_keys_names.py)**
 
-**[#9 Get partition values from a table](https://github.com/quintoandar/hive-metastore-client/blob/main/examples/get_partition_values_from_table.py)**
+**[#9 Bulk drop partitions values from a table](https://github.com/quintoandar/hive-metastore-client/blob/main/examples/bulk_drop_partitions.py)**
+
+**[#10 Get partition values from a table](https://github.com/quintoandar/hive-metastore-client/blob/main/examples/get_partition_values_from_table.py)**
 
 ## Available methods
 
@@ -51,6 +53,7 @@ the [`HiveMetastoreClient`](https://github.com/quintoandar/hive-metastore-client
 - [`create_database_if_not_exists`](https://hive-metastore-client.readthedocs.io/en/latest/hive_metastore_client.html#hive_metastore_client.hive_metastore_client.HiveMetastoreClient.create_database_if_not_exists)
 - [`create_external_table`](https://hive-metastore-client.readthedocs.io/en/latest/hive_metastore_client.html#hive_metastore_client.hive_metastore_client.HiveMetastoreClient.create_external_table)
 - [`get_partition_keys_objects`](https://hive-metastore-client.readthedocs.io/en/latest/hive_metastore_client.html#hive_metastore_client.hive_metastore_client.HiveMetastoreClient.get_partition_keys_objects)
+- [`get_partition_keys`](https://hive-metastore-client.readthedocs.io/en/latest/hive_metastore_client.html#hive_metastore_client.hive_metastore_client.HiveMetastoreClient.get_partition_keys)
 - [`get_partition_keys_names`](https://hive-metastore-client.readthedocs.io/en/latest/hive_metastore_client.html#hive_metastore_client.hive_metastore_client.HiveMetastoreClient.get_partition_keys_names)
 - [`bulk_drop_partitions`](https://hive-metastore-client.readthedocs.io/en/latest/hive_metastore_client.html#hive_metastore_client.hive_metastore_client.HiveMetastoreClient.bulk_drop_partitions)
 - [`get_partition_values_from_table`](https://hive-metastore-client.readthedocs.io/en/latest/hive_metastore_client.html#hive_metastore_client.hive_metastore_client.HiveMetastoreClient.get_partition_values_from_table)

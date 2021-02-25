@@ -8,6 +8,6 @@ TABLE_NAME = "table_name"
 
 with HiveMetastoreClient(HIVE_HOST, HIVE_PORT) as hive_client:
     # Getting partition values as a list from specified table
-    return_value = hive_client.get_partition_values_from_table(
+    returned_value = hive_client.get_partition_values_from_table(
         DATABASE_NAME, TABLE_NAME
     )
