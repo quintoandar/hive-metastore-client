@@ -3,10 +3,18 @@ All notable changes to this project will be documented in this file.
 
 Preferably use **Added**, **Changed**, **Removed** and **Fixed** topics in each release or unreleased log for a better organization.
 
+## [1.0.6](https://github.com/quintoandar/hive-metastore-client/releases/tag/1.0.6)
+### Added
+* Added get_partition_keys method to get partitions with name and type ([#53](https://github.com/quintoandar/hive-metastore-client/pull/53))
+
+### Changed
+* Handled exception when table has no partitions in method `get_partition_values_from_table` ([#55](https://github.com/quintoandar/hive-metastore-client/pull/55))
+
 ## [1.0.5](https://github.com/quintoandar/hive-metastore-client/releases/tag/1.0.5)
 ### Added
 * Added bulk_drop_partitions method ([#49](https://github.com/quintoandar/hive-metastore-client/pull/49))
 * Added get_partition_values_from_table method ([#50](https://github.com/quintoandar/hive-metastore-client/pull/50))
+
 ### Changed
 * Changed max_parts parameter from get_partitions method to int32 ([#45](https://github.com/quintoandar/hive-metastore-client/pull/45))
 
@@ -14,6 +22,7 @@ Preferably use **Added**, **Changed**, **Removed** and **Fixed** topics in each 
 ### Added
 * Added create_external_table method ([#42](https://github.com/quintoandar/hive-metastore-client/pull/42))
 * Added get_partition_keys_objects and get_partition_keys_names methods ([#43](https://github.com/quintoandar/hive-metastore-client/pull/43))
+
 ### Fixed
 * Enforced type as EXTERNAL when creating external tables ([#41](https://github.com/quintoandar/hive-metastore-client/issues/41))
 
@@ -29,9 +38,11 @@ Preferably use **Added**, **Changed**, **Removed** and **Fixed** topics in each 
 ## [1.0.1](https://github.com/quintoandar/hive-metastore-client/releases/tag/1.0.1)
 ### Added
 * Added drop_columns_from_table method ([#30](https://github.com/quintoandar/hive-metastore-client/pull/30))
+
 ### Changed
 * Updated imports in project ([#27](https://github.com/quintoandar/hive-metastore-client/pull/27))
 * Shifted to quintoandar's docker image ([#28](https://github.com/quintoandar/hive-metastore-client/pull/28))
+
 ### Fixed
 * Fixed typo in the client's filename ([#33](https://github.com/quintoandar/hive-metastore-client/pull/33))
 
