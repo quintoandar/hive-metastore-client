@@ -7,6 +7,9 @@ Preferably use **Added**, **Changed**, **Removed** and **Fixed** topics in each 
 ### Added
 * Added get_partition_keys method to get partitions with name and type ([#53](https://github.com/quintoandar/hive-metastore-client/pull/53))
 
+### Changed
+* Handled exception when table has no partitions in method `get_partition_values_from_table` ([#55](https://github.com/quintoandar/hive-metastore-client/pull/55))
+
 ## [1.0.5](https://github.com/quintoandar/hive-metastore-client/releases/tag/1.0.5)
 ### Added
 * Added bulk_drop_partitions method ([#49](https://github.com/quintoandar/hive-metastore-client/pull/49))
