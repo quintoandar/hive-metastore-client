@@ -4,6 +4,7 @@ from unittest.mock import Mock, ANY
 
 import pytest
 from pytest import raises
+from thrift.transport.TTransport import TTransportException
 
 from hive_metastore_client import HiveMetastoreClient
 from hive_metastore_client.builders import TableBuilder
@@ -504,6 +505,40 @@ class TestHiveMetastoreClient:
             dbName=database_name, tblName=table_name, partitionKeys=[],
         )
         expected_return = [["partition_a"], ["partition_b"]]
+
+        # act
+        returned_value = hive_metastore_client.get_partition_values_from_table(
+            database_name, table_name
+        )
+
+        # assert
+        assert returned_value == expected_return
+        mocked_get_partition_keys_objects.assert_called_once_with(
+            db_name=database_name, table_name=table_name
+        )
+        mocked_get_partition_values.assert_called_once_with(
+            expected_partition_values_request
+        )
+
+    @mock.patch.object(HiveMetastoreClient, "get_partition_values")
+    @mock.patch.object(HiveMetastoreClient, "get_partition_keys_objects")
+    def test_get_partition_values_from_table_with_non_partitioned_table(
+        self,
+        mocked_get_partition_keys_objects,
+        mocked_get_partition_values,
+        hive_metastore_client,
+    ):
+        # arrange
+        table_name = "table_name"
+        database_name = "database_name"
+
+        mocked_get_partition_keys_objects.return_value = []
+        expected_partition_values_request = PartitionValuesRequest(
+            dbName=database_name, tblName=table_name, partitionKeys=[],
+        )
+
+        mocked_get_partition_values.side_effect = [TTransportException()]
+        expected_return = []
 
         # act
         returned_value = hive_metastore_client.get_partition_values_from_table(
