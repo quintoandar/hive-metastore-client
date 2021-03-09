@@ -117,7 +117,8 @@ class HiveMetastoreClient(ThriftClient):
                     cols.append(col)
             table.sd.cols = cols
 
-            # Hive Metastore enforces that the schema prior and after an ALTER TABLE should be the same,
+            # Hive Metastore enforces that the schema prior and after
+            # an ALTER TABLE should be the same,
             # however when dropping a column the schema will definitely change
             self.setMetaConf(self.COL_TYPE_INCOMPATIBILITY_DISALLOW_CONFIG, "false")
 
