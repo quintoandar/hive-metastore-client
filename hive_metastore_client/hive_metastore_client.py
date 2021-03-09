@@ -23,6 +23,10 @@ from thrift_files.libraries.thrift_hive_metastore_client.ttypes import (  # type
 class HiveMetastoreClient(ThriftClient):
     """User main interface with the metastore server methods."""
 
+    COL_TYPE_INCOMPATIBILITY_DISALLOW_CONFIG = (
+        "hive.metastore.disallow.incompatible.col.type.changes"
+    )
+
     def __init__(self, host: str, port: int = 9083) -> None:
         """
         Instantiates the client object for given host and port.
@@ -112,6 +116,10 @@ class HiveMetastoreClient(ThriftClient):
                 if col.name not in columns:
                     cols.append(col)
             table.sd.cols = cols
+
+            # Hive Metastore enforces that the schema prior and after an ALTER TABLE should be the same,
+            # however when dropping a column the schema will definitely change
+            self.setMetaConf(self.COL_TYPE_INCOMPATIBILITY_DISALLOW_CONFIG, "false")
 
             # call alter table to drop columns removed from list of table columns
             self.alter_table(dbname=db_name, tbl_name=table_name, new_tbl=table)

@@ -106,8 +106,13 @@ class TestHiveMetastoreClient:
 
     @mock.patch.object(HiveMetastoreClient, "get_table")
     @mock.patch.object(HiveMetastoreClient, "alter_table")
+    @mock.patch.object(HiveMetastoreClient, "setMetaConf")
     def test_drop_columns_from_table(
-        self, mocked_alter_table, mocked_get_table, hive_metastore_client
+        self,
+        mocked_set_meta_conf,
+        mocked_alter_table,
+        mocked_get_table,
+        hive_metastore_client,
     ):
         # arrange
         db_name = "db_name"
@@ -131,6 +136,9 @@ class TestHiveMetastoreClient:
         )
 
         # assert
+        mocked_set_meta_conf.assert_called_once_with(
+            hive_metastore_client.COL_TYPE_INCOMPATIBILITY_DISALLOW_CONFIG, "false"
+        )
         mocked_get_table.assert_called_once_with(dbname=db_name, tbl_name=table_name)
         mocked_alter_table.assert_called_once_with(
             dbname=db_name, tbl_name=table_name, new_tbl=expected_mocked_table
