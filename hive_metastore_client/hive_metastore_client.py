@@ -127,8 +127,8 @@ class HiveMetastoreClient(ThriftClient):
             self.alter_table(dbname=db_name, tbl_name=table_name, new_tbl=table)
 
     @deprecated(
-        reason="This method is deprecated and will be removed in the version "
-        "1.1.0. Please use method add_partitions_to_table instead."
+        reason="This method is deprecated and will be removed after the "
+        "version 1.1.0. Please use method add_partitions_to_table instead."
     )
     def add_partitions_if_not_exists(
         self, db_name: str, table_name: str, partition_list: List[Partition]
