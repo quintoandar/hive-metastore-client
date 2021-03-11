@@ -20,4 +20,4 @@ partition_list = [
 
 with HiveMetastoreClient(HIVE_HOST, HIVE_PORT) as hive_client:
     # Adding two set of partitions to specified table
-    hive_client.add_partitions_if_not_exists(DATABASE_NAME, TABLE_NAME, partition_list)
+    hive_client.add_partitions_to_table(DATABASE_NAME, TABLE_NAME, partition_list)
