@@ -9,6 +9,7 @@ Preferably use **Added**, **Changed**, **Removed** and **Fixed** topics in each 
 
 ### Changed
 * Handled exception when table has no partitions in method `get_partition_values_from_table` ([#55](https://github.com/quintoandar/hive-metastore-client/pull/55))
+* Removed types-comparison when dropping a column ([#56](https://github.com/quintoandar/hive-metastore-client/pull/56))
 
 ## [1.0.5](https://github.com/quintoandar/hive-metastore-client/releases/tag/1.0.5)
 ### Added
