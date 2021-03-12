@@ -163,6 +163,103 @@ class TestHiveMetastoreClient:
 
     @mock.patch.object(HiveMetastoreClient, "get_table")
     @mock.patch.object(HiveMetastoreClient, "_format_partitions_location")
+    @mock.patch.object(HiveMetastoreClient, "add_partition")
+    def test_add_partitions_if_not_exists(
+        self,
+        mocked_add_partition,
+        mocked__format_partitions,
+        mocked_get_table,
+        hive_metastore_client,
+    ):
+        # arrange
+        db_name = "database_name"
+        table_name = "table_name"
+
+        mocked_table = Mock()
+        mocked_get_table.return_value = mocked_table
+
+        mocked_partition_list = [Mock()]
+        partition_1 = "abc"
+        formatted_partitions_location = [partition_1]
+        mocked__format_partitions.return_value = formatted_partitions_location
+
+        # act
+        hive_metastore_client.add_partitions_if_not_exists(
+            db_name=db_name, table_name=table_name, partition_list=mocked_partition_list
+        )
+
+        # assert
+        mocked_get_table.assert_called_once_with(dbname=db_name, tbl_name=table_name)
+        mocked__format_partitions.assert_called_once_with(
+            partition_list=mocked_partition_list,
+            table_storage_descriptor=mocked_table.sd,
+            table_partition_keys=mocked_table.partitionKeys,
+        )
+        mocked_add_partition.assert_called_once_with(partition_1)
+
+    @mock.patch.object(HiveMetastoreClient, "get_table")
+    @mock.patch.object(HiveMetastoreClient, "_format_partitions_location")
+    @mock.patch.object(HiveMetastoreClient, "add_partition")
+    def test_add_partitions_if_not_exists_with_duplicated_partitions(
+        self,
+        mocked_add_partition,
+        mocked__format_partitions,
+        mocked_get_table,
+        hive_metastore_client,
+    ):
+        # arrange
+        db_name = "database_name"
+        table_name = "table_name"
+
+        mocked_table = Mock()
+        mocked_get_table.return_value = mocked_table
+
+        mocked_partition_list = [Mock()]
+        partition_1 = "abc"
+        partition_2 = "abcd"
+        formatted_partitions_location = [partition_1, partition_2]
+        mocked__format_partitions.return_value = formatted_partitions_location
+
+        mocked_add_partition.side_effect = [True, AlreadyExistsException()]
+
+        # act
+        hive_metastore_client.add_partitions_if_not_exists(
+            db_name=db_name, table_name=table_name, partition_list=mocked_partition_list
+        )
+
+        # assert
+        mocked_get_table.assert_called_once_with(dbname=db_name, tbl_name=table_name)
+        mocked__format_partitions.assert_called_once_with(
+            partition_list=mocked_partition_list,
+            table_storage_descriptor=mocked_table.sd,
+            table_partition_keys=mocked_table.partitionKeys,
+        )
+        mocked_add_partition.assert_has_calls(
+            [mock.call(partition_1), mock.call(partition_2)]
+        )
+
+    @mock.patch.object(HiveMetastoreClient, "get_table")
+    @mock.patch.object(HiveMetastoreClient, "_format_partitions_location")
+    @mock.patch.object(HiveMetastoreClient, "add_partition")
+    def test_add_partitions_if_not_exists_with_invalid_partitions(
+        self,
+        mocked_add_partition,
+        mocked__format_partitions,
+        mocked_get_table,
+        hive_metastore_client,
+    ):
+        # assert
+        with raises(ValueError):
+            # act
+            hive_metastore_client.add_partitions_if_not_exists(
+                db_name=ANY, table_name=ANY, partition_list=[]
+            )
+        mocked_get_table.assert_not_called()
+        mocked__format_partitions.assert_not_called()
+        mocked_add_partition.assert_not_called()
+
+    @mock.patch.object(HiveMetastoreClient, "get_table")
+    @mock.patch.object(HiveMetastoreClient, "_format_partitions_location")
     @mock.patch.object(HiveMetastoreClient, "add_partitions")
     def test_add_partitions_to_table(
         self,
@@ -183,7 +280,7 @@ class TestHiveMetastoreClient:
         mocked__format_partitions.return_value = formatted_partitions_location
 
         # act
-        hive_metastore_client.add_partitions_if_not_exists(
+        hive_metastore_client.add_partitions_to_table(
             db_name=db_name, table_name=table_name, partition_list=mocked_partition_list
         )
 
@@ -219,12 +316,15 @@ class TestHiveMetastoreClient:
 
         mocked_add_partitions.side_effect = AlreadyExistsException()
 
-        # act
-        hive_metastore_client.add_partitions_if_not_exists(
-            db_name=db_name, table_name=table_name, partition_list=mocked_partition_list
-        )
-
         # assert
+        with raises(AlreadyExistsException):
+            # act
+            hive_metastore_client.add_partitions_to_table(
+                db_name=db_name,
+                table_name=table_name,
+                partition_list=mocked_partition_list,
+            )
+
         mocked_get_table.assert_called_once_with(dbname=db_name, tbl_name=table_name)
         mocked__format_partitions.assert_called_once_with(
             partition_list=mocked_partition_list,
@@ -236,7 +336,7 @@ class TestHiveMetastoreClient:
     @mock.patch.object(HiveMetastoreClient, "get_table")
     @mock.patch.object(HiveMetastoreClient, "_format_partitions_location")
     @mock.patch.object(HiveMetastoreClient, "add_partitions")
-    def test_add_partitions_to_table_with_invalid_partitions(
+    def test_add_partitions_to_table_with_empty_partition_list(
         self,
         mocked_add_partitions,
         mocked__format_partitions,
@@ -246,7 +346,7 @@ class TestHiveMetastoreClient:
         # assert
         with raises(ValueError):
             # act
-            hive_metastore_client.add_partitions_if_not_exists(
+            hive_metastore_client.add_partitions_to_table(
                 db_name=ANY, table_name=ANY, partition_list=[]
             )
         mocked_get_table.assert_not_called()

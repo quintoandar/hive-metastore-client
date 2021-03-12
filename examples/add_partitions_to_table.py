@@ -11,13 +11,13 @@ TABLE_NAME = "table_name"
 # values should be passed in the same hierarchical order of the partitions
 partition_list = [
     PartitionBuilder(
-        values=["2020", "12", "13"], db_name=DATABASE_NAME, table_name=TABLE_NAME,
+        values=["2020", "12", "16"], db_name=DATABASE_NAME, table_name=TABLE_NAME,
     ).build(),
     PartitionBuilder(
-        values=["2020", "12", "14"], db_name=DATABASE_NAME, table_name=TABLE_NAME,
+        values=["2020", "12", "17"], db_name=DATABASE_NAME, table_name=TABLE_NAME,
     ).build(),
 ]
 
 with HiveMetastoreClient(HIVE_HOST, HIVE_PORT) as hive_client:
     # Adding two set of partitions to specified table
-    hive_client.add_partitions_if_not_exists(DATABASE_NAME, TABLE_NAME, partition_list)
+    hive_client.add_partitions_to_table(DATABASE_NAME, TABLE_NAME, partition_list)

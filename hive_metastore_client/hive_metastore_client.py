@@ -131,8 +131,8 @@ class HiveMetastoreClient(ThriftClient):
         """
         Add partitions to a table if it does not exist.
 
-        If the user tries to add a partition twice, the method handles the
-         AlreadyExistsException, not raising an error.
+        If a partition is added twice, the method handles the
+         AlreadyExistsException, not raising the exception.
 
         :param db_name: database name where the table is at
         :param table_name: table name which the partitions belong to
@@ -151,10 +151,40 @@ class HiveMetastoreClient(ThriftClient):
             table_partition_keys=table.partitionKeys,
         )
 
-        try:
-            self.add_partitions(partition_list_with_correct_location)
-        except AlreadyExistsException:
-            pass
+        for partition in partition_list_with_correct_location:
+            try:
+                self.add_partition(partition)
+            except AlreadyExistsException:
+                pass
+
+    def add_partitions_to_table(
+        self, db_name: str, table_name: str, partition_list: List[Partition]
+    ) -> None:
+        """
+        Add partitions to a table.
+
+        If any partition of partition_list already exists, an
+         AlreadyExistsException, will be thrown and no partition
+         will be added.
+
+        :param db_name: database name where the table is at
+        :param table_name: table name which the partitions belong to
+        :param partition_list: list of partitions to be added to the table
+        """
+        if not partition_list:
+            raise ValueError(
+                "m=add_partitions_if_not_exists, msg=The partition list is empty."
+            )
+
+        table = self.get_table(dbname=db_name, tbl_name=table_name)
+
+        partition_list_with_correct_location = self._format_partitions_location(
+            partition_list=partition_list,
+            table_storage_descriptor=table.sd,
+            table_partition_keys=table.partitionKeys,
+        )
+
+        self.add_partitions(partition_list_with_correct_location)
 
     def create_database_if_not_exists(self, database: Database) -> None:
         """
