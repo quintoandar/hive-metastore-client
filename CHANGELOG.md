@@ -7,8 +7,9 @@ Preferably use **Added**, **Changed**, **Removed** and **Fixed** topics in each 
 ### Added
 * Added method `add_partitions_to_table` to add partitions receiving an exception if some partition already exists 
   ([#57](https://github.com/quintoandar/hive-metastore-client/pull/57))
-
+  
 ### Fixed
+* Removed types-comparison when dropping a column ([#56](https://github.com/quintoandar/hive-metastore-client/pull/56))
 * Handled the partitions adding inside a loop (adding each partition individually) to fix a silent bug (if some 
   partition already existed, none of the list were added) ([#57](https://github.com/quintoandar/hive-metastore-client/pull/57))
 
