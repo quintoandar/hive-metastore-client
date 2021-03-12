@@ -2,7 +2,6 @@
 import copy
 from typing import List, Any, Tuple
 
-from deprecated import deprecated
 from thrift.protocol import TBinaryProtocol
 from thrift.transport import TSocket, TTransport
 
@@ -126,21 +125,14 @@ class HiveMetastoreClient(ThriftClient):
             # call alter table to drop columns removed from list of table columns
             self.alter_table(dbname=db_name, tbl_name=table_name, new_tbl=table)
 
-    @deprecated(
-        reason="This method is deprecated and will be removed after the "
-        "version 1.1.0. Please use method add_partitions_to_table instead."
-    )
     def add_partitions_if_not_exists(
         self, db_name: str, table_name: str, partition_list: List[Partition]
     ) -> None:
         """
         Add partitions to a table if it does not exist.
 
-        If the user tries to add a partition twice, the method handles the
-         AlreadyExistsException, not raising an error.
-
-        WARNING: If some partition of partition_list already exists no
-         partitions will be added and no error will be thrown.
+        If a partition is added twice, the method handles the
+         AlreadyExistsException, not raising the exception.
 
         :param db_name: database name where the table is at
         :param table_name: table name which the partitions belong to
@@ -159,16 +151,17 @@ class HiveMetastoreClient(ThriftClient):
             table_partition_keys=table.partitionKeys,
         )
 
-        try:
-            self.add_partitions(partition_list_with_correct_location)
-        except AlreadyExistsException:
-            pass
+        for partition in partition_list_with_correct_location:
+            try:
+                self.add_partition(partition)
+            except AlreadyExistsException:
+                pass
 
     def add_partitions_to_table(
         self, db_name: str, table_name: str, partition_list: List[Partition]
     ) -> None:
         """
-        Add partitions to a table if it does not exist.
+        Add partitions to a table.
 
         If any partition of partition_list already exists, an
          AlreadyExistsException, will be thrown and no partition
