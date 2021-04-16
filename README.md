@@ -1,6 +1,8 @@
 ## Hive Metastore Client
 _A client for connecting and running DDLs on [Hive](https://hive.apache.org/) Metastore using [Thrift](https://thrift.apache.org/) protocol._
 
+<img height="200" src="logo_hive_metastore_client.jpg" />
+
 [![Release](https://img.shields.io/github/v/release/quintoandar/hive-metastore-client)]((https://pypi.org/project/hive-metastore-client/))
 ![Python Version](https://img.shields.io/badge/python-3.7%20%7C%203.8-brightgreen.svg)
 [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
