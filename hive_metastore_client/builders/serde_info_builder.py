@@ -34,7 +34,7 @@ class SerDeInfoBuilder(AbstractBuilder):
         """
         self.name = name
         self.serialization_lib = serialization_lib
-        self.parameters = parameters
+        self.parameters = parameters if parameters else {}
         self.description = description
         self.serializer_class = serializer_class
         self.deserializer_class = deserializer_class
