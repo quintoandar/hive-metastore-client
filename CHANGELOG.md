@@ -5,7 +5,7 @@ Preferably use **Added**, **Changed**, **Removed** and **Fixed** topics in each 
 
 ## [1.0.8](https://github.com/quintoandar/hive-metastore-client/releases/tag/1.0.8)
 ### Changed
-* Added if clause to check the default values for TableBuilder and SerdeInfoBuilder constructor
+* Added if clause to check the default values for `TableBuilder` and `SerdeInfoBuilder` constructor
   ([#62](https://github.com/quintoandar/hive-metastore-client/pull/62))
 
 ## [1.0.7](https://github.com/quintoandar/hive-metastore-client/releases/tag/1.0.7)
