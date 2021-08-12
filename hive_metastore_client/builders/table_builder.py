@@ -69,8 +69,8 @@ class TableBuilder(AbstractBuilder):
         self.last_access_time = last_access_time
         self.retention = retention
         self.storage_descriptor = storage_descriptor
-        self.partition_keys = partition_keys
-        self.parameters = parameters
+        self.partition_keys = [] if partition_keys is None else partition_keys
+        self.parameters = {} if parameters is None else parameters
         self.view_original_text = view_original_text
         self.view_expanded_text = view_expanded_text
         self.table_type = table_type
