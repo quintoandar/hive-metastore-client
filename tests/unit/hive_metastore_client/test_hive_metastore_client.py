@@ -598,11 +598,9 @@ class TestHiveMetastoreClient:
         database_name = "database_name"
 
         mocked_partition_a = Mock()
-        mocked_partition_a.name = "mocked_partition_a"
-        mocked_partition_a.type = "string"
+        mocked_partition_a.name = "partition_key_1"
         mocked_partition_b = Mock()
-        mocked_partition_b.name = "mocked_partition_b"
-        mocked_partition_b.type = "string"
+        mocked_partition_b.name = "partition_key_2"
         mocked_get_partition_keys_objects.return_value = [
             mocked_partition_a,
             mocked_partition_b,
