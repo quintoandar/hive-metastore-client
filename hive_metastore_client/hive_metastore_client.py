@@ -368,19 +368,22 @@ class HiveMetastoreClient(ThriftClient):
         :param db_name: database name where the table is at
         :param table_name: table name which the partitions belong to
         """
-        try:
+
+        partition_keys = self.get_partition_keys_objects(
+            db_name=db_name, table_name=table_name
+        )
+
+        partitions = []
+        if partition_keys:
             partition_values_response = self.get_partition_values(
                 PartitionValuesRequest(
                     dbName=db_name,
                     tblName=table_name,
-                    partitionKeys=self.get_partition_keys_objects(
-                        db_name=db_name, table_name=table_name
-                    ),
+                    partitionKeys=partition_keys,
                 )
             )
             partitions = [
                 partition.row for partition in partition_values_response.partitionValues
             ]
-        except Exception:
-            partitions = []
+
         return partitions
