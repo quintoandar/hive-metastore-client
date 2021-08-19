@@ -658,9 +658,6 @@ class TestHiveMetastoreClient:
         mocked_get_partition_keys_objects.assert_called_once_with(
             db_name=database_name, table_name=table_name
         )
-        mocked_get_partition_values.assert_called_once_with(
-            expected_partition_values_request
-        )
 
     @mock.patch.object(
         HiveMetastoreClient, "get_partition_keys_objects", return_value=[]
