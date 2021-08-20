@@ -377,9 +377,7 @@ class HiveMetastoreClient(ThriftClient):
         if partition_keys:
             partition_values_response = self.get_partition_values(
                 PartitionValuesRequest(
-                    dbName=db_name,
-                    tblName=table_name,
-                    partitionKeys=partition_keys,
+                    dbName=db_name, tblName=table_name, partitionKeys=partition_keys,
                 )
             )
             partitions = [
