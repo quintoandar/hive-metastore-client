@@ -596,6 +596,16 @@ class TestHiveMetastoreClient:
         # arrange
         table_name = "table_name"
         database_name = "database_name"
+
+        mocked_partition_a = Mock()
+        mocked_partition_a.name = "partition_key_1"
+        mocked_partition_b = Mock()
+        mocked_partition_b.name = "partition_key_2"
+        mocked_get_partition_keys_objects.return_value = [
+            mocked_partition_a,
+            mocked_partition_b,
+        ]
+
         mocked_partition_values_response = Mock()
         mocked_partition_values = []
 
@@ -610,7 +620,9 @@ class TestHiveMetastoreClient:
         mocked_partition_values_response.partitionValues = mocked_partition_values
         mocked_get_partition_values.return_value = mocked_partition_values_response
         expected_partition_values_request = PartitionValuesRequest(
-            dbName=database_name, tblName=table_name, partitionKeys=[],
+            dbName=database_name,
+            tblName=table_name,
+            partitionKeys=mocked_get_partition_keys_objects.return_value,
         )
         expected_return = [["partition_a"], ["partition_b"]]
 
@@ -657,9 +669,6 @@ class TestHiveMetastoreClient:
         assert returned_value == expected_return
         mocked_get_partition_keys_objects.assert_called_once_with(
             db_name=database_name, table_name=table_name
-        )
-        mocked_get_partition_values.assert_called_once_with(
-            expected_partition_values_request
         )
 
     @mock.patch.object(
