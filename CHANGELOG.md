@@ -3,6 +3,11 @@ All notable changes to this project will be documented in this file.
 
 Preferably use **Added**, **Changed**, **Removed** and **Fixed** topics in each release or unreleased log for a better organization.
 
+## [1.0.9](https://github.com/quintoandar/hive-metastore-client/releases/tag/1.0.9)
+### Fixed
+* Stop inducing exception on Hive Metastore server when trying to retrieve partition values with `get_partition_values_from_table` for partitionless tables.
+  ([#64](https://github.com/quintoandar/hive-metastore-client/pull/64))
+
 ## [1.0.8](https://github.com/quintoandar/hive-metastore-client/releases/tag/1.0.8)
 ### Changed
 * Replaced default values for `TableBuilder` and `SerdeInfoBuilder` constructors when no value is provided for specific lists and dicts
