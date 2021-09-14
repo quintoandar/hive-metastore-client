@@ -720,3 +720,26 @@ class TestHiveMetastoreClient:
         mocked_get_partition_keys_objects.assert_called_once_with(
             db_name=db_name, table_name=table_name
         )
+
+    @mock.patch.object(HiveMetastoreClient, "get_schema", return_value=None)
+    def test_get_schema_with_non_empty_schema(
+        self, mocked_get_schema, hive_metastore_client,
+    ):
+        # arrange
+        table_name = "table_name"
+        database_name = "database_name"
+
+        mocked_field_schema_a = FieldSchema(name="col1")
+        mocked_field_schema_b = FieldSchema(name="col12")
+        mocked_get_schema.return_value = [mocked_field_schema_a, mocked_field_schema_b]
+
+        # act
+        returned_value = hive_metastore_client.get_field_schema(
+            database_name, table_name
+        )
+
+        # assert
+        assert returned_value == [mocked_field_schema_a, mocked_field_schema_b]
+        mocked_get_schema.assert_called_once_with(
+            dbname=database_name, tbl_name=table_name
+        )

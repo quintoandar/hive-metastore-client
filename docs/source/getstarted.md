@@ -40,6 +40,8 @@ Click on the following links to open the [examples](https://github.com/quintoand
 
 **[#11 Get partition values from a table](https://github.com/quintoandar/hive-metastore-client/blob/main/examples/get_partition_values_from_table.py)**
 
+**[#12 Get field schema from a table](https://github.com/quintoandar/hive-metastore-client/blob/main/examples/get_field_schema.py)**
+
 ## Available methods
 
 You can see all the Hive Metastore server available methods by looking at the 
@@ -60,3 +62,4 @@ the [`HiveMetastoreClient`](https://github.com/quintoandar/hive-metastore-client
 - [`get_partition_keys_names`](https://hive-metastore-client.readthedocs.io/en/latest/hive_metastore_client.html#hive_metastore_client.hive_metastore_client.HiveMetastoreClient.get_partition_keys_names)
 - [`bulk_drop_partitions`](https://hive-metastore-client.readthedocs.io/en/latest/hive_metastore_client.html#hive_metastore_client.hive_metastore_client.HiveMetastoreClient.bulk_drop_partitions)
 - [`get_partition_values_from_table`](https://hive-metastore-client.readthedocs.io/en/latest/hive_metastore_client.html#hive_metastore_client.hive_metastore_client.HiveMetastoreClient.get_partition_values_from_table)
+- [`get_field_schema`](https://hive-metastore-client.readthedocs.io/en/latest/hive_metastore_client.html#hive_metastore_client.hive_metastore_client.HiveMetastoreClient.get_field_schema)

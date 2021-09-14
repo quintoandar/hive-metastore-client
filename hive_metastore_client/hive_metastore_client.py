@@ -384,3 +384,15 @@ class HiveMetastoreClient(ThriftClient):
             ]
 
         return partitions
+
+    def get_field_schema(self, db_name: str, table_name: str) -> List[FieldSchema]:
+        """
+        Gets a list of field schema from a table.
+
+        An empty list will be returned when no table is found or
+        no database is found
+
+        :param db_name: database name where the table is at
+        :param table_name: table name which the partition keys belong to
+        """
+        return self.get_schema(db_name, table_name)
