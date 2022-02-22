@@ -18,7 +18,7 @@ HIVE_PORT = 9083
 # You must create a list with the columns
 columns = [
     ColumnBuilder("first_column", "string", "col comment").build(),
-    ColumnBuilder("first_column", "string").build(),
+    ColumnBuilder("second_column", "string").build(),
 ]
 
 query = """
@@ -34,8 +34,8 @@ query = """
 storage_descriptor = StorageDescriptorBuilder(columns=columns,).build()
 
 view = ViewBuilder(
-    view_name="orders",
-    db_name="store",
+    view_name="vw_name",
+    db_name="schema",
     owner="owner name",
     storage_descriptor=storage_descriptor,
     view_expanded_text=query,
