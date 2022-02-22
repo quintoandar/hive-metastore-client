@@ -8,3 +8,4 @@ from hive_metastore_client.builders.storage_descriptor_builder import (
     StorageDescriptorBuilder,
 )
 from hive_metastore_client.builders.table_builder import TableBuilder
+from hive_metastore_client.builders.view_builder import ViewBuilder

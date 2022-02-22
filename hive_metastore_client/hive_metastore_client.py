@@ -217,6 +217,17 @@ class HiveMetastoreClient(ThriftClient):
         table.tableType = "EXTERNAL_TABLE"
         self.create_table(table)
 
+    def create_view(self, view: Table) -> None:
+        """
+        Creates a virtual view in Hive Metastore.
+
+        A view in hive is based on the Table object mapped by Thrift.
+        The view is characterized by the tableType = "VIRTUAL_VIEW".
+
+        :param view: the table object
+        """
+        self.create_table(view)
+
     @staticmethod
     def _format_partitions_location(
         partition_list: List[Partition],
