@@ -8,6 +8,7 @@
 from hive_metastore_client import HiveMetastoreClient
 from hive_metastore_client.builders import (
     ColumnBuilder,
+    SerDeInfoBuilder,
     StorageDescriptorBuilder,
     ViewBuilder,
 )
@@ -31,7 +32,13 @@ query = """
         first_column IS NOT NULL
 """
 
-storage_descriptor = StorageDescriptorBuilder(columns=columns,).build()
+serde_info = SerDeInfoBuilder(
+    serialization_lib="org.apache.hadoop.hive.ql.io.parquet.serde.ParquetHiveSerDe"
+).build()
+
+storage_descriptor = StorageDescriptorBuilder(
+    columns=columns, serde_info=serde_info,
+).build()
 
 view = ViewBuilder(
     view_name="vw_name",
