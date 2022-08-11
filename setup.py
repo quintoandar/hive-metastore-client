@@ -1,7 +1,7 @@
 from setuptools import find_packages, setup
 
 __package_name__ = "hive_metastore_client"
-__version__ = "1.0.9"
+__version__ = "1.0.10"
 __repository_url__ = "https://github.com/quintoandar/hive-metastore-client"
 
 with open("requirements.txt") as f:

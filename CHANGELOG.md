@@ -3,6 +3,12 @@ All notable changes to this project will be documented in this file.
 
 Preferably use **Added**, **Changed**, **Removed** and **Fixed** topics in each release or unreleased log for a better organization.
 
+## [1.0.10](https://github.com/quintoandar/hive-metastore-client/releases/tag/1.0.10)
+### Fixed
+* Updated CI/CD runner
+  ([#71](https://github.com/quintoandar/hive-metastore-client/pull/71))
+
+
 ## [1.0.9](https://github.com/quintoandar/hive-metastore-client/releases/tag/1.0.9)
 ### Fixed
 * Stop inducing exception on Hive Metastore server when trying to retrieve partition values with `get_partition_values_from_table` for partitionless tables.
