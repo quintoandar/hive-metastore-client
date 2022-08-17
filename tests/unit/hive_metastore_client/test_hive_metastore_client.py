@@ -380,7 +380,9 @@ class TestHiveMetastoreClient:
 
     @mock.patch.object(HiveMetastoreClient, "create_database")
     def test_create_database_if_not_exists_with_nonexistent_database(
-        self, mocked_create_database, hive_metastore_client,
+        self,
+        mocked_create_database,
+        hive_metastore_client,
     ):
         # arrange
         mocked_database_obj = Mock()
@@ -393,7 +395,9 @@ class TestHiveMetastoreClient:
 
     @mock.patch.object(HiveMetastoreClient, "create_database")
     def test_create_database_if_not_exists_with_existent_database(
-        self, mocked_create_database, hive_metastore_client,
+        self,
+        mocked_create_database,
+        hive_metastore_client,
     ):
         # arrange
         mocked_database_obj = Mock()
@@ -427,7 +431,9 @@ class TestHiveMetastoreClient:
 
     @mock.patch.object(HiveMetastoreClient, "get_table", return_value=None)
     def test_get_partition_keys_objects_with_invalid_table(
-        self, mocked_get_table, hive_metastore_client,
+        self,
+        mocked_get_table,
+        hive_metastore_client,
     ):
         # arrange
         table_name = "table_name"
@@ -446,7 +452,9 @@ class TestHiveMetastoreClient:
 
     @mock.patch.object(HiveMetastoreClient, "get_table")
     def test_get_partition_keys_objects_with_not_partitioned_table(
-        self, mocked_get_table, hive_metastore_client,
+        self,
+        mocked_get_table,
+        hive_metastore_client,
     ):
         # arrange
         table_name = "table_name"
@@ -469,7 +477,9 @@ class TestHiveMetastoreClient:
 
     @mock.patch.object(HiveMetastoreClient, "get_table")
     def test_get_partition_keys_objects_with_partitioned_table(
-        self, mocked_get_table, hive_metastore_client,
+        self,
+        mocked_get_table,
+        hive_metastore_client,
     ):
         # arrange
         table_name = "table_name"
@@ -495,7 +505,9 @@ class TestHiveMetastoreClient:
         HiveMetastoreClient, "get_partition_keys_objects", return_value=[]
     )
     def test_get_partition_keys_names_with_invalid_or_not_partitioned_table(
-        self, mocked_get_partition_keys_objects, hive_metastore_client,
+        self,
+        mocked_get_partition_keys_objects,
+        hive_metastore_client,
     ):
         # arrange
         table_name = "table_name"
@@ -516,7 +528,9 @@ class TestHiveMetastoreClient:
         HiveMetastoreClient, "get_partition_keys_objects", return_value=[]
     )
     def test_get_partition_keys_names_with_partitioned_table(
-        self, mocked_get_partition_keys_objects, hive_metastore_client,
+        self,
+        mocked_get_partition_keys_objects,
+        hive_metastore_client,
     ):
         # arrange
         table_name = "table_name"
@@ -654,7 +668,9 @@ class TestHiveMetastoreClient:
 
         mocked_get_partition_keys_objects.return_value = []
         expected_partition_values_request = PartitionValuesRequest(
-            dbName=database_name, tblName=table_name, partitionKeys=[],
+            dbName=database_name,
+            tblName=table_name,
+            partitionKeys=[],
         )
 
         mocked_get_partition_values.side_effect = [TTransportException()]

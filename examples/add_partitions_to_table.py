@@ -11,10 +11,14 @@ TABLE_NAME = "table_name"
 # values should be passed in the same hierarchical order of the partitions
 partition_list = [
     PartitionBuilder(
-        values=["2020", "12", "16"], db_name=DATABASE_NAME, table_name=TABLE_NAME,
+        values=["2020", "12", "16"],
+        db_name=DATABASE_NAME,
+        table_name=TABLE_NAME,
     ).build(),
     PartitionBuilder(
-        values=["2020", "12", "17"], db_name=DATABASE_NAME, table_name=TABLE_NAME,
+        values=["2020", "12", "17"],
+        db_name=DATABASE_NAME,
+        table_name=TABLE_NAME,
     ).build(),
 ]
 
