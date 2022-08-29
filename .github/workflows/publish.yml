@@ -7,10 +7,10 @@ on:
 
 jobs:
   Pipeline:
-    if: github.ref == 'refs/heads/main' || contains(github.ref, 'hotfix/')
+    if: github.ref == 'refs/heads/main'
 
     runs-on: ubuntu-22.04
-    container: quintoandar/python-3-7-java
+    container: python:3.7-buster
 
     steps:
     - uses: actions/checkout@v2
