@@ -36,6 +36,7 @@ class HiveMetastoreClient(ThriftClient):
         """
         protocol = self._init_protocol(host, port)
         super().__init__(protocol)
+        print("Databricks repo")
 
     @staticmethod
     def _init_protocol(host: str, port: int) -> TBinaryProtocol:
