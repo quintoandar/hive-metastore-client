@@ -142,7 +142,7 @@ class HiveMetastoreClient(ThriftClient):
             raise ValueError(
                 "m=add_partitions_if_not_exists, msg=The partition list is empty."
             )
-
+        print(f"m=add_partitions_if_not_exists, table={table_name} ,msg=Updating partitions {partition_list}")
         table = self.get_table(dbname=db_name, tbl_name=table_name)
 
         partition_list_with_correct_location = self._format_partitions_location(
