@@ -20,7 +20,7 @@ from thrift_files.libraries.thrift_hive_metastore_client.ttypes import (  # type
 )
 
 
-class HiveMetastoreClient(ThriftClient):
+class HiveMetastoreClientDatabricks(ThriftClient):
     """User main interface with the metastore server methods."""
 
     COL_TYPE_INCOMPATIBILITY_DISALLOW_CONFIG = (
