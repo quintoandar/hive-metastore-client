@@ -10,8 +10,8 @@
      table parameters before calling the method create_table.
 """
 
-from hive_metastore_client import HiveMetastoreClient
-from hive_metastore_client.builders import (
+from hive_metastore_client_databricks import HiveMetastoreClient
+from hive_metastore_client_databricks.builders import (
     ColumnBuilder,
     SerDeInfoBuilder,
     StorageDescriptorBuilder,

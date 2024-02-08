@@ -2,7 +2,7 @@ from unittest import mock
 
 import pytest
 
-from hive_metastore_client import HiveMetastoreClient
+from hive_metastore_client_databricks import HiveMetastoreClient
 
 
 @pytest.fixture

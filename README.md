@@ -24,8 +24,8 @@ To check library main features you can check [Hive Metastore Client's Documentat
 An example of how to use the library for running DDL commands in hive metastore:
 
 ```python
-from hive_metastore_client.builders import DatabaseBuilder
-from hive_metastore_client import HiveMetastoreClient
+from hive_metastore_client_databricks.builders import DatabaseBuilder
+from hive_metastore_client_databricks import HiveMetastoreClient
 
 database = DatabaseBuilder(name='new_db').build()
 with HiveMetastoreClient(HIVE_HOST, HIVE_PORT) as hive_metastore_client:

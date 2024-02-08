@@ -1,4 +1,4 @@
-from hive_metastore_client import HiveMetastoreClient
+from hive_metastore_client_databricks import HiveMetastoreClient
 
 HIVE_HOST = "<ADD_HIVE_HOST_HERE>"
 HIVE_PORT = 9083

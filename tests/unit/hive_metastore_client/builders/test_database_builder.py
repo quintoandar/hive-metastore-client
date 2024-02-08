@@ -1,10 +1,10 @@
 from unittest import mock
 from unittest.mock import Mock
-from hive_metastore_client.builders.database_builder import DatabaseBuilder
+from hive_metastore_client_databricks.builders.database_builder import DatabaseBuilder
 
 
 class TestDatabaseBuilder:
-    @mock.patch("hive_metastore_client.builders.database_builder.Database")
+    @mock.patch("hive_metastore_client_databricks.builders.database_builder.Database")
     def test_build(self, mocked_database):
         # arrange
         mocked_database_name = "database_name"

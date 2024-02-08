@@ -1,5 +1,5 @@
 """ColumnBuilder."""
-from hive_metastore_client.builders.abstract_builder import AbstractBuilder
+from hive_metastore_client_databricks.builders.abstract_builder import AbstractBuilder
 from thrift_files.libraries.thrift_hive_metastore_client.ttypes import FieldSchema  # type: ignore # noqa: E501
 
 

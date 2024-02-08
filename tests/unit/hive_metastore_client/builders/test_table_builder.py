@@ -1,11 +1,11 @@
 from unittest import mock
 from unittest.mock import Mock
 
-from hive_metastore_client.builders.table_builder import TableBuilder
+from hive_metastore_client_databricks.builders.table_builder import TableBuilder
 
 
 class TestTableBuilder:
-    @mock.patch("hive_metastore_client.builders.table_builder.Table")
+    @mock.patch("hive_metastore_client_databricks.builders.table_builder.Table")
     def test_build(self, mocked_table):
         # arrange
         mocked_table_name = ""

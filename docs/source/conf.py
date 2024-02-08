@@ -154,7 +154,7 @@ latex_documents = [
 man_pages = [
     (
         master_doc,
-        "hive_metastore_client",
+        "hive_metastore_client_databricks",
         "Hive Metastore Client Documentation",
         [author],
         1,

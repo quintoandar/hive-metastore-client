@@ -1,14 +1,14 @@
 from unittest import mock
 from unittest.mock import Mock
 
-from hive_metastore_client.builders.storage_descriptor_builder import (
+from hive_metastore_client_databricks.builders.storage_descriptor_builder import (
     StorageDescriptorBuilder,
 )
 
 
 class TestStorageDescriptorBuilder:
     @mock.patch(
-        "hive_metastore_client.builders.storage_descriptor_builder.StorageDescriptor"
+        "hive_metastore_client_databricks.builders.storage_descriptor_builder.StorageDescriptor"
     )
     def test_build(self, mocked_storage_descriptor):
         # arrange

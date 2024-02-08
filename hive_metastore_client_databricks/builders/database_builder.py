@@ -1,7 +1,7 @@
 """DatabaseBuilder."""
 from typing import Mapping
 
-from hive_metastore_client.builders.abstract_builder import AbstractBuilder
+from hive_metastore_client_databricks.builders.abstract_builder import AbstractBuilder
 from thrift_files.libraries.thrift_hive_metastore_client.ttypes import Database, PrincipalPrivilegeSet, PrincipalType  # type: ignore # noqa: E501
 
 

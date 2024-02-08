@@ -1,11 +1,11 @@
 from unittest import mock
 from unittest.mock import Mock
 
-from hive_metastore_client.builders.column_builder import ColumnBuilder
+from hive_metastore_client_databricks.builders.column_builder import ColumnBuilder
 
 
 class TestColumnBuilder:
-    @mock.patch("hive_metastore_client.builders.column_builder.FieldSchema")
+    @mock.patch("hive_metastore_client_databricks.builders.column_builder.FieldSchema")
     def test_build(self, mocked_field_schema):
         # arrange
         mocked_name = "a"

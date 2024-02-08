@@ -1,11 +1,11 @@
 from unittest import mock
 from unittest.mock import Mock
 
-from hive_metastore_client.builders.serde_info_builder import SerDeInfoBuilder
+from hive_metastore_client_databricks.builders.serde_info_builder import SerDeInfoBuilder
 
 
 class TestSerDeInfoBuilder:
-    @mock.patch("hive_metastore_client.builders.serde_info_builder.SerDeInfo")
+    @mock.patch("hive_metastore_client_databricks.builders.serde_info_builder.SerDeInfo")
     def test_build(self, mocked_serde_info):
         # arrange
         mocked_name = "<name>"

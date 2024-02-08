@@ -6,8 +6,8 @@ import pytest
 from pytest import raises
 from thrift.transport.TTransport import TTransportException
 
-from hive_metastore_client import HiveMetastoreClient
-from hive_metastore_client.builders import TableBuilder
+from hive_metastore_client_databricks import HiveMetastoreClient
+from hive_metastore_client_databricks.builders import TableBuilder
 from thrift_files.libraries.thrift_hive_metastore_client.ttypes import (
     FieldSchema,
     NoSuchObjectException,
@@ -17,9 +17,9 @@ from thrift_files.libraries.thrift_hive_metastore_client.ttypes import (
 
 
 class TestHiveMetastoreClient:
-    @mock.patch("hive_metastore_client.hive_metastore_client.TSocket")
-    @mock.patch("hive_metastore_client.hive_metastore_client.TTransport")
-    @mock.patch("hive_metastore_client.hive_metastore_client.TBinaryProtocol")
+    @mock.patch("hive_metastore_client_databricks.hive_metastore_client_databricks.TSocket")
+    @mock.patch("hive_metastore_client_databricks.hive_metastore_client_databricks.TTransport")
+    @mock.patch("hive_metastore_client_databricks.hive_metastore_client_databricks.TBinaryProtocol")
     def test__init_protocol(
         self, mocked_tbinaryp, mocked_ttransport, mocked_tsocket, hive_metastore_client
     ):

@@ -1,11 +1,11 @@
 from unittest import mock
 from unittest.mock import Mock
 
-from hive_metastore_client.builders import PartitionBuilder
+from hive_metastore_client_databricks.builders import PartitionBuilder
 
 
 class TestPartitionBuilder:
-    @mock.patch("hive_metastore_client.builders.partition_builder.Partition")
+    @mock.patch("hive_metastore_client_databricks.builders.partition_builder.Partition")
     def test_build(self, mocked_partition):
         # arrange
         values = ["1", "2"]

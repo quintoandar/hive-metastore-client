@@ -8,8 +8,8 @@
      example create_external_table.py.
 """
 
-from hive_metastore_client import HiveMetastoreClient
-from hive_metastore_client.builders import (
+from hive_metastore_client_databricks import HiveMetastoreClient
+from hive_metastore_client_databricks.builders import (
     ColumnBuilder,
     SerDeInfoBuilder,
     StorageDescriptorBuilder,
