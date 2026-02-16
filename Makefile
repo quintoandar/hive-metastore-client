@@ -1,9 +1,9 @@
 # Environment =================================================================
 .PHONY: environment
-## create virtual environment for hive-metastore-client
+## create virtual environment for hive-metastore-client (Python 3.12)
 environment:
-	@pyenv install -s 3.7.6
-	@pyenv virtualenv 3.7.6 hive-metastore-client
+	@pyenv install -s 3.12
+	@pyenv virtualenv 3.12 hive-metastore-client
 	@pyenv local hive-metastore-client
 	@PYTHONPATH=. python -m pip install --upgrade pip
 
@@ -90,7 +90,7 @@ checks: style-check type-check
 .PHONY: apply-style
 ## run black to fix code style
 apply-style:
-	@python -m black -t py36 --exclude="build/|buck-out/|dist/|_build/|pip/|env/|\.pip/|\.git/|\.hg/|\.mypy_cache/|\.tox/|\.venv/|thrift_files/" .
+	@python -m black -t py312 --exclude="build/|buck-out/|dist/|_build/|pip/|env/|\.pip/|\.git/|\.hg/|\.mypy_cache/|\.tox/|\.venv/|thrift_files/" .
 
 # Packaging ===================================================================
 
