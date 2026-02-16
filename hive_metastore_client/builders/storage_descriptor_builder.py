@@ -1,5 +1,6 @@
 """StorageDescriptorBuilder."""
-from typing import List, Dict
+
+from typing import Dict, List, Optional
 
 from hive_metastore_client.builders.abstract_builder import AbstractBuilder
 from thrift_files.libraries.thrift_hive_metastore_client.ttypes import (  # type: ignore # noqa: E501
@@ -21,13 +22,13 @@ class StorageDescriptorBuilder(AbstractBuilder):
         input_format: str,
         output_format: str,
         serde_info: SerDeInfo,
-        compressed: bool = None,
-        num_buckets: int = None,
-        bucket_cols: List[str] = None,
-        sort_cols: List[Order] = None,
-        parameters: Dict[str, str] = None,
-        skewed_info: SkewedInfo = None,
-        stored_as_sub_directories: bool = None,
+        compressed: Optional[bool] = None,
+        num_buckets: Optional[int] = None,
+        bucket_cols: Optional[List[str]] = None,
+        sort_cols: Optional[List[Order]] = None,
+        parameters: Optional[Dict[str, str]] = None,
+        skewed_info: Optional[SkewedInfo] = None,
+        stored_as_sub_directories: Optional[bool] = None,
     ) -> None:
         """
         Constructor.

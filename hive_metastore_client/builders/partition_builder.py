@@ -1,6 +1,8 @@
 """PartitionBuilder."""
+
+from typing import List, Mapping, Optional
+
 from thrift_files.libraries.thrift_hive_metastore_client.ttypes import Partition, StorageDescriptor, PrincipalPrivilegeSet  # type: ignore # noqa: E501
-from typing import List, Mapping
 
 
 class PartitionBuilder:
@@ -11,12 +13,12 @@ class PartitionBuilder:
         values: List[str],
         db_name: str,
         table_name: str,
-        sd: StorageDescriptor = None,
-        create_time: int = None,
-        last_access_time: int = None,
-        parameters: Mapping[str, str] = None,
-        privileges: PrincipalPrivilegeSet = None,
-        cat_name: str = None,
+        sd: Optional[StorageDescriptor] = None,
+        create_time: Optional[int] = None,
+        last_access_time: Optional[int] = None,
+        parameters: Optional[Mapping[str, str]] = None,
+        privileges: Optional[PrincipalPrivilegeSet] = None,
+        cat_name: Optional[str] = None,
     ) -> None:
         """
         Constructor.

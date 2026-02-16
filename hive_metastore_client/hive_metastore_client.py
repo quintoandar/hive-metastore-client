@@ -1,4 +1,5 @@
 """Hive Metastore Client main class."""
+
 import copy
 from typing import List, Any, Tuple
 

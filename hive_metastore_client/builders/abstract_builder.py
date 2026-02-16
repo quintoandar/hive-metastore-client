@@ -1,4 +1,5 @@
 """Abstract Builder Class."""
+
 from abc import ABCMeta, abstractmethod
 
 

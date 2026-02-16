@@ -1,5 +1,6 @@
 """DatabaseBuilder."""
-from typing import Mapping
+
+from typing import Mapping, Optional
 
 from hive_metastore_client.builders.abstract_builder import AbstractBuilder
 from thrift_files.libraries.thrift_hive_metastore_client.ttypes import Database, PrincipalPrivilegeSet, PrincipalType  # type: ignore # noqa: E501
@@ -11,13 +12,13 @@ class DatabaseBuilder(AbstractBuilder):
     def __init__(
         self,
         name: str,
-        description: str = None,
-        location_uri: str = None,
-        parameters: Mapping[str, str] = None,
-        privileges: PrincipalPrivilegeSet = None,
-        owner_name: str = None,
-        owner_type: PrincipalType = None,
-        catalog_name: str = None,
+        description: Optional[str] = None,
+        location_uri: Optional[str] = None,
+        parameters: Optional[Mapping[str, str]] = None,
+        privileges: Optional[PrincipalPrivilegeSet] = None,
+        owner_name: Optional[str] = None,
+        owner_type: Optional[PrincipalType] = None,
+        catalog_name: Optional[str] = None,
     ):
         """
         Constructor.

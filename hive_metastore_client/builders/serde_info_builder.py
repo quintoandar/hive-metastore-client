@@ -1,5 +1,6 @@
 """SerDeInfoBuilder."""
-from typing import Dict
+
+from typing import Dict, Optional
 
 from hive_metastore_client.builders.abstract_builder import AbstractBuilder
 from thrift_files.libraries.thrift_hive_metastore_client.ttypes import (  # type: ignore # noqa: E501
@@ -13,13 +14,13 @@ class SerDeInfoBuilder(AbstractBuilder):
 
     def __init__(
         self,
-        name: str = None,
-        serialization_lib: str = None,
-        parameters: Dict[str, str] = None,
-        description: str = None,
-        serializer_class: str = None,
-        deserializer_class: str = None,
-        serde_type: SerdeType = None,
+        name: Optional[str] = None,
+        serialization_lib: Optional[str] = None,
+        parameters: Optional[Dict[str, str]] = None,
+        description: Optional[str] = None,
+        serializer_class: Optional[str] = None,
+        deserializer_class: Optional[str] = None,
+        serde_type: Optional[SerdeType] = None,
     ) -> None:
         """
         Constructor.

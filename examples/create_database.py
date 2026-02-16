@@ -1,7 +1,7 @@
 """
-    Use the builders for creating Database thrift object.
-    Some arguments are optional when creating a thrift object.
-    Check Builder constructor for more information.
+Use the builders for creating Database thrift object.
+Some arguments are optional when creating a thrift object.
+Check Builder constructor for more information.
 """
 
 from hive_metastore_client.builders import DatabaseBuilder

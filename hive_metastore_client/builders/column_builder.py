@@ -1,4 +1,7 @@
 """ColumnBuilder."""
+
+from typing import Optional
+
 from hive_metastore_client.builders.abstract_builder import AbstractBuilder
 from thrift_files.libraries.thrift_hive_metastore_client.ttypes import FieldSchema  # type: ignore # noqa: E501
 
@@ -6,7 +9,7 @@ from thrift_files.libraries.thrift_hive_metastore_client.ttypes import FieldSche
 class ColumnBuilder(AbstractBuilder):
     """Builds thrift FieldSchema object."""
 
-    def __init__(self, name: str, type: str, comment: str = None) -> None:
+    def __init__(self, name: str, type: str, comment: Optional[str] = None) -> None:
         """
         Constructor.
 

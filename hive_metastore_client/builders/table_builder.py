@@ -1,5 +1,6 @@
 """TableBuilder."""
-from typing import List, Dict
+
+from typing import Dict, List, Optional
 
 from hive_metastore_client.builders.abstract_builder import AbstractBuilder
 from thrift_files.libraries.thrift_hive_metastore_client.ttypes import (  # type: ignore # noqa: E501
@@ -20,20 +21,20 @@ class TableBuilder(AbstractBuilder):
         table_name: str,
         db_name: str,
         storage_descriptor: StorageDescriptor,
-        owner: str = None,
-        create_time: int = None,
-        last_access_time: int = None,
-        retention: int = None,
-        partition_keys: List[FieldSchema] = None,
-        parameters: Dict[str, str] = None,
-        view_original_text: str = None,
-        view_expanded_text: str = None,
-        table_type: str = None,
-        privileges: PrincipalPrivilegeSet = None,
+        owner: Optional[str] = None,
+        create_time: Optional[int] = None,
+        last_access_time: Optional[int] = None,
+        retention: Optional[int] = None,
+        partition_keys: Optional[List[FieldSchema]] = None,
+        parameters: Optional[Dict[str, str]] = None,
+        view_original_text: Optional[str] = None,
+        view_expanded_text: Optional[str] = None,
+        table_type: Optional[str] = None,
+        privileges: Optional[PrincipalPrivilegeSet] = None,
         temporary: bool = False,
-        rewrite_enabled: bool = None,
-        creation_metadata: CreationMetadata = None,
-        cat_name: str = None,
+        rewrite_enabled: Optional[bool] = None,
+        creation_metadata: Optional[CreationMetadata] = None,
+        cat_name: Optional[str] = None,
         owner_type: PrincipalType = PrincipalType.USER,
     ) -> None:
         """

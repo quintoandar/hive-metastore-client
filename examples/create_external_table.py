@@ -1,13 +1,13 @@
 """
-    The thrift Table object requires others objects as arguments.
-    Use the builders for creating each of them.
-    Some arguments are optional when creating a thrift object.
-    Check each Builder constructor for more information.
+The thrift Table object requires others objects as arguments.
+Use the builders for creating each of them.
+Some arguments are optional when creating a thrift object.
+Check each Builder constructor for more information.
 
-    Due to a bug in Hive Metastore server we need to enforce the parameter
-     EXTERNAL=TRUE when creating an external table. You can either use the
-     method `create_external_table` with the table object or declare the two
-     table parameters before calling the method create_table.
+Due to a bug in Hive Metastore server we need to enforce the parameter
+ EXTERNAL=TRUE when creating an external table. You can either use the
+ method `create_external_table` with the table object or declare the two
+ table parameters before calling the method create_table.
 """
 
 from hive_metastore_client import HiveMetastoreClient
