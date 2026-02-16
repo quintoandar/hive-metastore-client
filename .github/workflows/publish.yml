@@ -10,7 +10,7 @@ jobs:
     if: github.ref == 'refs/heads/main'
 
     runs-on: ubuntu-22.04
-    container: python:3.7-buster
+    container: python:3.12-bookworm
 
     steps:
     - uses: actions/checkout@v2
